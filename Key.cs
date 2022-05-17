@@ -8,12 +8,13 @@ namespace Shadowgate
 {
     public class Key : Item
     {
-        public Key(string objectName, bool isHidden, bool canBeDiscarded)
+        public void Init(string objectName, bool isHidden, bool canBeDiscarded)
         {
             ObjectName = objectName;
             IsHidden = isHidden;
             CanBeDiscarded = canBeDiscarded;
         }
+
 
         
         

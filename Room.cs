@@ -89,7 +89,7 @@ namespace Shadowgate
                 else                                                    // if it's not a torch...
                     Globals.currentPlayer.PlayerInventory.Add((Item)activeObject);  // add non-torch items to inventory
 
-                Globals.currentRoom.PointsOfInterest.Remove(activeObject);   // remove item from POI
+                Globals.clonedRoom.PointsOfInterest.Remove(activeObject);   // remove item from POI
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"\nThe {activeObject.ObjectName} is in hand."); // message for taking item
 

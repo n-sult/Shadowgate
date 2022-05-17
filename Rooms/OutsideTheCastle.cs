@@ -13,7 +13,8 @@ namespace Shadowgate.Rooms
         public OutsideTheCastle()
         {
             // Items for Outside Castle
-            Key key1 = new Key("Key 1", true, false);
+            Key key1 = new Key();
+            key1.Init("Key 1", true, false);
 
             // All POI for Outside Castle
             PointOfInterest stoneSkull = new PointOfInterest("Stone Skull");
@@ -90,13 +91,13 @@ namespace Shadowgate.Rooms
                         Console.WriteLine("\nAs if by magic, the skull rises.");
 
                         PointOfInterest key = GetPOI("Key 1");
-                        if (PointsOfInterest.Contains(key))
+                        if (key is not null)
                         {
                             Console.WriteLine("There's a key inside!");
                             key.IsHidden = false;
                         }
                         skullOpen = true;
-                        if (key != null)
+                        if (key is not null)
                             key.IsHidden = false;
                     }
                     else

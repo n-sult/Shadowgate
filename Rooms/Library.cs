@@ -18,7 +18,8 @@ namespace Shadowgate.Rooms
             Shadowgate.Library.LibrarySkull librarySkull = new Shadowgate.Library.LibrarySkull("Skull");
             Scroll scroll3 = new Scroll("Scroll 3", true);
             Scroll scroll4 = new Scroll("Scroll 4", true);
-            Key key5 = new Key("Key 5", true, false);
+            Key key5 = new Key();
+            key5.Init("Key 5", true, false);
             Shadowgate.Library.Glasses glasses = new Shadowgate.Library.Glasses("Glasses", true);
 
             // All POI for Library

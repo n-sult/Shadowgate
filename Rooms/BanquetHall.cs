@@ -13,7 +13,8 @@ namespace Shadowgate.Rooms
         public BanquetHall()
         {
             // Items for Banquet Hall
-            Key key4 = new Key("Key 4", true, false);
+            Key key4 = new Key();
+            key4.Init("Key 4", true, false);
             Shadowgate.BanquetHall.BanquetMirror banquetMirror = new Shadowgate.BanquetHall.BanquetMirror("Mirror");
             Shadowgate.BanquetHall.Crest crest = new Shadowgate.BanquetHall.Crest("Crest");
 

@@ -1,4 +1,5 @@
-﻿using Shadowgate.Rooms;
+﻿using MoreLinq;
+using Shadowgate.Rooms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,35 +76,38 @@ namespace Shadowgate
             else
                 ClonePlayer(true); // if player died, set currentplayer to permanentplayer
 
-            if (room is not null && Globals.clonedRoom is not null) // 
+            if (room is not null && Globals.clonedRoom is not null)  
                 Globals.previousRoom = Globals.clonedRoom; // set the previous room to be the cloned room
                                                            // add .Clone() if necessary
 
-
-            if (playerDied && Globals.previousRoom is not null) // if player died after moving rooms, set currentroom to previousroom 
+            if (playerDied)
             {
-                // below: if the player died in the mirror room and were previously in the fire bridge, check if they had cloak equipped. 
-                // if not, move them back to the mirror room instead of the fire bridge. this is to avoid an endless loop.
-                if (Globals.currentRoom.RoomName == "Mirror Room" && Globals.previousRoom.RoomName == "Fire Bridge" && !Globals.permanentPlayer.IsCloakEquipped)
-                    Globals.previousRoom = Globals.currentRoom.Clone();
+                if (Globals.previousRoom is not null)
+                {
+                    // below: if the player died in the mirror room and were previously in the fire bridge, check if they had cloak equipped. 
+                    // if not, move them back to the mirror room instead of the fire bridge. this is to avoid an endless loop.
+                    if (Globals.currentRoom.RoomName == "Mirror Room" && Globals.previousRoom.RoomName == "Fire Bridge" && !Globals.permanentPlayer.IsCloakEquipped)
+                        Globals.previousRoom = Globals.currentRoom.Clone();
+                    else
+                        Globals.currentRoom = Globals.previousRoom; // for all other rooms, set the current room to the previous room
+                }
                 else
-                    Globals.currentRoom = Globals.previousRoom; // for all other rooms, set the current room to the previous room
+                    Globals.previousRoom = Globals.currentRoom;      // (so you move back to same room)
             }
-            else if (playerDied && Globals.previousRoom is null) // if player before moving to any rooms, set the previousroom to currentroom 
-                Globals.previousRoom = Globals.currentRoom;      // (so you move back to same room)
             else // if the game is launched OR player is just moving rooms, set current room to passed room name (to be moved to)
             {
                 if (Globals.previousRoom is not null)
                 {
                     Room thatRoom = Globals.rooms.Find(x => x.RoomName == Globals.clonedRoom.RoomName); // attempt to save the room in the list to the cloned room
                     Globals.rooms[Globals.rooms.IndexOf(thatRoom)] = Globals.clonedRoom;
-                    // thatRoom = Globals.clonedRoom.Clone();
                 }
                 Globals.currentRoom = Globals.rooms.Find(x => x.RoomName == room);
-            }                
-                
+            }
 
             Globals.clonedRoom = Globals.currentRoom.Clone();
+            // Globals.clonedRoom.PointsOfInterest.RemoveRange(Globals.currentRoom.PointsOfInterest.Count - 1, (Globals.currentRoom.PointsOfInterest.Count));
+            for (int i = 0; i < Globals.currentRoom.PointsOfInterest.Count; i++)
+                Globals.clonedRoom.PointsOfInterest.RemoveAt(Globals.clonedRoom.PointsOfInterest.Count - 1);
 
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("\n***********************************************************************"); // show entry message for the room
@@ -121,37 +125,6 @@ namespace Shadowgate
             RoomEnteredEvent?.Invoke(Globals.clonedRoom.RoomName);
             ReduceTorchFire();
         }
-
-        //public static void MoveRooms(string room, bool updateInventory = true) // do the following when attempting to move rooms...
-        //{
-        //    Globals.previousRoom = Globals.clonedRoom; // before changing rooms, set the previous room to the current room (to be used if player dies)
-
-        //    if (updateInventory)
-        //        ClonePlayer(false); // before changing rooms, set the permanent player status to current status (to be used if player dies)
-
-        //    Globals.currentRoom = Globals.rooms.Find(x => x.GetRoomName() == room); // look in the global list of rooms for the room name passed and set it as current room
-        //    Globals.clonedRoom = Globals.currentRoom.Clone();
-
-        //    //if (Globals.previousRoom is null)
-        //    //    Globals.previousRoom = Globals.currentRoom;
-
-        //    Console.ForegroundColor = ConsoleColor.Gray;
-        //    Console.WriteLine("\n***********************************************************************"); // show entry message for the room
-        //    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-        //    Console.WriteLine("Current location: " + Globals.currentRoom.RoomName); // list off the current room
-
-        //    Console.ForegroundColor = ConsoleColor.Gray;
-        //    if (Globals.currentRoom.Visited)
-        //        Console.WriteLine($"\n{Globals.currentRoom.SubsequentEntry}");
-        //    else
-        //        Console.WriteLine($"\n{Globals.currentRoom.FirstEntry}");
-        //    Console.WriteLine("***********************************************************************");
-
-        //    Globals.clonedRoom.Visited = true; // set to true to determine which entry message to show
-        //    RoomEnteredEvent?.Invoke(Globals.clonedRoom.RoomName);
-        //    // RoomEnteredEvent?.Invoke(Globals.currentRoom.RoomName);
-        //    ReduceTorchFire();
-        //}
 
         public static void PrintPOIs(List<PointOfInterest> pointOfInterests)
         {

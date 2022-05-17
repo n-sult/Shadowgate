@@ -16,7 +16,8 @@ namespace Shadowgate.Rooms
         public SharkPond()
         {
             // Items for Shark Pond
-            Key key3 = new Key("Key 3", false, false);
+            Key key3 = new Key();
+            key3.Init("Key 3", false, false);
 
             // All POI for the Shark Pond
             PointOfInterest sharkPondWater = new PointOfInterest("Pond");
