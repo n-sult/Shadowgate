@@ -8,7 +8,7 @@ namespace Shadowgate.Rooms
 {
     public class LimestoneCave : Room
     {
-        public static bool BlueGemUsed = false;
+        public bool BlueGemUsed = false;
         
         public LimestoneCave()
         {

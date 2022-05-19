@@ -26,7 +26,6 @@ namespace Shadowgate.Lair
         public override void Use()
         {
             var result = GameFunctions.UseOn(ObjectName);
-
             if (result is not null)
             {
                 switch (result)
@@ -46,9 +45,9 @@ namespace Shadowgate.Lair
                     case "Middle Mirror":
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\nBellowing like some Norse God, you smash the hammer into the mirror. You shatter the mirror, revealing an iron door!");
-                        GameFunctions.FindObject("Door behind broken mirror", Globals.currentRoom.PointsOfInterest).IsHidden = false; // unhide the door behidn the mirror
-                        Globals.currentRoom.PointsOfInterest.Remove(GameFunctions.FindObject("Middle Mirror", Globals.currentRoom.PointsOfInterest)); // remove middle mirror from POI
-                        this.CanBeDiscarded = true; // once the mirror is broken, the hammer can be discarded
+                        GameFunctions.FindObject("Door behind broken mirror", Globals.clonedRoom.PointsOfInterest).IsHidden = false; // unhide the door behind the mirror
+                        Globals.clonedRoom.PointsOfInterest.Remove(GameFunctions.FindObject("Middle Mirror", Globals.clonedRoom.PointsOfInterest)); // remove middle mirror from POI
+                        CanBeDiscarded = true; // once the mirror is broken, the hammer can be discarded
                         GameFunctions.ReduceTorchFire();
                         break;
                     case "Firedrake":

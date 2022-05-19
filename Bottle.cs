@@ -58,11 +58,9 @@ namespace Shadowgate
         public override void Use()
         {
             var result = GameFunctions.UseOn(ObjectName);
-
             if (result is not null)
             {
                 var bottleThatWasUsed = GameFunctions.FindObject(ObjectName, null, Globals.currentPlayer.PlayerInventory);
-                
                 switch (result)
                 {
                     case "Self":
@@ -74,7 +72,7 @@ namespace Shadowgate
                         }
                         else if (ObjectName == "Bottle 2")
                         {
-                            if (Globals.currentRoom.RoomName == "Bridge Room")
+                            if (Globals.clonedRoom.RoomName == "Bridge Room")
                             {
                                 Console.ForegroundColor = ConsoleColor.Cyan;
                                 Console.WriteLine("\nYou drink the liquid and immediately begin to rise in the air!");

@@ -8,8 +8,6 @@ namespace Shadowgate.Rooms
 {
     public class WraithRoom : Room
     {
-        public static bool IsWraithDead;
-
         public WraithRoom()
         {
             // Items for Wraith Room
@@ -37,7 +35,7 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Door at floor level":
-                    if (!IsWraithDead)
+                    if (PointsOfInterest.Contains(GameFunctions.FindObject("Wraith", PointsOfInterest)))
                         activeObject.AfraidToGetNearMessage();
                     else
                         base.MoveTo(objectName);
@@ -70,7 +68,7 @@ namespace Shadowgate.Rooms
             switch (objectName)
             {
                 case "Cloak":
-                    if (!IsWraithDead)
+                    if (PointsOfInterest.Contains(GameFunctions.FindObject("Wraith", PointsOfInterest)))
                     {
                         activeObject.AfraidToGetNearMessage();
                         return false;
@@ -91,7 +89,7 @@ namespace Shadowgate.Rooms
             switch (objectName)
             {
                 case "Door at floor level":
-                    if (!IsWraithDead)
+                    if (PointsOfInterest.Contains(GameFunctions.FindObject("Wraith", PointsOfInterest)))
                         activeObject.AfraidToGetNearMessage();
                     else
                         base.OpenObject(objectName);

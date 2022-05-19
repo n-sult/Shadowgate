@@ -228,7 +228,6 @@ namespace Shadowgate
             List<Item> items = null, List<Spell> spells = null) 
         {
             List<object> list = new List<object>();
-
             if (pointOfInterests is null && items is null)
                 list = spells.Cast<object>().ToList();
             else if (pointOfInterests is null && spells is null)

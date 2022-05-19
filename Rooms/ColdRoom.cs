@@ -16,15 +16,15 @@ namespace Shadowgate.Rooms
             Shadowgate.ColdRoom.Sphere sphere = new Shadowgate.ColdRoom.Sphere("Sphere", true);
 
             // All POI for Cold Room
-            PointOfInterest coldRoomHole = new PointOfInterest("Small hole next to the wooden door");
             PointOfInterest coldRoomPedestal = new PointOfInterest("Pedestal");
             Torch coldRoomLeftTorch = new Torch("Left Torch");
             Torch coldRoomRightTorch = new Torch("Right Torch");
-            Entry coldRoomTrapDoor = new Entry("Trap Door", true, false, false, false);
+            PointOfInterest coldRoomHole = new PointOfInterest("Small hole next to the wooden door");
             Entry smallWoodenDoor = new Entry("Small Wooden Door", true, false, false, false, "Lair");
+            Entry coldRoomTrapDoor = new Entry("Trap Door", true, false, false, false);
             Entry doorFromColdRoomToDwarvenHall = new Entry("Door to Dwarven Hall", true, true, false, false, "Dwarven Hall");
-            var coldRoomPOI = new List<PointOfInterest>() { sphere, coldRoomHole, coldRoomPedestal, coldRoomLeftTorch, coldRoomRightTorch, 
-                coldRoomTrapDoor, smallWoodenDoor, doorFromColdRoomToDwarvenHall };
+            var coldRoomPOI = new List<PointOfInterest>() { sphere, coldRoomPedestal, coldRoomLeftTorch, coldRoomRightTorch, coldRoomHole,
+                smallWoodenDoor, coldRoomTrapDoor, doorFromColdRoomToDwarvenHall };
 
             RoomName = "Cold Room";
             FirstEntry = "You enter a cold room. The stench of flesh in decay pervades the small chamber. You begin to shiver. This room is really cold!";

@@ -8,9 +8,6 @@ namespace Shadowgate.Rooms
 {
     public class HiddenRoom : Room
     {
-        public static bool IsLeverPulled;
-        public static bool DoorOnLedgeAccessed;
-        
         public HiddenRoom()
         {
             // Items for Hidden Room
@@ -32,6 +29,21 @@ namespace Shadowgate.Rooms
             FirstEntry = "As you enter the room, you see an arrow on the front wall.";
             SubsequentEntry = "Cold air rushes into this chamber from an opening some ten feet above the floor.";
             PointsOfInterest = hiddenRoomPOI;
+
+            //GameFunctions.RoomEnteredEvent += (roomName) => 
+            //{
+            //    if (RoomName == roomName)
+            //    {
+            //        if (Globals.previousRoom is not null && Globals.previousRoom.RoomName == "Bridge Room")
+            //        {
+            //            if ((Globals.previousRoom as Rooms.BridgeRoom).Bottle2Used)
+            //            {
+            //                Console.ForegroundColor = ConsoleColor.Yellow;
+            //                Console.WriteLine("\n\nThe effects of Bottle 2 have worn off! You slowly float back to the ground."); // altered line
+            //            }
+            //        }
+            //    }
+            //};
         }
 
         public override void MoveTo(string objectName)
@@ -39,18 +51,17 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Doorway on an elevated ledge":
-                    var theLedge = GameFunctions.FindObject(objectName, PointsOfInterest);
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    if (!DoorOnLedgeAccessed) // if player hasn't tried to access this door yet...
+                    var theLedge = GameFunctions.FindObject("Ledge", PointsOfInterest);
+                    if (theLedge is not null) // if player hasn't tried to access this door yet...
                     {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("\nThe ledge wasn't strong enough to hold you. You fall to the ground and land hard on your rump."); // alert player they fell
-                        DoorOnLedgeAccessed = true;
-                        theLedge.IsHidden = false; // make rubble POI visible
+                        GameFunctions.FindObject("Rubble", PointsOfInterest).IsHidden = false; // make rubble POI visible
                         PointsOfInterest.Remove(theLedge); // remove ledge from POI list
                         GameFunctions.ReduceTorchFire();
                     }
                     else // otherwise, alert player they can't reach
-                        theLedge.CannotReachMessage();
+                        GameFunctions.FindObject(objectName, PointsOfInterest).CannotReachMessage();
                     break;
                 default:
                     base.MoveTo(objectName);
@@ -89,13 +100,12 @@ namespace Shadowgate.Rooms
             {
                 case "Left Torch":
                     var theHiddenStairway = GameFunctions.FindObject("Hidden Stairway", PointsOfInterest);
-                    if (!IsLeverPulled)
+                    if (theHiddenStairway.IsHidden == true)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\nYou moved the torch. On the left wall, a hidden door opens. There is a spiral staircase leading down.");
                         theHiddenStairway.IsHidden = false;
                         (theHiddenStairway as Entry).IsDoorOpen = true;
-                        IsLeverPulled = true;
                     }
                     else
                     {
@@ -103,7 +113,6 @@ namespace Shadowgate.Rooms
                         Console.WriteLine("\nYou moved the torch. The hidden door on the left wall is closed.");
                         theHiddenStairway.IsHidden = true;
                         (theHiddenStairway as Entry).IsDoorOpen = false;
-                        IsLeverPulled = false;
                     }
                     GameFunctions.ReduceTorchFire();
                     break;

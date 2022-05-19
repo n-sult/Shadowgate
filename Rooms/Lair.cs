@@ -36,7 +36,7 @@ namespace Shadowgate.Rooms
             GameFunctions.RoomEnteredEvent += (roomName) => { if (roomName == RoomName) numberOfDragonBreaths = 0; };
         }
 
-        public void DieToDragon()
+        public static void DieToDragon()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\nDragon flame engulfs your body. You pay for your curiosity with your life.");
@@ -45,14 +45,9 @@ namespace Shadowgate.Rooms
         
         public void TakeInLair()
         {
-            bool shieldInInventory;
-            var result = GameFunctions.FindObject("Shield", null, Globals.currentPlayer.PlayerInventory); // first, we find out if the shield is in the inventory
-            if (result is not null)
-                shieldInInventory = true;
-            else
-                shieldInInventory = false;
+            var result = GameFunctions.FindObject("Shield", null, Globals.currentPlayer.PlayerInventory); // find out if shield is in player inventory
 
-            if (!shieldInInventory)
+            if (result is null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write("\nWhoosh! Flames suddenly shoot from the dragon's mouth!");
@@ -61,7 +56,7 @@ namespace Shadowgate.Rooms
             }
             if (numberOfDragonBreaths == 0)
             {
-                if (shieldInInventory) // if inventory has shield, then block flames
+                if (result is not null) // if inventory has shield, then block flames
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("\nFlames spew out from the dragon's mouth!");
@@ -85,7 +80,6 @@ namespace Shadowgate.Rooms
                     "Not even your best friend could recognize your burning body.");
                 DieToDragon();
             }
-            Console.ResetColor();
         }
 
         public override void MoveTo(string objectName)

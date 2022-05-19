@@ -26,7 +26,6 @@ namespace Shadowgate.Lair
         public override void Use()
         {
             var result = GameFunctions.UseOn(ObjectName);
-
             if (result is not null)
             {
                 switch (result)

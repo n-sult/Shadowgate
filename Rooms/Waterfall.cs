@@ -31,7 +31,7 @@ namespace Shadowgate.Rooms
             PointsOfInterest = waterfallPOI;
 
             GameFunctions.RoomEnteredEvent += (roomName) => { 
-                if (roomName == "Waterfall" && 
+                if (roomName == RoomName && 
                 Globals.currentPlayer.PlayerInventory.Contains(GameFunctions.FindObject("Sling", null, Globals.currentPlayer.PlayerInventory))) //check if sling is in inventory
                 {
                     Shadowgate.Closet.Sling theSling = (Shadowgate.Closet.Sling)GameFunctions.FindObject("Sling", null, Globals.currentPlayer.PlayerInventory); // if so, find it

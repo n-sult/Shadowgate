@@ -21,62 +21,62 @@ namespace Shadowgate
 
         // debugging items to add to list of inventory,
         // TODO DELETE THIS LIST FOR FINAL
-        //public static Key key1 = new Key("Key 1", false, false);
-        //public static Closet.Sling sling = new Closet.Sling("Sling");
-        //public static Closet.Sword sword = new Closet.Sword("Sword");
-        //public static Key key2 = new Key("Key 2", false, false);
-        //public static CrampedHallway.HolyTorch holyTorch = new CrampedHallway.HolyTorch("Holy Torch");
-        //public static Key key3 = new Key("Key 3", false, false);
-        //public static Waterfall.Stone stone = new Waterfall.Stone("Stone");
-        //public static Alcove.Jewel whiteGem = new Alcove.Jewel("White Gem", true);
-        //public static Alcove.Jewel redGem = new Alcove.Jewel("Red Gem", true);
-        //public static Alcove.Jewel blueGem = new Alcove.Jewel("Blue Gem", true);
-        //public static ColdRoom.Sphere sphere = new ColdRoom.Sphere("Sphere", false);
-        //public static Lair.Shield shield = new Lair.Shield("Shield");
-        //public static Lair.Hammer hammer = new Lair.Hammer("Hammer");
-        //public static Lair.Spear spear = new Lair.Spear("Spear");
-        //public static Lair.LairSkull lairSkull = new Lair.LairSkull("Skull");
-        //public static Tomb.CopperCoin copperCoin1 = new Tomb.CopperCoin("Copper Coin");
-        //public static Tomb.CopperCoin copperCoin2 = new Tomb.CopperCoin("Copper Coin");
-        //public static Tomb.Scepter scepter = new Tomb.Scepter("Scepter", false);
-        //public static HiddenRoom.Arrow arrow = new HiddenRoom.Arrow("Arrow");
-        //public static Bottle bottle1 = new Bottle("Bottle 1");
-        //public static Bottle bottle2 = new Bottle("Bottle 2");
-        //public static Bottle bottle3 = new Bottle("Bottle 3");
-        //public static Bottle bottle4 = new Bottle("Bottle 4");
-        //public static Bottle bottle5 = new Bottle("Bottle 5");
-        //public static WraithRoom.Cloak cloak = new WraithRoom.Cloak("Cloak");
-        //public static MirrorRoom.Broom broom = new MirrorRoom.Broom("Broom");
-        // public static Scroll scroll2 = new Scroll("Scroll 2", false);
-        //public static Scroll scroll3 = new Scroll("Scroll 3", false);
-        //public static Scroll scroll4 = new Scroll("Scroll 4", false);
-        //public static Courtyard.Gauntlet gauntlet = new Courtyard.Gauntlet("Gauntlet", false);
-        //public static Library.BookOnDesk bookOnDesk = new Library.BookOnDesk("Library Book");
-        //public static Library.Glasses glasses = new Library.Glasses("Glasses", false);
-        //public static Library.LibraryMap libraryMap = new Library.LibraryMap("Map");
-        //public static Library.LibrarySkull librarySkull = new Library.LibrarySkull("Skull");
-        //public static Study.Bellows bellows = new Study.Bellows("Bellows");
-        //public static Study.Poker poker = new Study.Poker("Poker");
-        //public static Key key5 = new Key("Key 5", false, false);
-        //public static Key key6 = new Key("Key 6", false, false);
-        //public static Laboratory.HolyWater holyWater = new Laboratory.HolyWater("Water", false);
-        //public static Laboratory.Horseshoe horseshoe = new Laboratory.Horseshoe("Horseshoe");
-        //public static Garden.Flute flute = new Garden.Flute("Flute");
-        //public static Garden.Ring ring = new Garden.Ring("Ring", false);
-        //public static Key key4 = new Key("Key 4", false, false);
-        //public static BanquetHall.BanquetMirror mirror = new BanquetHall.BanquetMirror("Mirror");
-        //public static Observatory.Rod rod = new Observatory.Rod("Rod", false);
-        //public static Observatory.Star star = new Observatory.Star("Star");
-        //public static Watchtower.Blade blade = new Watchtower.Blade("Blade");
-        //public static BrazierRoom.Horn horn = new BrazierRoom.Horn("Horn");
-        //public static Turret.Talisman talisman = new Turret.Talisman("Talisman");
-        //public static Balcony.Wand wand = new Balcony.Wand("Wand", false);
-        //public static LookoutPoint.BigCoin bigCoin = new LookoutPoint.BigCoin("Big Coin");
-        //public static LookoutPoint.GoldCoin goldCoin1 = new LookoutPoint.GoldCoin("Gold Coin");
-        //public static LookoutPoint.GoldCoin goldCoin2 = new LookoutPoint.GoldCoin("Gold Coin");
-        //public static LookoutPoint.GoldCoin goldCoin3 = new LookoutPoint.GoldCoin("Gold Coin");
-        //public static SnakeCave.Staff staff = new SnakeCave.Staff("Staff", false);
-        //public static SwitchCave.Orb orb = new SwitchCave.Orb("Orb", false);
+        public static Key key1 = new Key("Key 1", false, false);
+        public static Closet.Sling sling = new Closet.Sling("Sling");
+        public static Closet.Sword sword = new Closet.Sword("Sword");
+        public static Key key2 = new Key("Key 2", false, false);
+        public static CrampedHallway.HolyTorch holyTorch = new CrampedHallway.HolyTorch("Holy Torch");
+        public static Key key3 = new Key("Key 3", false, false);
+        public static Waterfall.Stone stone = new Waterfall.Stone("Stone");
+        public static Alcove.Jewel whiteGem = new Alcove.Jewel("White Gem");
+        public static Alcove.Jewel redGem = new Alcove.Jewel("Red Gem");
+        public static Alcove.Jewel blueGem = new Alcove.Jewel("Blue Gem");
+        public static ColdRoom.Sphere sphere = new ColdRoom.Sphere("Sphere", false);
+        public static Lair.Shield shield = new Lair.Shield("Shield");
+        public static Lair.Hammer hammer = new Lair.Hammer("Hammer");
+        public static Lair.Spear spear = new Lair.Spear("Spear");
+        public static Lair.LairSkull lairSkull = new Lair.LairSkull("Skull");
+        public static Tomb.CopperCoin copperCoin1 = new Tomb.CopperCoin("Copper Coin");
+        public static Tomb.CopperCoin copperCoin2 = new Tomb.CopperCoin("Copper Coin");
+        public static Tomb.Scepter scepter = new Tomb.Scepter("Scepter", false);
+        public static HiddenRoom.Arrow arrow = new HiddenRoom.Arrow("Arrow");
+        public static Bottle bottle1 = new Bottle("Bottle 1");
+        public static Bottle bottle2 = new Bottle("Bottle 2");
+        public static Bottle bottle3 = new Bottle("Bottle 3");
+        public static Bottle bottle4 = new Bottle("Bottle 4");
+        public static Bottle bottle5 = new Bottle("Bottle 5");
+        public static WraithRoom.Cloak cloak = new WraithRoom.Cloak("Cloak");
+        public static MirrorRoom.Broom broom = new MirrorRoom.Broom("Broom");
+        public static Scroll scroll2 = new Scroll("Scroll 2", false);
+        public static Scroll scroll3 = new Scroll("Scroll 3", false);
+        public static Scroll scroll4 = new Scroll("Scroll 4", false);
+        public static Courtyard.Gauntlet gauntlet = new Courtyard.Gauntlet("Gauntlet", false);
+        public static Library.BookOnDesk bookOnDesk = new Library.BookOnDesk("Library Book");
+        public static Library.Glasses glasses = new Library.Glasses("Glasses", false);
+        public static Library.LibraryMap libraryMap = new Library.LibraryMap("Map");
+        public static Library.LibrarySkull librarySkull = new Library.LibrarySkull("Skull");
+        public static Study.Bellows bellows = new Study.Bellows("Bellows");
+        public static Study.Poker poker = new Study.Poker("Poker");
+        public static Key key5 = new Key("Key 5", false, false);
+        public static Key key6 = new Key("Key 6", false, false);
+        public static Laboratory.HolyWater holyWater = new Laboratory.HolyWater("Water", false);
+        public static Laboratory.Horseshoe horseshoe = new Laboratory.Horseshoe("Horseshoe");
+        public static Garden.Flute flute = new Garden.Flute("Flute");
+        public static Garden.Ring ring = new Garden.Ring("Ring", false);
+        public static Key key4 = new Key("Key 4", false, false);
+        public static BanquetHall.BanquetMirror mirror = new BanquetHall.BanquetMirror("Mirror");
+        public static Observatory.Rod rod = new Observatory.Rod("Rod", false);
+        public static Observatory.Star star = new Observatory.Star("Star");
+        public static Watchtower.Blade blade = new Watchtower.Blade("Blade");
+        public static BrazierRoom.Horn horn = new BrazierRoom.Horn("Horn");
+        public static Turret.Talisman talisman = new Turret.Talisman("Talisman");
+        public static Balcony.Wand wand = new Balcony.Wand("Wand", false);
+        public static LookoutPoint.BigCoin bigCoin = new LookoutPoint.BigCoin("Big Coin");
+        public static LookoutPoint.GoldCoin goldCoin1 = new LookoutPoint.GoldCoin("Gold Coin");
+        public static LookoutPoint.GoldCoin goldCoin2 = new LookoutPoint.GoldCoin("Gold Coin");
+        public static LookoutPoint.GoldCoin goldCoin3 = new LookoutPoint.GoldCoin("Gold Coin");
+        public static SnakeCave.Staff staff = new SnakeCave.Staff("Staff", false);
+        public static SwitchCave.Orb orb = new SwitchCave.Orb("Orb", false);
         // TODO: DELETE the above list FOR FINAL
 
 
@@ -120,7 +120,7 @@ namespace Shadowgate
         static void Main(string[] args)
         {
             List<Item> startingInventory = new List<Item>() { Globals.activeTorch1, Globals.activeTorch2, /*Globals.key1, Globals.sling, Globals.sword,
-                Globals.key2, Globals.holyTorch, Globals.key3, Globals.stone, Globals.whiteGem, Globals.redGem, Globals.blueGem, Globals.sphere,
+                Globals.key2, */Globals.holyTorch/*, Globals.key3, Globals.stone, Globals.whiteGem, Globals.redGem, Globals.blueGem, Globals.sphere,
                 Globals.shield, Globals.hammer, Globals.spear, Globals.lairSkull, Globals.copperCoin1, Globals.copperCoin2, Globals.scepter, Globals.arrow, 
                 Globals.bottle1, Globals.bottle2, Globals.bottle3, Globals.bottle4, Globals.bottle5, Globals.cloak, Globals.broom, Globals.scroll2, 
                 Globals.scroll3, Globals.scroll4, Globals.gauntlet, Globals.bookOnDesk, Globals.glasses, Globals.libraryMap, Globals.librarySkull, 
@@ -132,7 +132,7 @@ namespace Shadowgate
             
             Entry.ChangeRoomEvent += GameFunctions.MoveRooms;
             GameFunctions.RoomCreation(); // add all rooms to global list of rooms
-            GameFunctions.MoveRooms("Alcove"); // TODO: in final, should be "Outside the Castle"
+            GameFunctions.MoveRooms("Bridge Room"); // TODO: in final, should be "Outside the Castle"
 
             while (!Globals.currentPlayer.IsPlayerDead && !Globals.isGameBeat) // as long as game is not over, run main game loop
             {

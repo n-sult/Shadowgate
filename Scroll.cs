@@ -39,8 +39,8 @@ namespace Shadowgate
 
         public void RemoveScrollFromRoomOrInventory(Scroll scroll)
         {
-            if (Globals.currentRoom.PointsOfInterest.Contains(scroll))
-                Globals.currentRoom.PointsOfInterest.Remove(scroll);
+            if (Globals.clonedRoom.PointsOfInterest.Contains(scroll))
+                Globals.clonedRoom.PointsOfInterest.Remove(scroll);
             else
                 Globals.currentPlayer.PlayerInventory.Remove(scroll);
         }

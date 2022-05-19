@@ -101,14 +101,14 @@ namespace Shadowgate
                                 GameFunctions.ReduceTorchFire();
                                 break;
                             case "Holy Torch":
-                                if (Globals.clonedRoom.RoomName == "Wraith Room" && !Rooms.WraithRoom.IsWraithDead) // if you're in the wraith room and the wraith is alive...
+                                if (Globals.clonedRoom.RoomName == "Wraith Room") // if you're in the wraith room and the wraith is alive...
+                                //if (Globals.clonedRoom.RoomName == "Wraith Room" && !Rooms.WraithRoom.IsWraithDead) // if you're in the wraith room and the wraith is alive...
                                 {
                                     Console.ForegroundColor = ConsoleColor.Cyan;
                                     Console.WriteLine("\nThe torch burns with a strange white flame. \nWith a shout, you throw the flaming torch at it. " +
                                         "\nWith a blinding flash, the white flame engulfs the undead apparition! \nWhen you open your eyes again, the wraith is gone.");
                                     Globals.currentPlayer.PlayerInventory.Remove((Item)activeObject); // remove the holy torch from inventory
                                     Globals.clonedRoom.PointsOfInterest.Remove(GameFunctions.FindObject("Wraith", Globals.clonedRoom.PointsOfInterest)); // remove the wraith from the room POI
-                                    Rooms.WraithRoom.IsWraithDead = true; // mark wraith as dead
                                     GameFunctions.ReduceTorchFire();
                                 }
                                 else
