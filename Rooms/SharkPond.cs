@@ -9,8 +9,6 @@ namespace Shadowgate.Rooms
     public class SharkPond : Room
     {
         public bool WasSphereUsed = false;
-        public bool IsSphereInPond = false;
-        public bool IsKeyTaken = false;
         public bool UsedTorchOnPond = false;
 
         public SharkPond()
@@ -64,7 +62,7 @@ namespace Shadowgate.Rooms
                     break;
                 case "Skeleton in the pond":
                     Console.WriteLine("\nA lime covered skeleton stares at you through eyeless sockets.");
-                    if (!IsKeyTaken)
+                    if (GameFunctions.FindObject("Key 3", PointsOfInterest) is not null)
                         Console.WriteLine("It's holding a key in its right hand.");
                     break;
                 default:

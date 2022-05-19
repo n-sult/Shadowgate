@@ -24,10 +24,7 @@ namespace Shadowgate.ColdRoom
             if (Globals.clonedRoom.RoomName == "Cold Room")
                 return true;
             else if (Globals.clonedRoom.RoomName == "Shark Pond" && (Globals.clonedRoom as Rooms.SharkPond).UsedTorchOnPond)
-            {
-                (Globals.clonedRoom as Rooms.SharkPond).IsSphereInPond = false;
                 return true;
-            }
             else
                 base.Take();
                 return false;
@@ -48,8 +45,7 @@ namespace Shadowgate.ColdRoom
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan; //show message of lake freezing
                             Console.WriteLine("\nYou drop the sphere into the lake and notice the ripples disappear as the water turns into ice.");
-                            (Globals.clonedRoom as Rooms.SharkPond).WasSphereUsed = true;
-                            (Globals.clonedRoom as Rooms.SharkPond).IsSphereInPond = true; // mark these as true for later use
+                            (Globals.clonedRoom as Rooms.SharkPond).WasSphereUsed = true; // mark this as true for later use
 
                             Globals.clonedRoom.PointsOfInterest.Insert(0, activeObject); // take the sphere from you inventory and add it to room POI list
                             Globals.currentPlayer.PlayerInventory.Remove((Item)activeObject); // remove sphere from inventory

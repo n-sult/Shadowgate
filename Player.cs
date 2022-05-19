@@ -15,6 +15,8 @@ namespace Shadowgate
         public int HowManyTimesPlayerIsBurned;
         public List<Spell> Spellbook;
         public List<Item> PlayerInventory;
+        public int torchCount = 0;
+        public bool containsTorch = false;
 
         public Player(string objectName, bool isCloakEquipped, bool isGauntletEquipped, bool isGlassesEquipped)
         {

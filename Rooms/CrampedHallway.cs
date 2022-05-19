@@ -8,7 +8,7 @@ namespace Shadowgate.Rooms
 {
     public class CrampedHallway : Room
     {
-        bool isBookOpen = false;
+        bool _isBookOpen = false;
 
         public CrampedHallway()
         {
@@ -106,17 +106,19 @@ namespace Shadowgate.Rooms
                     Console.WriteLine("\nThe wall is opened.");
                     break;
                 case "Book on a pedestal":
-                    if (!isBookOpen)
+                    if (!_isBookOpen)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        PointOfInterest key = GetPOI("Key 2");
                         Console.WriteLine("\nThe book is opened and examined. \nA rectangular hole has been cut out of the inside of the book.");
-                        isBookOpen = true;
+                        
+                        var key = GameFunctions.FindObject("Key 2", PointsOfInterest);
                         if (key != null)
                         {
                             Console.WriteLine("There's a key inside!");
                             key.IsHidden = false;
                         }
+
+                        _isBookOpen = true;
                         break;
                     }
                     else
@@ -149,11 +151,13 @@ namespace Shadowgate.Rooms
                 case "Book on a pedestal":
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("\nThe book is closed");
-                    PointOfInterest key = GetPOI("Key 2");
+                    
+                    var key = GameFunctions.FindObject("Key 2", PointsOfInterest);
                     if (key != null)
                         key.IsHidden = true;
-                    if (isBookOpen)
-                        isBookOpen = false;
+
+                    if (_isBookOpen)
+                        _isBookOpen = false;
                     break;
                 default:
                     base.CloseObject(objectName);

@@ -19,14 +19,17 @@ namespace Shadowgate
             bagInventory = inventory;
         }
 
-        public void PrintItems()
+        public void PrintItems(bool showSelectionNumber)
         {
             Globals.selection = 1;
             Console.ForegroundColor = ConsoleColor.Gray;
             foreach (Item item in bagInventory)
             {
-                Console.WriteLine($"{Globals.selection} - {item.ObjectName}");
-                Globals.selection++;
+                if (showSelectionNumber) // if player wants to look at or take something, show a selection number
+                    Console.Write($"{Globals.selection} - ");
+                Console.WriteLine($"{item.ObjectName}");
+                if (showSelectionNumber) // if players wants to look at or take something, increment the selection number
+                    Globals.selection++;
             }
         }
 
@@ -58,7 +61,7 @@ namespace Shadowgate
                 Console.WriteLine("\nYou take note of the following in the bag: ");
                 Console.ForegroundColor = ConsoleColor.Gray;
                 if (bagInventory.Count > 0)
-                    PrintItems();
+                    PrintItems(false);
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
@@ -76,7 +79,7 @@ namespace Shadowgate
                 {
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("\nWhat would you like to look at?");
-                    PrintItems();
+                    PrintItems(true);
                     Console.WriteLine($"\n{Globals.selection} - Never mind");
                     
                     string lookInput = Console.ReadLine();
@@ -95,7 +98,7 @@ namespace Shadowgate
                 {
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("\nWhat would you like to take");
-                    PrintItems();
+                    PrintItems(true);
                     Console.WriteLine($"\n{Globals.selection} - Never mind");
 
                     string takeInput = Console.ReadLine();

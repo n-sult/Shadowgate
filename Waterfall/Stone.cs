@@ -26,7 +26,6 @@ namespace Shadowgate.Waterfall
         public override void Use()
         {
             var result = GameFunctions.UseOn(ObjectName);
-
             if (result is not null)
             {
                 if (result == "Sling")

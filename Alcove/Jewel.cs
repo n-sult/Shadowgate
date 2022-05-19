@@ -13,12 +13,6 @@ namespace Shadowgate.Alcove
             ObjectName = objectName;
         }
 
-        public Jewel(string objectName, bool isHidden)
-        {
-            ObjectName = objectName;
-            IsHidden = isHidden;
-        }
-
         public static void DoesNothingMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -43,7 +37,6 @@ namespace Shadowgate.Alcove
         public override void Use()
         {
             var result = GameFunctions.UseOn(ObjectName);
-
             if (result is not null)
             {
                 switch (ObjectName)

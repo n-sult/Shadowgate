@@ -9,7 +9,6 @@ namespace Shadowgate.Rooms
     public class ColdRoom : Room
     {
         public bool isWhiteGemUsed = false;
-        bool isTrapDoorOpen = false;
         
         public ColdRoom()
         {
@@ -38,7 +37,7 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Trap Door":
-                    if (!isTrapDoorOpen)
+                    if (!(GameFunctions.FindObject(objectName, PointsOfInterest) as Entry).IsDoorOpen)
                         OpenObject(objectName);
                     else
                     {
@@ -79,12 +78,12 @@ namespace Shadowgate.Rooms
             {
                 case "Trap Door":
                     base.OpenObject(objectName);
-                    if (!isTrapDoorOpen)
-                        isTrapDoorOpen = true;
+                    if (!(GameFunctions.FindObject(objectName, PointsOfInterest) as Entry).IsDoorOpen)
+                        (GameFunctions.FindObject(objectName, PointsOfInterest) as Entry).IsDoorOpen = true;
                     GameFunctions.ReduceTorchFire();
                     break;
                 default:
-                    base.MoveTo(objectName);
+                    base.OpenObject(objectName);
                     break;
             }
         }
@@ -95,9 +94,9 @@ namespace Shadowgate.Rooms
                 {
                     case "Trap Door":
                         base.CloseObject(objectName);
-                        if (isTrapDoorOpen)
-                            isTrapDoorOpen = false;
-                        GameFunctions.ReduceTorchFire();
+                    if ((GameFunctions.FindObject(objectName, PointsOfInterest) as Entry).IsDoorOpen)
+                        (GameFunctions.FindObject(objectName, PointsOfInterest) as Entry).IsDoorOpen = false;
+                    GameFunctions.ReduceTorchFire();
                         break;
                     default:
                         base.CloseObject(objectName);

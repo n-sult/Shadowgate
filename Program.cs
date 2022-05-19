@@ -47,7 +47,7 @@ namespace Shadowgate
         //public static Bottle bottle5 = new Bottle("Bottle 5");
         //public static WraithRoom.Cloak cloak = new WraithRoom.Cloak("Cloak");
         //public static MirrorRoom.Broom broom = new MirrorRoom.Broom("Broom");
-        //public static Scroll scroll2 = new Scroll("Scroll 2", false);
+        // public static Scroll scroll2 = new Scroll("Scroll 2", false);
         //public static Scroll scroll3 = new Scroll("Scroll 3", false);
         //public static Scroll scroll4 = new Scroll("Scroll 4", false);
         //public static Courtyard.Gauntlet gauntlet = new Courtyard.Gauntlet("Gauntlet", false);
@@ -80,8 +80,7 @@ namespace Shadowgate
         // TODO: DELETE the above list FOR FINAL
 
 
-        public static bool containsTorch = false;
-        public static int torchCount = 0;
+        // public static int torchCount = 0;
         public static int selection;
         public static Player currentPlayer = new("Self", false, false, false);
         public static Player permanentPlayer = new("Self", false, false, false);
@@ -133,7 +132,7 @@ namespace Shadowgate
             
             Entry.ChangeRoomEvent += GameFunctions.MoveRooms;
             GameFunctions.RoomCreation(); // add all rooms to global list of rooms
-            GameFunctions.MoveRooms("Outside the Castle"); // TODO: in final, should be "Outside the Castle"
+            GameFunctions.MoveRooms("Alcove"); // TODO: in final, should be "Outside the Castle"
 
             while (!Globals.currentPlayer.IsPlayerDead && !Globals.isGameBeat) // as long as game is not over, run main game loop
             {
@@ -209,7 +208,7 @@ namespace Shadowgate
                     foreach (Item item in Globals.currentPlayer.PlayerInventory)
                     {
                         if (item is Torch)
-                            Console.WriteLine($"{Globals.selection} - {item.ObjectName}: {Globals.torchCount}");
+                            Console.WriteLine($"{Globals.selection} - {item.ObjectName}: {Globals.currentPlayer.torchCount}");
                         else
                             Console.WriteLine($"{Globals.selection} - {item.ObjectName}");
                         Globals.selection++;
@@ -276,7 +275,7 @@ namespace Shadowgate
                     foreach (Item item in Globals.currentPlayer.PlayerInventory)
                     {
                         if (item is Torch)
-                            Console.WriteLine($"{Globals.selection} - {item.ObjectName}: {Globals.torchCount}");
+                            Console.WriteLine($"{Globals.selection} - {item.ObjectName}: {Globals.currentPlayer.torchCount}");
                         else
                             Console.WriteLine($"{Globals.selection} - {item.ObjectName}");
                         Globals.selection++;
@@ -340,7 +339,7 @@ namespace Shadowgate
                     foreach (Item item in Globals.currentPlayer.PlayerInventory)
                     {
                         if (item is Torch)
-                            Console.WriteLine($"{Globals.selection} - {item.ObjectName}: {Globals.torchCount}");
+                            Console.WriteLine($"{Globals.selection} - {item.ObjectName}: {Globals.currentPlayer.torchCount}");
                         else
                             Console.WriteLine($"{Globals.selection} - {item.ObjectName}");
                         Globals.selection++;
@@ -501,7 +500,7 @@ namespace Shadowgate
                         else if (item == Globals.activeTorch2)
                             Console.WriteLine($"{item.ObjectName}: Fire Left - {Globals.activeTorch2.FireRemaining}");
                         else if (item.ObjectName == "Torch")
-                            Console.WriteLine($"{item.ObjectName} - {Globals.torchCount}");
+                            Console.WriteLine($"{item.ObjectName} - {Globals.currentPlayer.torchCount}");
                         else
                             Console.WriteLine(item.ObjectName);
                     }

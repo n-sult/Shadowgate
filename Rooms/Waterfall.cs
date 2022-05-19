@@ -31,16 +31,17 @@ namespace Shadowgate.Rooms
             PointsOfInterest = waterfallPOI;
 
             GameFunctions.RoomEnteredEvent += (roomName) => { 
-                if (Globals.currentPlayer.PlayerInventory.Contains(GameFunctions.FindObject("Sling", null, Globals.currentPlayer.PlayerInventory)))
+                if (roomName == "Waterfall" && 
+                Globals.currentPlayer.PlayerInventory.Contains(GameFunctions.FindObject("Sling", null, Globals.currentPlayer.PlayerInventory))) //check if sling is in inventory
                 {
-                    Shadowgate.Closet.Sling theSling = (Shadowgate.Closet.Sling)GameFunctions.FindObject("Sling", null, Globals.currentPlayer.PlayerInventory);
-                    if (theSling.StonesThrown == 5) // if all stones have been used, replenish them
+                    Shadowgate.Closet.Sling theSling = (Shadowgate.Closet.Sling)GameFunctions.FindObject("Sling", null, Globals.currentPlayer.PlayerInventory); // if so, find it
+                    if (theSling.StonesThrown == 5) // check if all stones have been used and if so, replenish them
                     {
-                        PointsOfInterest.Insert(0, stone1);
-                        PointsOfInterest.Insert(1, stone2);
-                        PointsOfInterest.Insert(2, stone3);
-                        PointsOfInterest.Insert(3, stone4);
-                        PointsOfInterest.Insert(4, stone5);
+                        Globals.clonedRoom.PointsOfInterest.Insert(0, stone1);
+                        Globals.clonedRoom.PointsOfInterest.Insert(1, stone2);
+                        Globals.clonedRoom.PointsOfInterest.Insert(2, stone3);
+                        Globals.clonedRoom.PointsOfInterest.Insert(3, stone4);
+                        Globals.clonedRoom.PointsOfInterest.Insert(4, stone5);
                         theSling.StonesThrown = 0;
                     };
                 }

@@ -43,7 +43,6 @@ namespace Shadowgate
                 if (result is not null)
                 {
                     var activeObject = GameFunctions.FindObject(result, GameFunctions.PutPOIsItemsAndSelfInOneList());
-
                     if (activeObject is Entry || activeObject is ActiveTorch) // if trying to use activetorch on entry or other activetorch, alert player they can't
                         base.DoNotDoThatMessage();
                     else
@@ -55,24 +54,26 @@ namespace Shadowgate
                             case "Blue Rug":
                                 Console.ForegroundColor = ConsoleColor.Cyan;
                                 Console.WriteLine("\nThe rug quickly catches on fire and burns away.");
-                                Globals.currentRoom.PointsOfInterest.Remove(activeObject);
+                                Globals.clonedRoom.PointsOfInterest.Remove(activeObject);
                                 GameFunctions.ReduceTorchFire();
                                 break;
                             case "Banquet Rug":
                                 Console.ForegroundColor = ConsoleColor.Cyan;
                                 Console.WriteLine("\nThe rug quickly catches on fire and burns away. \nA key can be seen underneath!");
-                                Globals.currentRoom.PointsOfInterest.Remove(activeObject);
-                                GameFunctions.FindObject("Key 4", Globals.currentRoom.PointsOfInterest).IsHidden = false;
+                                Globals.clonedRoom.PointsOfInterest.Remove(activeObject);
+                                
+                                GameFunctions.FindObject("Key 4", Globals.clonedRoom.PointsOfInterest).IsHidden = false;
                                 GameFunctions.ReduceTorchFire();
                                 break;
                             case "Tapestry":
                                 Console.ForegroundColor = ConsoleColor.Cyan;
                                 Console.WriteLine("\nYou torched the Tapestry.");
-                                Globals.currentRoom.PointsOfInterest.Remove(activeObject);
+                                Globals.clonedRoom.PointsOfInterest.Remove(activeObject);
                                 GameFunctions.ReduceTorchFire();
                                 break;
                             case "Pond": // if using on the pond in the shark pond room...
-                                if ((Globals.clonedRoom as Rooms.SharkPond).IsSphereInPond) // if the sphere is currently in the pond, melt and re-freeze pond to make sphere takeable
+                                bool isSphereInPond = Globals.clonedRoom.PointsOfInterest.Contains(activeObject);
+                                if (isSphereInPond) // if the sphere is currently in the pond, melt and re-freeze pond to make sphere takeable
                                 {
                                     Console.ForegroundColor = ConsoleColor.Cyan;
                                     Console.WriteLine("\nYou put the burning torch close to it. \nThe torch melts away the ice over the sphere, " +
@@ -80,7 +81,7 @@ namespace Shadowgate
                                     (Globals.clonedRoom as Rooms.SharkPond).UsedTorchOnPond = true;
                                     GameFunctions.ReduceTorchFire();
                                 }
-                                else if (!(Globals.clonedRoom as Rooms.SharkPond).IsSphereInPond && (Globals.clonedRoom as Rooms.SharkPond).UsedTorchOnPond)
+                                else if (!isSphereInPond && (Globals.clonedRoom as Rooms.SharkPond).UsedTorchOnPond)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Yellow; // if sphere has been used and taken and torch has been used on lake, give this message
                                     Console.WriteLine("\nThe lake has become a solid sheet of ice.");
@@ -95,18 +96,18 @@ namespace Shadowgate
                                 Console.ForegroundColor = ConsoleColor.Cyan;
                                 Console.WriteLine("\nThe mummy bursts into flames, leaving behind a scepter among the ashes."); // show message of mummy burning away
                                 Rooms.Tomb.IsMummyBurned = true; // set this bool to true for the room to use 
-                                Globals.currentRoom.PointsOfInterest.Remove(GameFunctions.FindObject("Mummy", Globals.currentRoom.PointsOfInterest)); // find the mummy in the room and remove it from POI
-                                GameFunctions.FindObject("Scepter", Globals.currentRoom.PointsOfInterest).IsHidden = false; // find the scepter in the room and unhide it
+                                Globals.clonedRoom.PointsOfInterest.Remove(GameFunctions.FindObject("Mummy", Globals.clonedRoom.PointsOfInterest)); // find the mummy in the room and remove it from POI
+                                GameFunctions.FindObject("Scepter", Globals.clonedRoom.PointsOfInterest).IsHidden = false; // find the scepter in the room and unhide it
                                 GameFunctions.ReduceTorchFire();
                                 break;
                             case "Holy Torch":
-                                if (Globals.currentRoom.RoomName == "Wraith Room" && !Rooms.WraithRoom.IsWraithDead) // if you're in the wraith room and the wraith is alive...
+                                if (Globals.clonedRoom.RoomName == "Wraith Room" && !Rooms.WraithRoom.IsWraithDead) // if you're in the wraith room and the wraith is alive...
                                 {
                                     Console.ForegroundColor = ConsoleColor.Cyan;
                                     Console.WriteLine("\nThe torch burns with a strange white flame. \nWith a shout, you throw the flaming torch at it. " +
                                         "\nWith a blinding flash, the white flame engulfs the undead apparition! \nWhen you open your eyes again, the wraith is gone.");
                                     Globals.currentPlayer.PlayerInventory.Remove((Item)activeObject); // remove the holy torch from inventory
-                                    Globals.currentRoom.PointsOfInterest.Remove(GameFunctions.FindObject("Wraith", Globals.currentRoom.PointsOfInterest)); // remove the wraith from the room POI
+                                    Globals.clonedRoom.PointsOfInterest.Remove(GameFunctions.FindObject("Wraith", Globals.clonedRoom.PointsOfInterest)); // remove the wraith from the room POI
                                     Rooms.WraithRoom.IsWraithDead = true; // mark wraith as dead
                                     GameFunctions.ReduceTorchFire();
                                 }

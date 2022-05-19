@@ -47,10 +47,7 @@ namespace Shadowgate
                     return false;
                 }
                 else
-                {
-                    (Globals.clonedRoom as Rooms.SharkPond).IsKeyTaken = true;
                     return true;
-                }
             }
             else
                 return true;

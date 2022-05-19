@@ -12,7 +12,6 @@ namespace Shadowgate
         public bool IsHidden;
         public bool CanBeDiscarded;
 
-
         public static string LookResult = "\nYou seem to be wasting your time.";
         public static string _openResult = "\nIt won't open!";
         public static string _useResult = "\nYou seem to be wasting your time.";

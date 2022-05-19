@@ -90,7 +90,7 @@ namespace Shadowgate.Rooms
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\nAs if by magic, the skull rises.");
 
-                        PointOfInterest key = GetPOI("Key 1");
+                        var key = GameFunctions.FindObject("Key 1", PointsOfInterest);
                         if (key is not null)
                         {
                             Console.WriteLine("There's a key inside!");
@@ -115,7 +115,6 @@ namespace Shadowgate.Rooms
 
         public override void CloseObject(string objectName)
         {
-            var activeObject = GameFunctions.FindObject(objectName, PointsOfInterest);
             switch (objectName)
             {
                 case "Stone Skull":
@@ -124,7 +123,8 @@ namespace Shadowgate.Rooms
                     if (skullOpen)
                     {
                         skullOpen = false;
-                        PointOfInterest key = GetPOI("Key 1");
+
+                        var key = GameFunctions.FindObject("Key 1", PointsOfInterest);
                         if (key != null)
                             key.IsHidden = true;
                     }

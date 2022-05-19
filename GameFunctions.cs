@@ -223,8 +223,9 @@ namespace Shadowgate
             public int Result;
         }
 
-        // checks if the input is valid
-        public static UserInputResult CheckUserInput(string input, List<PointOfInterest> pointOfInterests = null, List<Item> items = null, List<Spell> spells = null) 
+        // checks if the input that was passed is valid
+        public static UserInputResult CheckUserInput(string input, List<PointOfInterest> pointOfInterests = null, 
+            List<Item> items = null, List<Spell> spells = null) 
         {
             List<object> list = new List<object>();
 

@@ -38,11 +38,6 @@ namespace Shadowgate
             return RoomName;
         }
 
-        public PointOfInterest GetPOI(string objectName)
-        {
-            return GameFunctions.FindObject(objectName, PointsOfInterest);
-        }
-
         public virtual void LookAt(string objectName)
         {
             if (GameFunctions.FindObject(objectName, PointsOfInterest) is not null)
@@ -80,11 +75,11 @@ namespace Shadowgate
             {
                 if (activeObject is Torch) // check if the item is a torch, if so...
                 {
-                    if (!Globals.containsTorch)
+                    if (!Globals.currentPlayer.containsTorch)
                         Globals.currentPlayer.PlayerInventory.Add((Item)activeObject); // if the global bool is false, add a spot for torches
                     activeObject.ObjectName = "Torch";
-                    Globals.containsTorch = true;
-                    Globals.torchCount++; // increase torch count
+                    Globals.currentPlayer.containsTorch = true;
+                    Globals.currentPlayer.torchCount++; // increase torch count
                 }
                 else                                                    // if it's not a torch...
                     Globals.currentPlayer.PlayerInventory.Add((Item)activeObject);  // add non-torch items to inventory

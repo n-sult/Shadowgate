@@ -28,53 +28,50 @@ namespace Shadowgate.Closet
 
         public override void Use()
         {
-            var result = GameFunctions.UseOn(ObjectName);
-            if (result is not null)
+            var result = GameFunctions.UseOn(ObjectName); // choosen something to use the sling on
+            if (result is not null) // if player chose something to use it on (didn't select "never mind")....
             {
-                if (result == "Sphinx")
+                if (result == "Sphinx") // if used on the sphinx, player will be teleported
                     Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
                 else
                 {
-                    if (!HasStone)
+                    if (!HasStone) // otherwise, show this message if there's no stone in the sling
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("\nWaving a sling around in the air doesn't seem to be very useful. It won't work without stones.");
                     }
-                    else
+                    else // if there is a stone in the sling...
                     {
-                        if (result == "Troll")
+                        if (result == "Troll") // if used on troll, die
                         {
-                            if (HasStone)
-                                if (!(Globals.clonedRoom as Rooms.TrollBridge).SpearThrown)
-                                {
-                                    Rooms.TrollBridge.TriedToTrickTroll();
-                                    Rooms.TrollBridge.TrollDestroysBridge();
-                                }
-                                else
-                                    Rooms.TrollBridge.TrollKillsWithSpear();
+                            if (!(Globals.clonedRoom as Rooms.TrollBridge).SpearThrown)
+                            {
+                                Rooms.TrollBridge.TriedToTrickTroll();
+                                Rooms.TrollBridge.TrollDestroysBridge();
+                            }
                             else
-                                base.Use();
+                                Rooms.TrollBridge.TrollKillsWithSpear();
                         }
-                        else if (result == "Cyclops")
+                        else if (result == "Cyclops") // if used on cyclops, flag it as unconcious
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan;
                             Console.WriteLine("\nAs soon as you start twirling the sling, a magical influence takes over your body! " +
                                 "\nYou cry out, \"Death to the Philistine!\", and release the stone. " +
                                 "\nBullseye!! The cyclops has been rendered unconcious."); // altered line
                             (Globals.clonedRoom as Rooms.Courtyard).CyclopsUnconcious = true;
-                            HasStone = false;
-                            StonesThrown++;
+                            HasStone = false; // mark sling as no longer having a stone
+                            StonesThrown++; // increment number of stones thrown for stone replenish check
                         }
-                        else if (result == "Hellhound")
+                        else if (result == "Hellhound") // if used on hellhound, die
                             Rooms.BrazierRoom.DieToHound();
-                        else if (result == "Behemoth" || result == "Warlock Lord")
+                        else if (result == "Behemoth" || result == "Warlock Lord") // if used on behemoth/warlock, die
                             Rooms.Chasm.DieToWarlock();
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine("\nYou whirl the sling over your head and release the stone. Not bad for a beginner!");
-                            HasStone = false;
-                            StonesThrown++;
+                            HasStone = false; // mark sling as no longer having a stone
+                            StonesThrown++; // increment number of stones thrown for stone replenish check
                         }
                     }
                 }
