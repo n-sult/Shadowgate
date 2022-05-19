@@ -8,9 +8,6 @@ namespace Shadowgate.Rooms
 {
     public class BrazierRoom : Room
     {
-        public static bool HellhoundPresent;
-        public static bool HellhoundDead;
-        
         public BrazierRoom()
         {
             // Items for Brazier Room
@@ -34,13 +31,17 @@ namespace Shadowgate.Rooms
             PointsOfInterest = brazierRoomPOI;
         }
 
+        public static PointOfInterest ReturnHellhound()
+        {
+            return GameFunctions.FindObject("Hellhound", Globals.clonedRoom.PointsOfInterest);
+        }
+        
         public static void HoundAppears()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\nA large fireball suddenly appears in the room and causes you to shield your eyes. " +
                 "\nWhen you open them, you notice that the fire has changed into something far more menacing: a hellhound!"); // altered line
-            GameFunctions.FindObject("Hellhound", Globals.currentRoom.PointsOfInterest).IsHidden = false;
-            HellhoundPresent = true;
+            ReturnHellhound().IsHidden = false;
         }
         
         public static void DieToHound()
@@ -55,12 +56,12 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Ladder to the next floor":
-                    if (!HellhoundPresent && !HellhoundDead)
+                    if (ReturnHellhound().IsHidden == true)
                     {
                         HoundAppears();
                         GameFunctions.ReduceTorchFire();
                     }
-                    else if (HellhoundPresent)
+                    else if (PointsOfInterest.Contains(ReturnHellhound()))
                         DieToHound();
                     else
                         base.MoveTo(objectName);

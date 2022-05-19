@@ -8,7 +8,7 @@ namespace Shadowgate.Rooms
 {
     public class SnakeCave : Room
     {
-        static bool _lookedAtSnake;
+        bool _lookedAtSnake;
         
         public SnakeCave()
         {

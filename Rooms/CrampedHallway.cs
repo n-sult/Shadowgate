@@ -13,8 +13,7 @@ namespace Shadowgate.Rooms
         public CrampedHallway()
         {
             // Items for Cramped Hallways
-            Key key2 = new Key();
-            key2.Init("Key 2", true, false);
+            Key key2 = new Key("Key 2", true, false);
 
             // All POI for Cramped Hallway
             PointOfInterest bookOnAPedestal = new PointOfInterest("Book on a pedestal");

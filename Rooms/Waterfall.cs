@@ -31,15 +31,19 @@ namespace Shadowgate.Rooms
             PointsOfInterest = waterfallPOI;
 
             GameFunctions.RoomEnteredEvent += (roomName) => { 
-                if (Shadowgate.Closet.Sling.StonesThrown == 5)   // if all stones have been used, replenish them
+                if (Globals.currentPlayer.PlayerInventory.Contains(GameFunctions.FindObject("Sling", null, Globals.currentPlayer.PlayerInventory)))
                 {
-                    PointsOfInterest.Insert(0, stone1);
-                    PointsOfInterest.Insert(1, stone2);
-                    PointsOfInterest.Insert(2, stone3);
-                    PointsOfInterest.Insert(3, stone4);
-                    PointsOfInterest.Insert(4, stone5);
-                    Shadowgate.Closet.Sling.StonesThrown = 0;
-                };
+                    Shadowgate.Closet.Sling theSling = (Shadowgate.Closet.Sling)GameFunctions.FindObject("Sling", null, Globals.currentPlayer.PlayerInventory);
+                    if (theSling.StonesThrown == 5) // if all stones have been used, replenish them
+                    {
+                        PointsOfInterest.Insert(0, stone1);
+                        PointsOfInterest.Insert(1, stone2);
+                        PointsOfInterest.Insert(2, stone3);
+                        PointsOfInterest.Insert(3, stone4);
+                        PointsOfInterest.Insert(4, stone5);
+                        theSling.StonesThrown = 0;
+                    };
+                }
             };
         }
 

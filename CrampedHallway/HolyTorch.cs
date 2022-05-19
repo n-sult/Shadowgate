@@ -20,7 +20,7 @@ namespace Shadowgate.CrampedHallway
 
         public override bool Take()
         {
-            this.ObjectName = "Holy Torch";
+            ObjectName = "Holy Torch";
             return true;
         }
 

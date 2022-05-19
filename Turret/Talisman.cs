@@ -49,7 +49,7 @@ namespace Shadowgate.Turret
                     case "Left Pillar Hole":
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\nThe artifact, known as the Bladed Sun, is now secured and in place.");
-                        Rooms.Vault.TalismanUsed = true;
+                        (Globals.clonedRoom as Rooms.Vault).TalismanUsed = true;
                         Globals.currentPlayer.PlayerInventory.Remove(this);
                         GameFunctions.ReduceTorchFire();
                         break;    

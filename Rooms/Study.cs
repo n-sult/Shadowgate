@@ -19,8 +19,7 @@ namespace Shadowgate.Rooms
             Bottle bottle5 = new Bottle("Bottle 5", true);
             Shadowgate.Study.Goblet goblet = new Shadowgate.Study.Goblet("Goblet");
             Shadowgate.Study.Poker poker = new Shadowgate.Study.Poker("Poker");
-            Key key6 = new Key();
-            key6.Init("Key 6", true, false);
+            Key key6 = new Key("Key 6", true, false);
 
             // POI for Study
             PointOfInterest fireplace = new PointOfInterest("Fireplace");

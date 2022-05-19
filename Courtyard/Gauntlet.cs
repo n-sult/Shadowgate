@@ -21,7 +21,6 @@ namespace Shadowgate.Courtyard
 
         public override bool Take()
         {
-            Rooms.Courtyard.GauntletTaken = true;
             return true;
         }
 

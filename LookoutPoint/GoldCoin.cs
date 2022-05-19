@@ -32,7 +32,7 @@ namespace Shadowgate.LookoutPoint
                 switch(result)
                 {
                     case "Troll":
-                        if (Rooms.TrollBridge.CoinsGivenToTroll == 0)
+                        if ((Globals.clonedRoom as Rooms.TrollBridge).CoinsGivenToTroll == 0)
                             Rooms.TrollBridge.TriedToGiveCopperCoin();
                         else
                             Rooms.TrollBridge.TriedToGiveGoldCoin();

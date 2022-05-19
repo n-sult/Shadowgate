@@ -39,8 +39,8 @@ namespace Shadowgate.Lair
                         Console.WriteLine("\nThe troll falls silently into the dark cavern. You listen, but you do not hear him crash.");
                         GameFunctions.FindObject("Troll", Globals.currentRoom.PointsOfInterest).IsHidden = true; // hide the troll
                         Globals.currentPlayer.PlayerInventory.Remove(this); // remove spear from the inventory
-                        Rooms.TrollBridge.SpearThrown = true; 
-                        Rooms.TrollBridge.IsTrollPresent = false; // mark these 2 bools for later use
+                        (Globals.clonedRoom as Rooms.TrollBridge).SpearThrown = true; // mark these 2 bools for later use
+                        GameFunctions.FindObject(result, Globals.clonedRoom.PointsOfInterest).IsHidden = false; 
                         GameFunctions.ReduceTorchFire();
                         break;
                     case "Sphinx":

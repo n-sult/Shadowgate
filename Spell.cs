@@ -31,7 +31,7 @@ namespace Shadowgate
         {
             InitialCastSpellMessage("Humana");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            if (Globals.currentRoom.RoomName == "Troll Bridge")
+            if (Globals.clonedRoom.RoomName == "Troll Bridge")
                 Console.WriteLine("\nUh oh, the wind has suddenly died down!");
             Console.WriteLine("Nothing happens! There must be something missing!");
         }
@@ -47,29 +47,29 @@ namespace Shadowgate
             switch (spellName)
             {
                 case "Epor":
-                    if (Globals.currentRoom.RoomName == "Epor Room")
+                    if (Globals.clonedRoom.RoomName == "Epor Room")
                     {
-                        if (Rooms.EporRoom.IsEporActive)
+                        if ((Globals.clonedRoom as Rooms.EporRoom).IsEporActive)
                         {
                             InitialCastSpellMessage(spellName);
                             Console.WriteLine("\nYou return the outstretched rope to it's former place."); // altered line
-                            Rooms.EporRoom.IsEporActive = false;
+                            (Globals.clonedRoom as Rooms.EporRoom).IsEporActive = false;
                         }
                         else
                         {
                             InitialCastSpellMessage(spellName);
                             Console.WriteLine("\nThere are many strange things in this world! When you said the magic spell, the rope moved. " +
                                 "\nHaving stretched up to the hole, the rope stops moving.");
-                            Rooms.EporRoom.IsEporActive = true;
+                            (Globals.clonedRoom as Rooms.EporRoom).IsEporActive = true;
                         }
                     }
                     else
                         WrongPlaceForSpellMessage();   
                     break;
                 case "Humana":
-                    if (Globals.currentRoom.RoomName != "Troll Bridge")
+                    if (Globals.clonedRoom.RoomName != "Troll Bridge")
                         HumanaNotWorkingMessage();
-                    else if (Globals.currentRoom.RoomName == "Troll Bridge" && !Rooms.TrollBridge.TrollReappeared)
+                    else if (Globals.clonedRoom.RoomName == "Troll Bridge" && (!(Globals.clonedRoom as Rooms.TrollBridge).TrollReappeared))
                         HumanaNotWorkingMessage();
                     else
                     {
@@ -79,7 +79,7 @@ namespace Shadowgate
                     }
                     break;
                 case "Terrakk":
-                    if (Globals.currentRoom.RoomName != "Study")
+                    if (Globals.clonedRoom.RoomName != "Study")
                         WrongPlaceForSpellMessage();
                     else
                     {
@@ -94,7 +94,7 @@ namespace Shadowgate
                     }
                     break;
                 case "Illumina":
-                    if (Globals.currentRoom.RoomName != "Gargoyle Cave")
+                    if (Globals.clonedRoom.RoomName != "Gargoyle Cave")
                     {
                         InitialCastSpellMessage(spellName);
                         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -110,7 +110,7 @@ namespace Shadowgate
                     }
                     break;
                 case "Motari":
-                    if (Globals.currentRoom.RoomName != "Lava Cave")
+                    if (Globals.clonedRoom.RoomName != "Lava Cave")
                         WrongPlaceForSpellMessage();
                     else
                     {

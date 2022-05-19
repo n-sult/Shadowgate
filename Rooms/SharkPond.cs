@@ -8,16 +8,15 @@ namespace Shadowgate.Rooms
 {
     public class SharkPond : Room
     {
-        public static bool WasSphereUsed = false;
-        public static bool IsSphereInPond = false;
-        public static bool IsKeyTaken = false;
-        public static bool UsedTorchOnPond = false;
+        public bool WasSphereUsed = false;
+        public bool IsSphereInPond = false;
+        public bool IsKeyTaken = false;
+        public bool UsedTorchOnPond = false;
 
         public SharkPond()
         {
             // Items for Shark Pond
-            Key key3 = new Key();
-            key3.Init("Key 3", false, false);
+            Key key3 = new Key("Key 3", false, false);
 
             // All POI for the Shark Pond
             PointOfInterest sharkPondWater = new PointOfInterest("Pond");

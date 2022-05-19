@@ -27,7 +27,7 @@ namespace Shadowgate
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\nIn the room: ");
                 Console.ForegroundColor = ConsoleColor.Gray;
-                foreach (PointOfInterest POI in Globals.currentRoom.PointsOfInterest)
+                foreach (PointOfInterest POI in Globals.clonedRoom.PointsOfInterest)
                 {
                     if (!POI.IsHidden)
                     {
@@ -105,9 +105,7 @@ namespace Shadowgate
             }
 
             Globals.clonedRoom = Globals.currentRoom.Clone();
-            // Globals.clonedRoom.PointsOfInterest.RemoveRange(Globals.currentRoom.PointsOfInterest.Count - 1, (Globals.currentRoom.PointsOfInterest.Count));
-            for (int i = 0; i < Globals.currentRoom.PointsOfInterest.Count; i++)
-                Globals.clonedRoom.PointsOfInterest.RemoveAt(Globals.clonedRoom.PointsOfInterest.Count - 1);
+            Globals.clonedRoom.PointsOfInterest.RemoveRange(0, Globals.clonedRoom.PointsOfInterest.Count - Globals.currentRoom.PointsOfInterest.Count);
 
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("\n***********************************************************************"); // show entry message for the room
@@ -209,7 +207,7 @@ namespace Shadowgate
         public static List<PointOfInterest> PutPOIsItemsAndSelfInOneList()
         {
             List<PointOfInterest> allThingsInRoomBagAndSelf = new List<PointOfInterest>() { };
-            foreach (PointOfInterest POI in Globals.currentRoom.PointsOfInterest)
+            foreach (PointOfInterest POI in Globals.clonedRoom.PointsOfInterest)
                 if (!POI.IsHidden)
                     allThingsInRoomBagAndSelf.Add(POI);
             foreach (Item item in Globals.currentPlayer.PlayerInventory)

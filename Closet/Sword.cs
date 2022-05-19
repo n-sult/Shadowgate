@@ -35,7 +35,7 @@ namespace Shadowgate.Closet
                         Rooms.FireBridge.DieToFiredrake();
                         break;
                     case "Troll":
-                        if (!Rooms.TrollBridge.SpearThrown)
+                        if (!(Globals.clonedRoom as Rooms.TrollBridge).SpearThrown)
                         {
                             Rooms.TrollBridge.TriedToTrickTroll();
                             Rooms.TrollBridge.TrollDestroysBridge();
@@ -44,13 +44,13 @@ namespace Shadowgate.Closet
                             Rooms.TrollBridge.TrollKillsWithSpear();
                         break;
                     case "Cyclops":
-                        if (!Rooms.Courtyard.CyclopsUnconcious)
+                        if (!(Globals.clonedRoom as Rooms.Courtyard).CyclopsUnconcious)
                             Rooms.Courtyard.DieToCyclops();
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan;
                             Console.WriteLine("\nYou drive the sword deep into the cyclops. Blood pours out of the wound and onto the grass.");
-                            Rooms.Courtyard.CyclopsDead = true;
+                            (Globals.clonedRoom as Rooms.Courtyard).CyclopsDead = true;
                             foreach (Item item in Globals.currentPlayer.PlayerInventory) // once the cyclops is dead, the sword, sling and any stones can be discarded
                                 if (item.ObjectName == "Sword" || item.ObjectName == "Sling" || item.ObjectName == "Stone")
                                     item.CanBeDiscarded = true;

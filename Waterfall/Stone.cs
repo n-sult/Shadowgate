@@ -31,7 +31,8 @@ namespace Shadowgate.Waterfall
             {
                 if (result == "Sling")
                 {
-                    if (Closet.Sling.HasStone)
+                    Closet.Sling theSling = (Closet.Sling)GameFunctions.FindObject(result, null, Globals.currentPlayer.PlayerInventory);
+                    if (theSling.HasStone)
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("\nYou can't do that.");
@@ -40,7 +41,7 @@ namespace Shadowgate.Waterfall
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\nYou've put the small stone in the sling.");
-                        Closet.Sling.HasStone = true; // set sling status to have a stone in it
+                        theSling.HasStone = true; // set sling status to have a stone in it
                         Globals.currentPlayer.PlayerInventory.Remove(this); // remove stone from inventory
                         GameFunctions.ReduceTorchFire();
                     }

@@ -15,34 +15,35 @@ namespace Shadowgate.BrazierRoom
 
         public override void Look()
         {
-            Console.WriteLine("\nThe horn is forged of flawless platinum. It's beauty is unbelievable!");
+            Console.WriteLine("\nThe horn is forged of flawless platinum. Its beauty is unbelievable!");
         }
 
         public override bool Take()
         {
-            if (!Rooms.BrazierRoom.HellhoundPresent && !Rooms.BrazierRoom.HellhoundDead)
-            {
-                Rooms.BrazierRoom.HoundAppears();
-                return false;
-            }
-            else if (Rooms.BrazierRoom.HellhoundPresent)
-            {
-                Rooms.BrazierRoom.DieToHound();
-                return false;
-            }
+            if (Globals.clonedRoom.PointsOfInterest.Contains(GameFunctions.FindObject("Hellhound", Globals.clonedRoom.PointsOfInterest)))
+                if (GameFunctions.FindObject("Hellhound", Globals.clonedRoom.PointsOfInterest).IsHidden == false)
+                {
+                    Rooms.BrazierRoom.HoundAppears();
+                    return false;
+                }
+                else
+                {
+                    Rooms.BrazierRoom.DieToHound();
+                    return false;
+                }
             else
                 return true;
         }
 
         public override void Use()
         {
-            if (Globals.currentRoom.RoomName == "Vault" && Rooms.Vault.TalismanUsed && !Rooms.Vault.HornUsed)
+            if (Globals.clonedRoom.RoomName == "Vault" && (Globals.clonedRoom as Rooms.Vault).TalismanUsed && !(Globals.clonedRoom as Rooms.Vault).HornUsed)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\nThe sound of the horn echoes loudly in your ears. \nSuddenly, you hear the sound of grinding rock, " +
                     "the jaw of the skull begins to descend. \nHot wind erupts from the mouth creating the illusion that the stone skull is alive!");
                 (GameFunctions.FindObject("Skull Door", Globals.currentRoom.PointsOfInterest) as Entry).IsDoorOpen = true;
-                Rooms.Vault.HornUsed = true;
+                (Globals.clonedRoom as Rooms.Vault).HornUsed = true;
                 GameFunctions.ReduceTorchFire();
             }
             else

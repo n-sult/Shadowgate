@@ -8,7 +8,7 @@ namespace Shadowgate.Rooms
 {
     public class ColdRoom : Room
     {
-        public static bool isWhiteGemUsed = false;
+        public bool isWhiteGemUsed = false;
         bool isTrapDoorOpen = false;
         
         public ColdRoom()

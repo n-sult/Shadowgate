@@ -8,8 +8,8 @@ namespace Shadowgate.Rooms
 {
     public class Vault : Room
     {
-        public static bool TalismanUsed;
-        public static bool HornUsed;
+        public bool TalismanUsed;
+        public bool HornUsed;
         
         public Vault()
         {

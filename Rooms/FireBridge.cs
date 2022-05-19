@@ -8,8 +8,8 @@ namespace Shadowgate.Rooms
 {
     public class FireBridge : Room
     {
-        public static bool FiredrakeAppeared;
-        public static bool FiredrakeDead;
+        //public bool FiredrakeAppeared;
+        //public bool FiredrakeDead;
         
         public FireBridge()
         {
@@ -52,7 +52,7 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Door on the other side of the bridge":
-                    if (!FiredrakeDead)
+                    if (PointsOfInterest.Contains(GameFunctions.FindObject(objectName, PointsOfInterest)))
                         OpenObject(objectName);
                     else
                         base.MoveTo(objectName);
@@ -104,13 +104,13 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Door on the other side of the bridge":
-                    if (!FiredrakeDead)
+                    if (PointsOfInterest.Contains(GameFunctions.FindObject(objectName, PointsOfInterest)))
                     {
                         base.OpenObject(objectName);
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("\nSuddenly, you feel a gust of wind! A searing blast of heat knocks you across the room! A firedrake has emerged from the door!");
                         GameFunctions.FindObject(objectName, PointsOfInterest).ObjectName = "Firedrake";
-                        FiredrakeAppeared = true;
+                        GameFunctions.FindObject("Firedrake", PointsOfInterest).IsHidden = false;
                         GameFunctions.ReduceTorchFire();
                     }
                     else

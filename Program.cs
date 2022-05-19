@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 
 namespace Shadowgate
@@ -93,9 +95,24 @@ namespace Shadowgate
     {
         public static T Clone<T>(this T source)
         {
-            JsonSerializerSettings settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
+            JsonSerializerSettings settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All,
+                ContractResolver = new MyContractResolver()};
             var serialized = JsonConvert.SerializeObject(source, settings);
             return JsonConvert.DeserializeObject<T>(serialized, settings);
+        }
+    }
+
+    public class MyContractResolver : Newtonsoft.Json.Serialization.DefaultContractResolver
+    {
+        protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
+        {
+            var props = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                            .Select(p => base.CreateProperty(p, memberSerialization))
+                        .Union(type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                                   .Select(f => base.CreateProperty(f, memberSerialization)))
+                        .ToList();
+            props.ForEach(p => { p.Writable = true; p.Readable = true; });
+            return props;
         }
     }
 
@@ -128,14 +145,12 @@ namespace Shadowgate
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\n\nYou take note of the following in the room: "); 
                 Console.ForegroundColor = ConsoleColor.Gray;
-                // foreach (PointOfInterest pointOfInterest in Globals.currentRoom.PointsOfInterest) // list off all POIs in the room as long as it's NOT marked as hidden
                 foreach (PointOfInterest pointOfInterest in Globals.clonedRoom.PointsOfInterest) // list off all POIs in the room as long as it's NOT marked as hidden
                     if (!pointOfInterest.IsHidden)
                         Console.WriteLine(pointOfInterest.ObjectName);
                     
                 List<PointOfInterest> currentRoomInterests = new List<PointOfInterest>(); // create new list to add all POI from globals.currentroom (is this needed?)
 
-                //foreach (PointOfInterest pointOfInterest in Globals.currentRoom.PointsOfInterest.Where(x => !x.IsHidden).ToList())
                 foreach (PointOfInterest pointOfInterest in Globals.clonedRoom.PointsOfInterest.Where(x => !x.IsHidden).ToList())
                     currentRoomInterests.Add(pointOfInterest);
 
@@ -525,7 +540,6 @@ namespace Shadowgate
                             Globals.currentPlayer.IsPlayerDead = false;
 
                             GameFunctions.MoveRooms(null, true); // move to previous room
-                            // GameFunctions.MoveRooms(Globals.clonedRoom.RoomName, true); // move to previous room
                             questionAnswered = true;
                         }
                         else if (userinput == "N" || userinput == "n")

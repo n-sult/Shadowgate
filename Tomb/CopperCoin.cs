@@ -32,12 +32,12 @@ namespace Shadowgate.Tomb
                 switch (result)
                 {
                     case "Troll":
-                        if (Rooms.TrollBridge.CoinsGivenToTroll == 0)
+                        if ((Globals.clonedRoom as Rooms.TrollBridge).CoinsGivenToTroll == 0)
                         {
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine("\nThe troll says that the toll has just been raised to two gold coins.");
                             Globals.currentPlayer.PlayerInventory.Remove(this);
-                            Rooms.TrollBridge.CoinsGivenToTroll++;
+                            (Globals.clonedRoom as Rooms.TrollBridge).CoinsGivenToTroll++;
                             GameFunctions.ReduceTorchFire();
                         }
                         else

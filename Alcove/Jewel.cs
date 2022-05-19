@@ -53,9 +53,9 @@ namespace Shadowgate.Alcove
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan; // show message of using the correct gem
                             Console.WriteLine("\nThe gem fits perfectly in the hole. \nA small crystal sphere magically appears on the stand!");
-                            Rooms.ColdRoom.isWhiteGemUsed = true; 
+                            (Globals.clonedRoom as Rooms.ColdRoom).isWhiteGemUsed = true;
                             Globals.currentPlayer.PlayerInventory.Remove(this); // permanently remove gem from inventory
-                            GameFunctions.FindObject("Sphere", Globals.currentRoom.PointsOfInterest).IsHidden = false; // unhide the sphere
+                            GameFunctions.FindObject("Sphere", Globals.clonedRoom.PointsOfInterest).IsHidden = false; // unhide the sphere
                             GameFunctions.ReduceTorchFire();
                         }
                         else if (result == "Floor Stone" || result == "Hole next to bookcase")
@@ -76,7 +76,7 @@ namespace Shadowgate.Alcove
                                 "\nHave they wits about thee, warrior! Fare thee well.\" " +
                                 "\n\nThe wall slides back into place, hiding the image from your sight. A scroll appears!");
                             Globals.currentPlayer.PlayerInventory.Remove(this); // permanently remove gem from inventory
-                            GameFunctions.FindObject("Scroll 2", Globals.currentRoom.PointsOfInterest).IsHidden = false; // unhide scroll 2
+                            GameFunctions.FindObject("Scroll 2", Globals.clonedRoom.PointsOfInterest).IsHidden = false; // unhide scroll 2
                             GameFunctions.ReduceTorchFire();
                         }
                         else
@@ -90,7 +90,7 @@ namespace Shadowgate.Alcove
                             Console.ForegroundColor = ConsoleColor.Cyan; // show message of using the correct gem
                             Console.WriteLine("\nThe right bookcase slowly slides away revealing a hidden passage.");
                             Globals.currentPlayer.PlayerInventory.Remove(this); // permanently remove gem from inventory
-                            GameFunctions.FindObject("Doorway behind the bookcase", Globals.currentRoom.PointsOfInterest).IsHidden = false; // unhide entry behind the bookcase
+                            GameFunctions.FindObject("Doorway behind the bookcase", Globals.clonedRoom.PointsOfInterest).IsHidden = false; // unhide entry behind the bookcase
                             GameFunctions.ReduceTorchFire();
                         }    
                         else if (result == "Water Fountain")

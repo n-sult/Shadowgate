@@ -8,10 +8,9 @@ namespace Shadowgate.Rooms
 {
     public class Courtyard : Room
     {
-        public static bool CyclopsUnconcious;
-        public static bool CyclopsDead;
-        public static bool BucketRaised;
-        public static bool GauntletTaken;
+        public bool CyclopsUnconcious;
+        public bool CyclopsDead;
+        public bool BucketRaised;
 
         public Courtyard()
         {
@@ -103,7 +102,7 @@ namespace Shadowgate.Rooms
                 case "Well Bucket":
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("\nThe Bucket is open.");
-                    if (!GauntletTaken)
+                    if (PointsOfInterest.Contains(GameFunctions.FindObject("Gauntlet", PointsOfInterest)))
                     {
                         Console.WriteLine("There's a pair of Gauntlets inside.");
                         GameFunctions.FindObject("Gauntlet", PointsOfInterest).IsHidden = false;
@@ -129,7 +128,7 @@ namespace Shadowgate.Rooms
                 case "Well Bucket":
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("\nThe Bucket is closed.");
-                    if (!GauntletTaken)
+                    if (PointsOfInterest.Contains(GameFunctions.FindObject("Gauntlet", PointsOfInterest)))
                         GameFunctions.FindObject("Gauntlet", PointsOfInterest).IsHidden = true;
                     GameFunctions.ReduceTorchFire();
                     break;
@@ -162,7 +161,7 @@ namespace Shadowgate.Rooms
                         Console.WriteLine("\nYou turn the brank. The rope and bucket lower to the bottom of the well.");
                         GameFunctions.FindObject("Well Bucket", PointsOfInterest).IsHidden = true;
                         BucketRaised = false;
-                        if (!GauntletTaken)
+                        if (PointsOfInterest.Contains(GameFunctions.FindObject("Gauntlet", PointsOfInterest)))
                             GameFunctions.FindObject("Gauntlet", PointsOfInterest).IsHidden = true;
                     }
                     GameFunctions.ReduceTorchFire();

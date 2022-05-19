@@ -10,7 +10,6 @@ namespace Shadowgate
     {
         // Universal entry properties
         public static Action<string, bool> ChangeRoomEvent;
-        //public static Action<string, bool> ChangeRoomEvent;
         public bool IsDoorOpen;
         protected bool _canDoorBeClosed;
         protected bool _isDoorLocked = false;

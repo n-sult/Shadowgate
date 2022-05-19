@@ -8,7 +8,7 @@ namespace Shadowgate.Rooms
 {
     public class BridgeRoom : Room
     {
-        public static bool Bottle2Used;
+        public bool Bottle2Used;
 
         public BridgeRoom()
         {

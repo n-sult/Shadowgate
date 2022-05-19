@@ -35,7 +35,7 @@ namespace Shadowgate.HiddenRoom
                         Rooms.FireBridge.DieToFiredrake();
                         break;
                     case "Troll":
-                        if (!Rooms.TrollBridge.SpearThrown)
+                        if (!(Globals.clonedRoom as Rooms.TrollBridge).SpearThrown)
                         {
                             Rooms.TrollBridge.TriedToTrickTroll();
                             Rooms.TrollBridge.TrollDestroysBridge();
@@ -44,7 +44,7 @@ namespace Shadowgate.HiddenRoom
                             Rooms.TrollBridge.TrollKillsWithSpear();
                         break;
                     case "Cyclops":
-                        if (!Rooms.Courtyard.CyclopsUnconcious)
+                        if (!(Globals.clonedRoom as Rooms.Courtyard).CyclopsUnconcious)
                             Rooms.Courtyard.DieToCyclops();
                         else
                             base.Use();
@@ -53,7 +53,7 @@ namespace Shadowgate.HiddenRoom
                         Console.ForegroundColor = ConsoleColor.Cyan; // show message of killing the werewolf
                         Console.WriteLine("\nAs you ready your arrow, the beautiful lady suddenly transforms into a wolf! \nIt breaks the chain as it attempts to lunge " +
                             "at you! \nHowever, your aim is true as you plunge the silver arrow into the wolf."); // heavily altered line
-                        GameFunctions.FindObject("Captive Woman", Globals.currentRoom.PointsOfInterest).ObjectName = "Dead Werewolf"; // change object name
+                        GameFunctions.FindObject("Captive Woman", Globals.clonedRoom.PointsOfInterest).ObjectName = "Dead Werewolf"; // change object name
                         Rooms.Watchtower.WomanDead = true; // mark woman/wolf as dead
                         Globals.currentPlayer.PlayerInventory.Remove(this); // remove arrow from inventory
                         GameFunctions.ReduceTorchFire();

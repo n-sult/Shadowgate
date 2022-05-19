@@ -8,12 +8,11 @@ namespace Shadowgate.Rooms
 {
     public class TrollBridge : Room
     {
-        public static bool TrollAppearedFirstTime;
-        public static bool SpearThrown;
-        public static bool IsTrollPresent;
-        public static bool CanTrollReappear;
-        public static bool TrollReappeared;
-        public static int CoinsGivenToTroll;
+        public bool TrollAppearedFirstTime;
+        public bool SpearThrown;
+        public bool CanTrollReappear;
+        public bool TrollReappeared;
+        public int CoinsGivenToTroll;
 
         public TrollBridge()
         {
@@ -83,11 +82,10 @@ namespace Shadowgate.Rooms
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("\nAs you step on the bridge, a troll appears and says, \"This bridge is mine! It'll cost you a gold coin to cross!\"");
                         TrollAppearedFirstTime = true;
-                        IsTrollPresent = true;
                         theTroll.IsHidden = false;
                         GameFunctions.ReduceTorchFire();
                     }
-                    else if (TrollAppearedFirstTime && IsTrollPresent && !TrollReappeared)
+                    else if (TrollAppearedFirstTime && theTroll.IsHidden == false && !TrollReappeared)
                     {
                         TriedToTrickTroll();
                         TrollDestroysBridge();
@@ -133,7 +131,8 @@ namespace Shadowgate.Rooms
                     Console.WriteLine("\nThe troll stares at you.");
                     break;
                 case "Door at the end of the wooden bridge":
-                    if (IsTrollPresent)
+                    var theTroll = GameFunctions.FindObject("Troll", PointsOfInterest);
+                    if (theTroll.IsHidden == false)
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("\nA terrible looking troll is standing in the way.");

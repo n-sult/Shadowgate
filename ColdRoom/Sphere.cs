@@ -21,11 +21,11 @@ namespace Shadowgate.ColdRoom
 
         public override bool Take()
         {
-            if (Globals.currentRoom.RoomName == "Cold Room")
+            if (Globals.clonedRoom.RoomName == "Cold Room")
                 return true;
-            else if (Globals.currentRoom.RoomName == "Shark Pond" && Rooms.SharkPond.UsedTorchOnPond)
+            else if (Globals.clonedRoom.RoomName == "Shark Pond" && (Globals.clonedRoom as Rooms.SharkPond).UsedTorchOnPond)
             {
-                Rooms.SharkPond.IsSphereInPond = false;
+                (Globals.clonedRoom as Rooms.SharkPond).IsSphereInPond = false;
                 return true;
             }
             else
@@ -44,14 +44,14 @@ namespace Shadowgate.ColdRoom
                 switch (result)
                 {
                     case "Pond":
-                        if (!Rooms.SharkPond.WasSphereUsed) // if the sphere hasn't been used yet...
+                        if (!(Globals.clonedRoom as Rooms.SharkPond).WasSphereUsed) // if the sphere hasn't been used yet...
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan; //show message of lake freezing
                             Console.WriteLine("\nYou drop the sphere into the lake and notice the ripples disappear as the water turns into ice.");
-                            Rooms.SharkPond.WasSphereUsed = true; 
-                            Rooms.SharkPond.IsSphereInPond = true; // mark these as true for later use
+                            (Globals.clonedRoom as Rooms.SharkPond).WasSphereUsed = true;
+                            (Globals.clonedRoom as Rooms.SharkPond).IsSphereInPond = true; // mark these as true for later use
 
-                            Globals.currentRoom.PointsOfInterest.Insert(0, activeObject); // take the sphere from you inventory and add it to room POI list
+                            Globals.clonedRoom.PointsOfInterest.Insert(0, activeObject); // take the sphere from you inventory and add it to room POI list
                             Globals.currentPlayer.PlayerInventory.Remove((Item)activeObject); // remove sphere from inventory
                             GameFunctions.ReduceTorchFire();
                         }
@@ -62,15 +62,17 @@ namespace Shadowgate.ColdRoom
                     case "Fire raging under the bridge":
                         Console.ForegroundColor = ConsoleColor.Cyan; // if the sphere is used on the firedrake or the fire underneath the bridge...
                         Console.WriteLine("\nYou hurl the sphere into the fire below you. The hell-spawned flames quickly vanish as soon as the sphere touches them."); // show message of sphere expelling flames
-                        if (Rooms.FireBridge.FiredrakeAppeared) // if the firedrake appeared...
+
+                        PointOfInterest firedrake = (GameFunctions.FindObject("Firedrake", Globals.clonedRoom.PointsOfInterest));
+                        
+                        if (firedrake.IsHidden == false) // if the firedrake appeared...
                         {
                             Console.WriteLine("With nothing to feed itself on, the Firedrake immediately follows suit."); // also show message of it dying
-                            Rooms.FireBridge.FiredrakeAppeared = false; // mark firedrake as no longer present
-                            GameFunctions.FindObject("Firedrake", Globals.currentRoom.PointsOfInterest).ObjectName = "Door on the other side of the bridge"; // change entry name back to it's default name
+                            Globals.clonedRoom.PointsOfInterest.Remove(firedrake); // remove firedrake from POI list
+                            GameFunctions.FindObject("Firedrake", Globals.clonedRoom.PointsOfInterest).ObjectName = "Door on the other side of the bridge"; // change entry name back to it's default name
                         }
-                        Rooms.FireBridge.FiredrakeDead = true; // mark firedrake as dead
 
-                        GameFunctions.FindObject("Fire raging under the bridge", Globals.currentRoom.PointsOfInterest).ObjectName = "Oil-soaked floor beneath the bridge"; // change fire to oil
+                        GameFunctions.FindObject("Fire raging under the bridge", Globals.clonedRoom.PointsOfInterest).ObjectName = "Oil-soaked floor beneath the bridge"; // change fire to oil
                         Globals.currentPlayer.PlayerInventory.Remove((Item)activeObject); // permanently remove sphere from inventory
                         GameFunctions.ReduceTorchFire();
                         break;

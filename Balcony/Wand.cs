@@ -23,7 +23,7 @@ namespace Shadowgate.Balcony
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\nAs you take the wand from the skeletal hand, it begins to descend. \nThe hole then closes up as if it had never been.");
-            GameFunctions.FindObject("Skeletal Hand", Globals.currentRoom.PointsOfInterest).IsHidden = true;
+            GameFunctions.FindObject("Skeletal Hand", Globals.clonedRoom.PointsOfInterest).IsHidden = true;
             return true;
         }
 
@@ -43,8 +43,8 @@ namespace Shadowgate.Balcony
                         Console.WriteLine("\nThe snake begins to shake and shutter. Is it just your eyes or is it shrinking? \n" +
                             "The serpentine statue begins to change! It grows smaller and smaller! " +
                             "\nIt dematerializes and forms anew as a staff of tremendous beauty!");
-                        Globals.currentRoom.PointsOfInterest.Remove(GameFunctions.FindObject(result, Globals.currentRoom.PointsOfInterest));
-                        GameFunctions.FindObject("Staff", Globals.currentRoom.PointsOfInterest).IsHidden = false;
+                        Globals.clonedRoom.PointsOfInterest.Remove(GameFunctions.FindObject(result, Globals.clonedRoom.PointsOfInterest));
+                        GameFunctions.FindObject("Staff", Globals.clonedRoom.PointsOfInterest).IsHidden = false;
                         Globals.currentPlayer.PlayerInventory.Remove(this);
                         GameFunctions.ReduceTorchFire();
                         break;

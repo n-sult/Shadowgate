@@ -8,8 +8,8 @@ namespace Shadowgate.Closet
 {
     public class Sling : Item
     {
-        public static bool HasStone;
-        public static int StonesThrown;
+        public bool HasStone;
+        public int StonesThrown;
         
         public Sling(string objectName)
         {
@@ -45,7 +45,7 @@ namespace Shadowgate.Closet
                         if (result == "Troll")
                         {
                             if (HasStone)
-                                if (!Rooms.TrollBridge.SpearThrown)
+                                if (!(Globals.clonedRoom as Rooms.TrollBridge).SpearThrown)
                                 {
                                     Rooms.TrollBridge.TriedToTrickTroll();
                                     Rooms.TrollBridge.TrollDestroysBridge();
@@ -61,7 +61,7 @@ namespace Shadowgate.Closet
                             Console.WriteLine("\nAs soon as you start twirling the sling, a magical influence takes over your body! " +
                                 "\nYou cry out, \"Death to the Philistine!\", and release the stone. " +
                                 "\nBullseye!! The cyclops has been rendered unconcious."); // altered line
-                            Rooms.Courtyard.CyclopsUnconcious = true;
+                            (Globals.clonedRoom as Rooms.Courtyard).CyclopsUnconcious = true;
                             HasStone = false;
                             StonesThrown++;
                         }

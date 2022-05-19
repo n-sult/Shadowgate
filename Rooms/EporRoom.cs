@@ -8,8 +8,8 @@ namespace Shadowgate.Rooms
 {
     public class EporRoom : Room
     {
-        public static bool IsEporActive;
-        public static int LookedAtSign = 0;
+        public bool IsEporActive;
+        public int LookedAtSign = 0;
 
         public EporRoom()
         {

@@ -41,8 +41,6 @@ namespace Shadowgate.Laboratory
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\nThe holy water has sent the hellhound back to the place where it was spawned. " +
                             "\nIt's engulfed by a huge flame! The flame dies out. The room is quiet, as though nothing had happened.");
-                        Rooms.BrazierRoom.HellhoundDead = true;
-                        Rooms.BrazierRoom.HellhoundPresent = false;
                         Globals.currentRoom.PointsOfInterest.Remove(GameFunctions.FindObject(result, Globals.currentRoom.PointsOfInterest));
                         Globals.currentPlayer.PlayerInventory.Remove(this);
                         GameFunctions.ReduceTorchFire();

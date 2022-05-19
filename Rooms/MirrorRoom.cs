@@ -36,7 +36,7 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Hole in the floor":
-                    if (!Rooms.EporRoom.IsEporActive)
+                    if (!(Globals.clonedRoom as Rooms.EporRoom).IsEporActive)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nYou jump down the hole and, after a couple moments, hit the floor! " +

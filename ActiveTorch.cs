@@ -72,15 +72,15 @@ namespace Shadowgate
                                 GameFunctions.ReduceTorchFire();
                                 break;
                             case "Pond": // if using on the pond in the shark pond room...
-                                if (Rooms.SharkPond.IsSphereInPond) // if the sphere is currently in the pond, melt and re-freeze pond to make sphere takeable
+                                if ((Globals.clonedRoom as Rooms.SharkPond).IsSphereInPond) // if the sphere is currently in the pond, melt and re-freeze pond to make sphere takeable
                                 {
                                     Console.ForegroundColor = ConsoleColor.Cyan;
                                     Console.WriteLine("\nYou put the burning torch close to it. \nThe torch melts away the ice over the sphere, " +
                                         "allowing it to float to the surface. \nNot surprisingly, the lake quickly refreezes.");
-                                    Rooms.SharkPond.UsedTorchOnPond = true;
+                                    (Globals.clonedRoom as Rooms.SharkPond).UsedTorchOnPond = true;
                                     GameFunctions.ReduceTorchFire();
                                 }
-                                else if (!Rooms.SharkPond.IsSphereInPond && Rooms.SharkPond.UsedTorchOnPond) 
+                                else if (!(Globals.clonedRoom as Rooms.SharkPond).IsSphereInPond && (Globals.clonedRoom as Rooms.SharkPond).UsedTorchOnPond)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Yellow; // if sphere has been used and taken and torch has been used on lake, give this message
                                     Console.WriteLine("\nThe lake has become a solid sheet of ice.");

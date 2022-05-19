@@ -32,7 +32,7 @@ namespace Shadowgate.Study
                 switch (result)
                 {
                     case "Troll":
-                        if (!Rooms.TrollBridge.SpearThrown)
+                        if (!(Globals.clonedRoom as Rooms.TrollBridge).SpearThrown)
                         {
                             Rooms.TrollBridge.TriedToTrickTroll();
                             Rooms.TrollBridge.TrollDestroysBridge();
@@ -41,7 +41,7 @@ namespace Shadowgate.Study
                             Rooms.TrollBridge.TrollKillsWithSpear();
                         break;
                     case "Cyclops":
-                        if (!Rooms.Courtyard.CyclopsUnconcious)
+                        if (!(Globals.clonedRoom as Rooms.Courtyard).CyclopsUnconcious)
                             Rooms.Courtyard.DieToCyclops();
                         else
                             base.Use();

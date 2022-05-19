@@ -8,7 +8,7 @@ namespace Shadowgate.Rooms
 {
     public class Garden : Room
     {
-        public static bool FluteUsed;
+        public bool FluteUsed;
         
         public Garden()
         {

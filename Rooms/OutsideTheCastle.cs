@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,8 +14,7 @@ namespace Shadowgate.Rooms
         public OutsideTheCastle()
         {
             // Items for Outside Castle
-            Key key1 = new Key();
-            key1.Init("Key 1", true, false);
+            Key key1 = new Key("Key 1", true, false);
 
             // All POI for Outside Castle
             PointOfInterest stoneSkull = new PointOfInterest("Stone Skull");

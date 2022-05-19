@@ -37,7 +37,7 @@ namespace Shadowgate.Observatory
                         Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
                         break;
                     case "Hole on the balcony wall":
-                        Rooms.Balcony.IsRodUsed = true;
+                        (Globals.clonedRoom as Rooms.Balcony).IsRodUsed = true;
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\nSuddenly the sky seems to be on fire as a bolt of pure lightning strikes the rod! " +
                             "\nYou are startled to see a skeletal hand rise from a hole that has formed at your feet.");

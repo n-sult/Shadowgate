@@ -32,14 +32,14 @@ namespace Shadowgate.Garden
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\nBy using the silver gauntlet, you remove the flute easily. \nThe sound of the water splashing is music to your ears.");
-                this.ObjectName = "Flute";
+                ObjectName = "Flute";
                 return true;
             }
         }
 
         public override void Use()
         {
-            if (Globals.currentRoom.RoomName != "Garden" || Globals.currentRoom.RoomName == "Garden" && Rooms.Garden.FluteUsed)
+            if (Globals.clonedRoom.RoomName != "Garden" || Globals.clonedRoom.RoomName == "Garden" && (Globals.clonedRoom as Rooms.Garden).FluteUsed)
             {
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\nThe flute's music could possibly lead you to an endless dream.");
@@ -49,9 +49,9 @@ namespace Shadowgate.Garden
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\nThe sound of the flute is very pretty, indeed. \nIt seems like you wake from a dream only to find " +
                     "a hole in the tree! \nIs it real? The flute's music is like magic.");
-                Rooms.Garden.FluteUsed = true;
-                GameFunctions.FindObject("Tree Hole", Globals.currentRoom.PointsOfInterest).IsHidden = false;
-                GameFunctions.FindObject("Ring", Globals.currentRoom.PointsOfInterest).IsHidden = false;
+                (Globals.clonedRoom as Rooms.Garden).FluteUsed = true;
+                GameFunctions.FindObject("Tree Hole", Globals.clonedRoom.PointsOfInterest).IsHidden = false;
+                GameFunctions.FindObject("Ring", Globals.clonedRoom.PointsOfInterest).IsHidden = false;
             }
             GameFunctions.ReduceTorchFire();
         }

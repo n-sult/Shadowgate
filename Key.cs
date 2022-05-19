@@ -8,15 +8,12 @@ namespace Shadowgate
 {
     public class Key : Item
     {
-        public void Init(string objectName, bool isHidden, bool canBeDiscarded)
+        public Key(string objectName, bool isHidden, bool canBeDiscarded)
         {
             ObjectName = objectName;
             IsHidden = isHidden;
             CanBeDiscarded = canBeDiscarded;
         }
-
-
-        
         
         void CannotFindKeyholeMessage()
         {
@@ -43,7 +40,7 @@ namespace Shadowgate
         {
             if (ObjectName == "Key 3")
             {
-                if (!Rooms.SharkPond.WasSphereUsed)
+                if (!(Globals.clonedRoom as Rooms.SharkPond).WasSphereUsed)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("\nYou can't reach it from here. Swimming the shark-infested pool would be suicidal!");
@@ -51,7 +48,7 @@ namespace Shadowgate
                 }
                 else
                 {
-                    Rooms.SharkPond.IsKeyTaken = true;
+                    (Globals.clonedRoom as Rooms.SharkPond).IsKeyTaken = true;
                     return true;
                 }
             }

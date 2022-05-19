@@ -8,7 +8,7 @@ namespace Shadowgate.Rooms
 {
     public class Balcony : Room
     {
-        public static bool IsRodUsed;
+        public bool IsRodUsed;
         
         public Balcony()
         {
