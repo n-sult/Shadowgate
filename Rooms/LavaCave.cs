@@ -8,7 +8,7 @@ namespace Shadowgate.Rooms
 {
     public class LavaCave : Room
     {
-        public static bool MotariUsed;
+        public bool MotariUsed;
         
         public LavaCave()
         {

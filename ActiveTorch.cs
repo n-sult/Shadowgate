@@ -95,9 +95,8 @@ namespace Shadowgate
                             case "Mummy": // if using torch on the mummy...
                                 Console.ForegroundColor = ConsoleColor.Cyan;
                                 Console.WriteLine("\nThe mummy bursts into flames, leaving behind a scepter among the ashes."); // show message of mummy burning away
-                                Rooms.Tomb.IsMummyBurned = true; // set this bool to true for the room to use 
-                                Globals.clonedRoom.PointsOfInterest.Remove(GameFunctions.FindObject("Mummy", Globals.clonedRoom.PointsOfInterest)); // find the mummy in the room and remove it from POI
-                                GameFunctions.FindObject("Scepter", Globals.clonedRoom.PointsOfInterest).IsHidden = false; // find the scepter in the room and unhide it
+                                Globals.clonedRoom.PointsOfInterest.Remove(GameFunctions.FindObject("Mummy", Globals.clonedRoom.PointsOfInterest)); // permanently remove mummy
+                                GameFunctions.FindObject("Scepter", Globals.clonedRoom.PointsOfInterest).IsHidden = false; // unhide the scepter
                                 GameFunctions.ReduceTorchFire();
                                 break;
                             case "Holy Torch":
@@ -115,11 +114,11 @@ namespace Shadowgate
                                     this.DoNotDoThatMessage();
                                 break;
                             case "Woodpile":
-                                if (!Rooms.Study.WoodpileLit)
+                                if (!(Globals.clonedRoom as Rooms.Study).WoodpileLit)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Cyan;
                                     Console.WriteLine("\nYou torched the firewood. \nThe fire starts burning, adding warmth to the room.");
-                                    Rooms.Study.WoodpileLit = true;
+                                    (Globals.clonedRoom as Rooms.Study).WoodpileLit = true;
                                 }
                                 else
                                     base.Use();

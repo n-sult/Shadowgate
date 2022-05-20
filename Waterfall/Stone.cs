@@ -46,7 +46,7 @@ namespace Shadowgate.Waterfall
                     }
                 }
                 else if (result == "Sphinx")
-                    Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                    (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName);
                 else if (result == null)
                     return;
                 else

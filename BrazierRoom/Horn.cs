@@ -42,7 +42,7 @@ namespace Shadowgate.BrazierRoom
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\nThe sound of the horn echoes loudly in your ears. \nSuddenly, you hear the sound of grinding rock, " +
                     "the jaw of the skull begins to descend. \nHot wind erupts from the mouth creating the illusion that the stone skull is alive!");
-                (GameFunctions.FindObject("Skull Door", Globals.currentRoom.PointsOfInterest) as Entry).IsDoorOpen = true;
+                (GameFunctions.FindObject("Skull Door", Globals.clonedRoom.PointsOfInterest) as Entry).IsDoorOpen = true;
                 (Globals.clonedRoom as Rooms.Vault).HornUsed = true;
                 GameFunctions.ReduceTorchFire();
             }

@@ -32,7 +32,7 @@ namespace Shadowgate.Laboratory
                 switch (result)
                 {
                     case "Sphinx":
-                        Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                        (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName);
                         break;
                     default:
                         base.Use();

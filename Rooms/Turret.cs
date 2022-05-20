@@ -8,8 +8,6 @@ namespace Shadowgate.Rooms
 {
     public class Turret : Room
     {
-        public static bool WyvernDead;
-
         public Turret()
         {
             // Items for Turret

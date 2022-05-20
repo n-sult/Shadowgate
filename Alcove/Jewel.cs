@@ -46,7 +46,7 @@ namespace Shadowgate.Alcove
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan; // show message of using the correct gem
                             Console.WriteLine("\nThe gem fits perfectly in the hole. \nA small crystal sphere magically appears on the stand!");
-                            (Globals.clonedRoom as Rooms.ColdRoom).isWhiteGemUsed = true;
+                            (Globals.clonedRoom as Rooms.ColdRoom).IsWhiteGemUsed = true;
                             Globals.currentPlayer.PlayerInventory.Remove(this); // permanently remove gem from inventory
                             GameFunctions.FindObject("Sphere", Globals.clonedRoom.PointsOfInterest).IsHidden = false; // unhide the sphere
                             GameFunctions.ReduceTorchFire();

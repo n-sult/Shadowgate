@@ -21,7 +21,7 @@ namespace Shadowgate.Turret
 
         public override bool Take()
         {
-            if (!Rooms.Turret.WyvernDead)
+            if (Globals.clonedRoom.PointsOfInterest.Contains(GameFunctions.FindObject("Wyvern", Globals.clonedRoom.PointsOfInterest)))
             {
                 Rooms.Turret.DieToWyvern();
                 return false;

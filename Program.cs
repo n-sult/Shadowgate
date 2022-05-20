@@ -119,11 +119,11 @@ namespace Shadowgate
     {
         static void Main(string[] args)
         {
-            List<Item> startingInventory = new List<Item>() { Globals.activeTorch1, Globals.activeTorch2, /*Globals.key1, Globals.sling, Globals.sword,
-                Globals.key2, */Globals.holyTorch/*, Globals.key3, Globals.stone, Globals.whiteGem, Globals.redGem, Globals.blueGem, Globals.sphere,
+            List<Item> startingInventory = new List<Item>() { Globals.activeTorch1, Globals.activeTorch2, Globals.key1, Globals.sling, Globals.sword,
+                Globals.key2, Globals.holyTorch, Globals.key3, Globals.stone, /*Globals.whiteGem,*/ Globals.redGem, /*Globals.blueGem,*/ Globals.sphere,
                 Globals.shield, Globals.hammer, Globals.spear, Globals.lairSkull, Globals.copperCoin1, Globals.copperCoin2, Globals.scepter, Globals.arrow, 
-                Globals.bottle1, Globals.bottle2, Globals.bottle3, Globals.bottle4, Globals.bottle5, Globals.cloak, Globals.broom, Globals.scroll2, 
-                Globals.scroll3, Globals.scroll4, Globals.gauntlet, Globals.bookOnDesk, Globals.glasses, Globals.libraryMap, Globals.librarySkull, 
+                /*Globals.bottle1,*/ Globals.bottle2, /*Globals.bottle3, Globals.bottle4, Globals.bottle5,*/ Globals.cloak, Globals.broom, Globals.scroll2, 
+                /*Globals.scroll3, Globals.scroll4, Globals.gauntlet, Globals.bookOnDesk, Globals.glasses, Globals.libraryMap, Globals.librarySkull, 
                 Globals.bellows, Globals.poker, Globals.key5, Globals.key6, Globals.holyWater, Globals.horseshoe, Globals.flute, Globals.ring, 
                 Globals.key4, Globals.mirror, Globals.rod, Globals.star, Globals.blade, Globals.horn, Globals.talisman, Globals.wand, 
                 Globals.bigCoin, Globals.goldCoin1, Globals.goldCoin2, Globals.goldCoin3, Globals.staff, Globals.orb*/ };
@@ -132,7 +132,7 @@ namespace Shadowgate
             
             Entry.ChangeRoomEvent += GameFunctions.MoveRooms;
             GameFunctions.RoomCreation(); // add all rooms to global list of rooms
-            GameFunctions.MoveRooms("Bridge Room"); // TODO: in final, should be "Outside the Castle"
+            GameFunctions.MoveRooms("Mirror Room"); // TODO: in final, should be "Outside the Castle"
 
             while (!Globals.currentPlayer.IsPlayerDead && !Globals.isGameBeat) // as long as game is not over, run main game loop
             {

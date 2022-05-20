@@ -30,7 +30,7 @@ namespace Shadowgate.MirrorRoom
             if (result is not null)
             {
                 if (result == "Sphinx")
-                    Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                    (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName);
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.White;

@@ -9,8 +9,7 @@ namespace Shadowgate.SwitchCave
     public class Switch : PointOfInterest
     {
         public bool IsLowered;
-        public static List<string> SwitchSequence = new List<string>() { };
-        List<string> _switchSequenceAnswer = new List<string> { "Right Switch", "Middle Switch", "Right Switch"};
+        
 
         public Switch(string objectName, bool isLowered)
         {
@@ -37,39 +36,43 @@ namespace Shadowgate.SwitchCave
                 Console.WriteLine($"\nThe {ObjectName} was raised.");
                 this.IsLowered = false;
             }
-                
-            SwitchSequence.Add(ObjectName); // add the name of the switch to a list
 
-            if (SwitchSequence.Count == 3) // if 3 switches have been used...
+            Rooms.SwitchCave switchRoom = Globals.clonedRoom as Rooms.SwitchCave;
+            switchRoom.SwitchSequence.Add(ObjectName); // add the name of the switch to a list
+
+            if (switchRoom.SwitchSequence.Count == 3) // if 3 switches have been used...
             {
-                if (SwitchSequence.SequenceEqual(_switchSequenceAnswer)) // check if the switches used match the names in the correct answer
+                Rooms.SwitchCave switchCave = Globals.clonedRoom as Rooms.SwitchCave;
+                if (switchRoom.SwitchSequence.SequenceEqual(switchRoom.SwitchSequenceAnswer)) // check if the switches used match the names in the correct answer
                 {
-                    if (!Rooms.SwitchCave.CylinderOpen && !Rooms.SwitchCave.OrbTaken) // if cylinder's closed and orb isn't taken, show this message and reveal orb
+                    SwitchCave.Orb theOrb = (SwitchCave.Orb)GameFunctions.FindObject("Orb", Globals.clonedRoom.PointsOfInterest);
+
+                    if (!switchCave.CylinderOpen && theOrb is not null) // if cylinder's closed and orb isn't taken, show this message and reveal orb
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\nScree! The top half of the cylinder lifts with a shuddering sound. " +
                             "\nYou're momentarily dazzled as the darkness is lit by a blinding flash! \nThe silver orb is revealed inside!");
-                        Rooms.SwitchCave.CylinderOpen = true;
-                        GameFunctions.FindObject("Orb", Globals.currentRoom.PointsOfInterest).IsHidden = false;
+                        switchCave.CylinderOpen = true;
+                        theOrb.IsHidden = false;
                     }
-                    else if (Rooms.SwitchCave.CylinderOpen && !Rooms.SwitchCave.OrbTaken) // if cylinder's open and orb isn't taken, hide the cylinder
+                    else if (switchCave.CylinderOpen && theOrb is not null) // if cylinder's open and orb isn't taken, hide the cylinder
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\nThe top half of the cylinder descends. It is now closed."); // altered line
-                        Rooms.SwitchCave.CylinderOpen = false;
-                        GameFunctions.FindObject("Orb", Globals.currentRoom.PointsOfInterest).IsHidden = true;
+                        switchCave.CylinderOpen = false;
+                        theOrb.IsHidden = true;
                     }
-                    else if (!Rooms.SwitchCave.CylinderOpen && Rooms.SwitchCave.OrbTaken) // if cylinder's closed but orb is taken, just show this message
+                    else if (!switchCave.CylinderOpen && theOrb is null) // if cylinder's closed but orb is taken, just show this message
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\nThe top half of the cylinder rises!"); // altered line
-                        Rooms.SwitchCave.CylinderOpen = true;
+                        switchCave.CylinderOpen = true;
                     }
                     else // and if cylinder's open and orb is taken, just show this message
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\nThe top half of the cylinder descends. It is now closed."); // altered line
-                        Rooms.SwitchCave.CylinderOpen = false;
+                        switchCave.CylinderOpen = false;
                     }
                 }
                 else // if incorrect sequence was used...
@@ -82,7 +85,7 @@ namespace Shadowgate.SwitchCave
                     if (POI is Switch)
                         (POI as Switch).IsLowered = false;
 
-                SwitchSequence.Clear();
+                switchCave.SwitchSequence.Clear();
             }
             GameFunctions.ReduceTorchFire();
         }

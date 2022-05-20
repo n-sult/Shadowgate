@@ -8,11 +8,11 @@ namespace Shadowgate.Rooms
 {
     public class Tomb : Room
     {
-        public static bool IsMummyBurned = false;
-        public static bool IsScepterTaken = false;
-        static bool _isMiddleLeftCoffinOpen = false;
-        static bool _isMiddleRightCoffinOpen = false;
-        static bool _isClosestRightCoffinOpen = false;
+        public bool IsMummyBurned = false;
+        public bool IsScepterTaken = false;
+        bool _isMiddleLeftCoffinOpen = false;
+        bool _isMiddleRightCoffinOpen = false;
+        bool _isClosestRightCoffinOpen = false;
 
         public Tomb()
         {

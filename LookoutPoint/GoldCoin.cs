@@ -26,24 +26,28 @@ namespace Shadowgate.LookoutPoint
         public override void Use()
         {
             var result = GameFunctions.UseOn(ObjectName);
-
             if (result is not null)
             {
                 switch(result)
                 {
                     case "Troll":
                         if ((Globals.clonedRoom as Rooms.TrollBridge).CoinsGivenToTroll == 0)
-                            Rooms.TrollBridge.TriedToGiveCopperCoin();
+                        {
+                            Rooms.TrollBridge.GaveTrollFirstCoin(); // show message of giving troll a coin
+                            Globals.currentPlayer.PlayerInventory.Remove(this); // remove coin from inventory
+                            (Globals.clonedRoom as Rooms.TrollBridge).CoinsGivenToTroll++; // increment number of coins given to troll
+                            GameFunctions.ReduceTorchFire();
+                        }
                         else
-                            Rooms.TrollBridge.TriedToGiveGoldCoin();
+                            (Globals.clonedRoom as Rooms.TrollBridge).TriedToGiveGoldCoin();
                         break;
                     case "Sphinx":
-                        Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                        (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName);
                         break;
                     case "Ferryman":
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\nThe ferryman takes the coin and gestures you to board quickly.");
-                        Rooms.RiverStyx.GoldCoinGiven = true;
+                        (Globals.clonedRoom as Rooms.RiverStyx).GoldCoinGiven = true;
                         Globals.currentPlayer.PlayerInventory.Remove(this);
                         GameFunctions.ReduceTorchFire();
                         break;

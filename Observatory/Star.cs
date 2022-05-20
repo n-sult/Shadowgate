@@ -32,15 +32,16 @@ namespace Shadowgate.Observatory
                 switch (result)
                 {
                     case "Sphinx":
-                        Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                        (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName);
                         break;
                     case "Wyvern":
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\nThe Star becomes a flash of light as you launch it. \nCrash! It strikes the wyvern and it explodes " +
                             "into a million pieces! \nThe wyvern falls out of sight.");
-                        Globals.currentRoom.PointsOfInterest.Remove(GameFunctions.FindObject(result, Globals.currentRoom.PointsOfInterest));
-                        Globals.currentPlayer.PlayerInventory.Remove(this);
-                        Rooms.Turret.WyvernDead = true;
+
+                        Globals.clonedRoom.PointsOfInterest.Remove(GameFunctions.FindObject(result, Globals.clonedRoom.PointsOfInterest)); // remove wyvern from room
+
+                        Globals.currentPlayer.PlayerInventory.Remove(this); // remove star from inventory
                         GameFunctions.ReduceTorchFire();
                         break;
                     default:

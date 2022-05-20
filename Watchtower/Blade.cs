@@ -20,9 +20,9 @@ namespace Shadowgate.Watchtower
 
         public override bool Take()
         {
-            if (!Rooms.Watchtower.WomanDead)
+            if (!(Globals.clonedRoom as Rooms.Watchtower).WomanDead)
             {
-                Rooms.Watchtower.DieToWerewolf();
+                (Globals.clonedRoom as Rooms.Watchtower).DieToWerewolf();
                 return false;
             }
             else
@@ -38,7 +38,7 @@ namespace Shadowgate.Watchtower
                 switch (result)
                 {
                     case "Sphinx":
-                        Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                        (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName);
                         break;
                     case "Staff":
                         Console.ForegroundColor = ConsoleColor.Cyan;

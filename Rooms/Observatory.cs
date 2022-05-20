@@ -8,8 +8,7 @@ namespace Shadowgate.Rooms
 {
     public class Observatory : Room
     {
-        public static bool StarMapOpen;
-        public static bool RodTaken;
+        public bool StarMapOpen;
 
         public Observatory()
         {
@@ -58,13 +57,12 @@ namespace Shadowgate.Rooms
         public override void OpenObject(string objectName)
         {
             var theRod = GameFunctions.FindObject("Rod", PointsOfInterest);
-
             switch (objectName)
             {
                 case "Star Map":
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("\nThe Star Map is open.");
-                    if (!RodTaken)
+                    if (!PointsOfInterest.Contains(GameFunctions.FindObject(theRod.ObjectName, PointsOfInterest)))
                         Console.WriteLine("There's a rod behind the poster!");
                     if (!StarMapOpen)
                     {

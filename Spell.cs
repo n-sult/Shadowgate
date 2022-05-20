@@ -32,8 +32,8 @@ namespace Shadowgate
             InitialCastSpellMessage("Humana");
             Console.ForegroundColor = ConsoleColor.Yellow;
             if (Globals.clonedRoom.RoomName == "Troll Bridge")
-                Console.WriteLine("\nUh oh, the wind has suddenly died down!");
-            Console.WriteLine("Nothing happens! There must be something missing!");
+                Console.Write("\nUh oh, the wind has suddenly died down!");
+            Console.WriteLine("\nNothing happens! There must be something missing!");
         }
 
         public static void MagicIsGoneMessage()
@@ -67,29 +67,32 @@ namespace Shadowgate
                         WrongPlaceForSpellMessage();   
                     break;
                 case "Humana":
-                    if (Globals.clonedRoom.RoomName != "Troll Bridge")
-                        HumanaNotWorkingMessage();
-                    else if (Globals.clonedRoom.RoomName == "Troll Bridge" && (!(Globals.clonedRoom as Rooms.TrollBridge).TrollReappeared))
-                        HumanaNotWorkingMessage();
-                    else
+                    if (Globals.clonedRoom.RoomName == "Troll Bridge")
                     {
-                        InitialCastSpellMessage(spellName);
-                        Console.WriteLine("\nAs soon as the magic is invoked, you lose sight of yourself. You're as invisible as the wind!");
-                        GameFunctions.MoveRooms("Courtyard");
+                        if (!GameFunctions.FindObject("Troll", Globals.clonedRoom.PointsOfInterest).IsHidden && (Globals.clonedRoom as Rooms.TrollBridge).TrollHasSpear)
+                        {
+                            InitialCastSpellMessage(spellName);
+                            Console.WriteLine("\nAs soon as the magic is invoked, you lose sight of yourself. You're as invisible as the wind!");
+                            GameFunctions.MoveRooms("Courtyard");
+                        }
+                        else
+                            HumanaNotWorkingMessage();
                     }
+                    else
+                        HumanaNotWorkingMessage();
                     break;
                 case "Terrakk":
                     if (Globals.clonedRoom.RoomName != "Study")
                         WrongPlaceForSpellMessage();
                     else
                     {
-                        if (Rooms.Study.TerrakkUsed)
+                        if ((Globals.clonedRoom as Rooms.Study).TerrakkUsed)
                             MagicIsGoneMessage();
                         else
                         {
                             InitialCastSpellMessage(spellName);
                             Console.WriteLine("\nA large crack apears around the equator of the globe.");
-                            Rooms.Study.TerrakkUsed = true;
+                            (Globals.clonedRoom as Rooms.Study).TerrakkUsed = true;
                         }
                     }
                     break;
@@ -106,7 +109,7 @@ namespace Shadowgate
                         Console.WriteLine("\nSuddenly the cavern is so bright that you have to shade your eyes. " +
                             "\nIt takes you a few moments to regain your senses from the nova burst. " +
                             "\nIt seems the gargoyles were also affected and haven't yet recovered from the spell.");
-                        Rooms.GargoyleCave.IlluminaUsed = true;
+                        (Globals.clonedRoom as Rooms.GargoyleCave).IlluminaUsed = true;
                     }
                     break;
                 case "Motari":
@@ -114,11 +117,11 @@ namespace Shadowgate
                         WrongPlaceForSpellMessage();
                     else
                     {
-                        if (!Rooms.LavaCave.MotariUsed)
+                        if (!(Globals.clonedRoom as Rooms.LavaCave).MotariUsed)
                         {
                             InitialCastSpellMessage(spellName);
                             Console.WriteLine("\nThe statue lowers and a large platform rises out of the lava! You now have a way across!");
-                            Rooms.LavaCave.MotariUsed = true;
+                            (Globals.clonedRoom as Rooms.LavaCave).MotariUsed = true;
                         }
                         else
                             MagicIsGoneMessage();

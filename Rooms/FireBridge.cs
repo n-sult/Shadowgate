@@ -8,9 +8,6 @@ namespace Shadowgate.Rooms
 {
     public class FireBridge : Room
     {
-        //public bool FiredrakeAppeared;
-        //public bool FiredrakeDead;
-        
         public FireBridge()
         {
             // All POI for Fire Bridge
@@ -25,12 +22,17 @@ namespace Shadowgate.Rooms
             SubsequentEntry = "It's so hot, you begin to sweat profusely.";
             PointsOfInterest = fireBridgePOI;
 
-            GameFunctions.RoomEnteredEvent += (roomName) => { if (roomName == RoomName) 
-                { if (!Globals.currentPlayer.IsCloakEquipped)
+            GameFunctions.RoomEnteredEvent += (roomName) => 
+            { 
+                if (roomName == RoomName) 
+                { 
+                    if (!Globals.currentPlayer.IsCloakEquipped)
                     {
                         HeatIsUnbearableMessage();
-                        GameFunctions.MoveRooms(Globals.previousRoom.RoomName);
-                    } } } ;
+                        GameFunctions.MoveRooms("Mirror Room"); //TODO: CHANGE BACK TO GLOBALS.PREVIOUSROOM.ROOMNAME
+                    } 
+                } 
+            } ;
         }
 
         void HeatIsUnbearableMessage()
@@ -161,7 +163,7 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Firedrake":
-                    GameFunctions.FindObject(objectName, Globals.currentRoom.PointsOfInterest).DoesNotUnderstandMessage();
+                    GameFunctions.FindObject(objectName, Globals.clonedRoom.PointsOfInterest).DoesNotUnderstandMessage();
                     break;
                 default:
                     base.SpeakTo(objectName);

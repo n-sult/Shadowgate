@@ -8,7 +8,7 @@ namespace Shadowgate.Rooms
 {
     public class ColdRoom : Room
     {
-        public bool isWhiteGemUsed = false;
+        public bool IsWhiteGemUsed = false;
         
         public ColdRoom()
         {
@@ -58,7 +58,7 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Small hole next to the wooden door":
-                    if (!isWhiteGemUsed)
+                    if (!IsWhiteGemUsed)
                         Console.WriteLine("\nIt's a small hole in the wall some three inches deep.");
                     else
                         Console.WriteLine("\nThe gem fits perfectly in the hole.");
@@ -80,7 +80,6 @@ namespace Shadowgate.Rooms
                     base.OpenObject(objectName);
                     if (!(GameFunctions.FindObject(objectName, PointsOfInterest) as Entry).IsDoorOpen)
                         (GameFunctions.FindObject(objectName, PointsOfInterest) as Entry).IsDoorOpen = true;
-                    GameFunctions.ReduceTorchFire();
                     break;
                 default:
                     base.OpenObject(objectName);
@@ -94,9 +93,8 @@ namespace Shadowgate.Rooms
                 {
                     case "Trap Door":
                         base.CloseObject(objectName);
-                    if ((GameFunctions.FindObject(objectName, PointsOfInterest) as Entry).IsDoorOpen)
-                        (GameFunctions.FindObject(objectName, PointsOfInterest) as Entry).IsDoorOpen = false;
-                    GameFunctions.ReduceTorchFire();
+                        if ((GameFunctions.FindObject(objectName, PointsOfInterest) as Entry).IsDoorOpen)
+                            (GameFunctions.FindObject(objectName, PointsOfInterest) as Entry).IsDoorOpen = false;
                         break;
                     default:
                         base.CloseObject(objectName);

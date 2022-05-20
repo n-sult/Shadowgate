@@ -30,20 +30,14 @@ namespace Shadowgate.Closet
             {
                 switch (result)
                 {
-                    case "Firedrake": // if it's the firedrake, die
-                        Rooms.FireBridge.DieToFiredrake();
+                    case "Firedrake": 
+                        Rooms.FireBridge.DieToFiredrake(); // if it's the firedrake, player dies
                         break;
-                    case "Troll": // if it's the troll, die
-                        if (!(Globals.clonedRoom as Rooms.TrollBridge).SpearThrown)
-                        {
-                            Rooms.TrollBridge.TriedToTrickTroll();
-                            Rooms.TrollBridge.TrollDestroysBridge();
-                        }
-                        else
-                            Rooms.TrollBridge.TrollKillsWithSpear();
+                    case "Troll": 
+                        (Globals.clonedRoom as Rooms.TrollBridge).TriedToTrickTroll(); // if it's the troll, die
                         break;
-                    case "Cyclops": // if the cyclops is alive, die
-                        if (!(Globals.clonedRoom as Rooms.Courtyard).CyclopsUnconcious)
+                    case "Cyclops": 
+                        if (!(Globals.clonedRoom as Rooms.Courtyard).CyclopsUnconcious) // if the cyclops is alive, player dies
                             Rooms.Courtyard.DieToCyclops();
                         else // but if it's unconcious, kill it
                         {
@@ -56,15 +50,15 @@ namespace Shadowgate.Closet
                             GameFunctions.ReduceTorchFire();
                         }
                         break;
-                    case "Sphinx": // if used on sphinx, player will be teleported
-                        Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                    case "Sphinx":
+                        (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName); // if used on sphinx, player will be teleported
                         break;
-                    case "Hellhound": // if used on hellhound, die
-                        Rooms.BrazierRoom.DieToHound();
+                    case "Hellhound": 
+                        Rooms.BrazierRoom.DieToHound(); // if used on hellhound, player dies
                         break;
                     case "Behemoth":
-                    case "Warlock Lord": // if used on behemoth/warlock, die
-                        Rooms.Chasm.DieToWarlock();
+                    case "Warlock Lord": 
+                        Rooms.Chasm.DieToWarlock(); // if used on behemoth/warlock, player dies
                         break;
                     case "Self": // if used on self, die
                         GameFunctions.KillSelf(ObjectName);

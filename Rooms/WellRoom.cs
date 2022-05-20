@@ -8,9 +8,8 @@ namespace Shadowgate.Rooms
 {
     public class WellRoom : Room
     {
-        public static bool WellCoverOpen;
-        public static bool BigCoinUsed;
-        
+        public bool BigCoinUsed;
+
         public WellRoom()
         {
             // POI for Well Room
@@ -43,11 +42,13 @@ namespace Shadowgate.Rooms
         
         public override void MoveTo(string objectName)
         {
+            
             switch(objectName)
             {
                 case "Old Well":
-                case "Well Cover": 
-                    if (!WellCoverOpen) // if well is closed
+                case "Well Cover":
+                    Entry theWell = (Entry)GameFunctions.FindObject("Old Well", PointsOfInterest);
+                    if (!theWell.IsDoorOpen) // if well is closed
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("\nYou can't do that. \nYou have to open the door before you go through it.");
@@ -81,7 +82,8 @@ namespace Shadowgate.Rooms
                     Console.WriteLine("\nIt's a small handle attached to an assortment of gears.");
                     break;
                 case "Well Cover":
-                    if (!WellCoverOpen)
+                    Entry theWell = (Entry)GameFunctions.FindObject("Old Well", PointsOfInterest);
+                    if (!theWell.IsDoorOpen)
                         Console.WriteLine("\nThese wooden planks act as a cover for the well.");
                     else
                         Console.WriteLine("\nThe cover of the well is opened.");
@@ -101,8 +103,9 @@ namespace Shadowgate.Rooms
             {
                 case "Well Cover":
                     OpenWellMessage();
-                    if (!WellCoverOpen)
-                        WellCoverOpen = true;
+                    Entry theWell = (Entry)GameFunctions.FindObject("Old Well", PointsOfInterest);
+                    if (!theWell.IsDoorOpen)
+                        theWell.IsDoorOpen = true;
                     break;
                 case "Door next to the Well":
                     Console.ForegroundColor = ConsoleColor.Yellow;
@@ -121,8 +124,9 @@ namespace Shadowgate.Rooms
             {
                 case "Well Cover":
                     CloseWellMessage();
-                    if (WellCoverOpen)
-                        WellCoverOpen = false;
+                    Entry theWell = (Entry)GameFunctions.FindObject("Old Well", PointsOfInterest);
+                    if (theWell.IsDoorOpen)
+                        theWell.IsDoorOpen = false;
                     break;
                 default:
                     base.CloseObject(objectName);
@@ -135,15 +139,16 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Well Handle":
-                    if (!WellCoverOpen)
+                    Entry theWell = (Entry)GameFunctions.FindObject("Old Well", PointsOfInterest);
+                    if (!theWell.IsDoorOpen)
                     {
                         OpenWellMessage();
-                        WellCoverOpen = true;
+                        theWell.IsDoorOpen = true;
                     }
                     else
                     {
                         CloseWellMessage();
-                        WellCoverOpen = false;
+                        theWell.IsDoorOpen = false;
                     }
                     GameFunctions.ReduceTorchFire();
                     break;

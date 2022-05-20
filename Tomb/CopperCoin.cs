@@ -26,7 +26,6 @@ namespace Shadowgate.Tomb
         public override void Use()
         {
             var result = GameFunctions.UseOn(ObjectName);
-
             if (result is not null)
             {
                 switch (result)
@@ -34,27 +33,22 @@ namespace Shadowgate.Tomb
                     case "Troll":
                         if ((Globals.clonedRoom as Rooms.TrollBridge).CoinsGivenToTroll == 0)
                         {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("\nThe troll says that the toll has just been raised to two gold coins.");
-                            Globals.currentPlayer.PlayerInventory.Remove(this);
-                            (Globals.clonedRoom as Rooms.TrollBridge).CoinsGivenToTroll++;
+                            Rooms.TrollBridge.GaveTrollFirstCoin(); // show message of giving troll a coin
+                            Globals.currentPlayer.PlayerInventory.Remove(this); // remove coin from inventory
+                            (Globals.clonedRoom as Rooms.TrollBridge).CoinsGivenToTroll++; // increment number of coins given to troll
                             GameFunctions.ReduceTorchFire();
                         }
                         else
-                        {
-                            Rooms.TrollBridge.TriedToGiveCopperCoin();
-                            Rooms.TrollBridge.TrollDestroysBridge();
-                        }
-                            
+                            (Globals.clonedRoom as Rooms.TrollBridge).TriedToGiveCopperCoin();
                         break;
                     case "Sphinx":
-                        Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                        (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName);
                         break;
                     case "Ferryman":
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("\nThe ferryman will not take the copper coin as a fare. Suddenly, he disappears!");
-                        GameFunctions.FindObject(result, Globals.currentRoom.PointsOfInterest).IsHidden = true;
-                        GameFunctions.FindObject("Raft", Globals.currentRoom.PointsOfInterest).IsHidden = true;
+                        GameFunctions.FindObject(result, Globals.clonedRoom.PointsOfInterest).IsHidden = true;
+                        GameFunctions.FindObject("Raft", Globals.clonedRoom.PointsOfInterest).IsHidden = true;
                         GameFunctions.ReduceTorchFire();
                         break;
                     default:

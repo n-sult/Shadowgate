@@ -8,7 +8,7 @@ namespace Shadowgate.Rooms
 {
     public class ThroneRoom : Room
     {
-        public static bool IsScepterUsed;
+        public bool IsScepterUsed;
         
         public ThroneRoom()
         {

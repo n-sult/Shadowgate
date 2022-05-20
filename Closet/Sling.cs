@@ -32,7 +32,7 @@ namespace Shadowgate.Closet
             if (result is not null) // if player chose something to use it on (didn't select "never mind")....
             {
                 if (result == "Sphinx") // if used on the sphinx, player will be teleported
-                    Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                    (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName);
                 else
                 {
                     if (!HasStone) // otherwise, show this message if there's no stone in the sling
@@ -43,15 +43,7 @@ namespace Shadowgate.Closet
                     else // if there is a stone in the sling...
                     {
                         if (result == "Troll") // if used on troll, die
-                        {
-                            if (!(Globals.clonedRoom as Rooms.TrollBridge).SpearThrown)
-                            {
-                                Rooms.TrollBridge.TriedToTrickTroll();
-                                Rooms.TrollBridge.TrollDestroysBridge();
-                            }
-                            else
-                                Rooms.TrollBridge.TrollKillsWithSpear();
-                        }
+                            (Globals.clonedRoom as Rooms.TrollBridge).TriedToTrickTroll();
                         else if (result == "Cyclops") // if used on cyclops, flag it as unconcious
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan;

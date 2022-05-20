@@ -8,9 +8,10 @@ namespace Shadowgate.Rooms
 {
     public class SwitchCave : Room
     {
-        public static bool CylinderOpen;
-        public static bool OrbTaken;
-        
+        public bool CylinderOpen;
+        public List<string> SwitchSequence = new List<string>() { };
+        public readonly List<string> SwitchSequenceAnswer = new List<string> { "Right Switch", "Middle Switch", "Right Switch" };
+
         public SwitchCave()
         {
             // Items for Switch Cave

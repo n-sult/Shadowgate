@@ -33,7 +33,7 @@ namespace Shadowgate.Library
                 switch (result)
                 {
                     case "Sphinx":
-                        Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                        (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName);
                         break;
                     case "Self":
                         Console.ForegroundColor = ConsoleColor.Cyan; // show message of equipping glasses

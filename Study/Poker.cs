@@ -26,19 +26,12 @@ namespace Shadowgate.Study
         public override void Use()
         {
             var result = GameFunctions.UseOn(ObjectName);
-
             if (result is not null)
             {
                 switch (result)
                 {
                     case "Troll":
-                        if (!(Globals.clonedRoom as Rooms.TrollBridge).SpearThrown)
-                        {
-                            Rooms.TrollBridge.TriedToTrickTroll();
-                            Rooms.TrollBridge.TrollDestroysBridge();
-                        }
-                        else
-                            Rooms.TrollBridge.TrollKillsWithSpear();
+                        (Globals.clonedRoom as Rooms.TrollBridge).TriedToTrickTroll();
                         break;
                     case "Cyclops":
                         if (!(Globals.clonedRoom as Rooms.Courtyard).CyclopsUnconcious)
@@ -47,7 +40,7 @@ namespace Shadowgate.Study
                             base.Use();
                         break;
                     case "Sphinx":
-                        Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                        (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName);
                         break;
                     case "Hellhound":
                         Rooms.BrazierRoom.DieToHound();

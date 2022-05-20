@@ -8,7 +8,7 @@ namespace Shadowgate.Rooms
 {
     public class GargoyleCave : Room
     {
-        public static bool IlluminaUsed;
+        public bool IlluminaUsed;
         
         public GargoyleCave()
         {

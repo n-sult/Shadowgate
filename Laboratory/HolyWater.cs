@@ -35,13 +35,13 @@ namespace Shadowgate.Laboratory
                 switch (result)
                 {
                     case "Sphinx":
-                        Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                        (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName);
                         break;
                     case "Hellhound":
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\nThe holy water has sent the hellhound back to the place where it was spawned. " +
                             "\nIt's engulfed by a huge flame! The flame dies out. The room is quiet, as though nothing had happened.");
-                        Globals.currentRoom.PointsOfInterest.Remove(GameFunctions.FindObject(result, Globals.currentRoom.PointsOfInterest));
+                        Globals.clonedRoom.PointsOfInterest.Remove(GameFunctions.FindObject(result, Globals.clonedRoom.PointsOfInterest));
                         Globals.currentPlayer.PlayerInventory.Remove(this);
                         GameFunctions.ReduceTorchFire();
                         break;

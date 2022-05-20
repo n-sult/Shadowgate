@@ -8,9 +8,9 @@ namespace Shadowgate.Rooms
 {
     public class Study : Room
     {
-        public static bool TerrakkUsed;
-        public static bool GlobeOpen;
-        public static bool WoodpileLit;
+        public bool TerrakkUsed;
+        public bool GlobeOpen;
+        public bool WoodpileLit;
 
         public Study()
         {

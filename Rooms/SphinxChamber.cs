@@ -8,10 +8,10 @@ namespace Shadowgate.Rooms
 {
     public class SphinxChamber : Room
     {
-        public static bool RiddleAsked;
-        public static bool RiddleAnswered;
+        public bool RiddleAsked;
+        public bool RiddleAnswered;
         public static string[] ItemsForRiddle = { "Mirror", "Broom", "Horseshoe", "Map", "Skull", "Bellows" };
-        public static string AnswerForRiddle;
+        public string AnswerForRiddle;
         int _riddleIndex = 0;
 
         // Riddles for the Sphinx
@@ -67,7 +67,7 @@ namespace Shadowgate.Rooms
             Entry.ChangeRoomEvent?.Invoke(roomName, true);
         }
 
-        public static void UseItemOnSphinx(string objectName)
+        public void UseItemOnSphinx(string objectName)
         {
             if (objectName is not null)
             {
@@ -118,7 +118,7 @@ namespace Shadowgate.Rooms
                         PreRiddleMessage();
                         _riddleIndex = rnd.Next(riddles.Count); // randomly choose a riddle from dictionary
                         Console.WriteLine(riddles.Values.ElementAt(_riddleIndex)); // show riddle at given index (which is also used to determine item to use)
-                        AnswerForRiddle = ItemsForRiddle[_riddleIndex];
+                        AnswerForRiddle = ItemsForRiddle[_riddleIndex]; 
                         RiddleAsked = true;
                         PostRiddleMessage();
                         GameFunctions.ReduceTorchFire();

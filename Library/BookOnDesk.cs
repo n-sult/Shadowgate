@@ -25,8 +25,8 @@ namespace Shadowgate.Library
                     "\n'A demon to guard.' \n\n'Motari Riseth' \n\nYou've learned one magic spell. As the spell was chanted, the book quickly vanished.");
                 Globals.currentPlayer.Spellbook.Add(new Spell("Motari")); // add Motari spell to player spellbook
 
-                if (Globals.currentRoom.PointsOfInterest.Contains(this)) // if the book was in the room, remove the book from the room
-                    Globals.currentRoom.PointsOfInterest.Remove(this);
+                if (Globals.clonedRoom.PointsOfInterest.Contains(this)) // if the book was in the room, remove the book from the room
+                    Globals.clonedRoom.PointsOfInterest.Remove(this);
                 else
                     Globals.currentPlayer.PlayerInventory.Remove(this); // otherwise, remove the book from player inventory
                 GameFunctions.ReduceTorchFire();
@@ -72,7 +72,7 @@ namespace Shadowgate.Library
                 switch (result)
                 {
                     case "Sphinx":
-                        Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                        (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName);
                         break;
                     default:
                         base.Use();

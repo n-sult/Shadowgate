@@ -27,18 +27,17 @@ namespace Shadowgate.Garden
         public override void Use()
         {
             var result = GameFunctions.UseOn(ObjectName);
-            
             if (result is not null)
             {
                 switch (result)
                 {
                     case "Sphinx":
-                        Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                        (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName);
                         break;
                     case "Hole in the Right Pillar":
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\nThe ring fits perfectly. The throne magically rises, revealing a secret passageway.");
-                        GameFunctions.FindObject("Trap Door hidden under the Throne", Globals.currentRoom.PointsOfInterest).IsHidden = false;
+                        GameFunctions.FindObject("Trap Door hidden under the Throne", Globals.clonedRoom.PointsOfInterest).IsHidden = false;
                         Globals.currentPlayer.PlayerInventory.Remove(this);
                         GameFunctions.ReduceTorchFire();
                         break;

@@ -32,12 +32,13 @@ namespace Shadowgate.LookoutPoint
                 switch (result)
                 {
                     case "Old Well":
-                        if (Rooms.WellRoom.WellCoverOpen)
+                        Entry theWell = (Entry)GameFunctions.FindObject("Old Well", Globals.clonedRoom.PointsOfInterest);
+                        if (theWell.IsDoorOpen)
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan;
                             Console.WriteLine("\nAs soon as you throw the coin into the well, a huge wind erupts from within it. " +
                                 "\nIt reminds you of the small 'dust devils' you see in the autumn months.");
-                            Rooms.WellRoom.BigCoinUsed = true;
+                            (Globals.clonedRoom as Rooms.WellRoom).BigCoinUsed = true;
                             Globals.currentPlayer.PlayerInventory.Remove(this);
                             GameFunctions.ReduceTorchFire();
                         }

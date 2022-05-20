@@ -34,13 +34,7 @@ namespace Shadowgate.HiddenRoom
                         Rooms.FireBridge.DieToFiredrake();
                         break;
                     case "Troll":
-                        if (!(Globals.clonedRoom as Rooms.TrollBridge).SpearThrown)
-                        {
-                            Rooms.TrollBridge.TriedToTrickTroll();
-                            Rooms.TrollBridge.TrollDestroysBridge();
-                        }
-                        else
-                            Rooms.TrollBridge.TrollKillsWithSpear();
+                        (Globals.clonedRoom as Rooms.TrollBridge).TriedToTrickTroll();
                         break;
                     case "Cyclops":
                         if (!(Globals.clonedRoom as Rooms.Courtyard).CyclopsUnconcious)
@@ -53,12 +47,12 @@ namespace Shadowgate.HiddenRoom
                         Console.WriteLine("\nAs you ready your arrow, the beautiful lady suddenly transforms into a wolf! \nIt breaks the chain as it attempts to lunge " +
                             "at you! \nHowever, your aim is true as you plunge the silver arrow into the wolf."); // heavily altered line
                         GameFunctions.FindObject("Captive Woman", Globals.clonedRoom.PointsOfInterest).ObjectName = "Dead Werewolf"; // change object name
-                        Rooms.Watchtower.WomanDead = true; // mark woman/wolf as dead
+                        (Globals.clonedRoom as Rooms.Watchtower).WomanDead = true; // mark woman/wolf as dead
                         Globals.currentPlayer.PlayerInventory.Remove(this); // remove arrow from inventory
                         GameFunctions.ReduceTorchFire();
                         break;
                     case "Sphinx":
-                        Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                        (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName);
                         break;
                     case "Hellhound":
                         Rooms.BrazierRoom.DieToHound();

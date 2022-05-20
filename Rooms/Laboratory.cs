@@ -8,8 +8,8 @@ namespace Shadowgate.Rooms
 {
     public class Laboratory : Room
     {
-        public static bool DrankFromPot;
-        public static bool StoneInFloorUsed;
+        public bool DrankFromPot;
+        public bool StoneInFloorUsed;
 
         public Laboratory()
         {
@@ -28,7 +28,7 @@ namespace Shadowgate.Rooms
             PointOfInterest labPot = new PointOfInterest("Green Pot");
             Entry doorwayNextToPot = new Entry("Doorway next to the pot", false, true, false, false, "Garden");
             Entry doorFromLabToDraftyHallway = new Entry("Door to Drafty Hallway", false, true, false, false, "Drafty Hallway");
-            var laboratoryPOI = new List<PointOfInterest>() { holyWater, labBottle2First, bottle3, bottle4, labBottle2Second, horseshoe, testTube, 
+            var laboratoryPOI = new List<PointOfInterest>() { holyWater, labBottle2First, labBottle2Second, bottle3, bottle4, horseshoe, testTube, 
                 stoneInFloor, labCage, labPot, doorwayNextToPot, doorFromLabToDraftyHallway };
 
             RoomName = "Laboratory";
@@ -40,9 +40,9 @@ namespace Shadowgate.Rooms
             {
                 if (Globals.NumberOfBottle2Consumed > 1 && Globals.NumberOfBottle2Consumed % 3 == 0)
                     if (!PointsOfInterest.Contains(labBottle2First))
-                        PointsOfInterest.Insert(0, labBottle2First);
+                        PointsOfInterest.Insert(1, labBottle2First);
                     else if (!PointsOfInterest.Contains(labBottle2Second))
-                        PointsOfInterest.Insert(1, labBottle2Second);
+                        PointsOfInterest.Insert(2, labBottle2Second);
             };
         }
 

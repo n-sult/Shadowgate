@@ -8,7 +8,7 @@ namespace Shadowgate.Rooms
 {
     public class Library : Room
     {
-        public static bool RedGemUsed;
+        public bool RedGemUsed;
 
         public Library()
         {

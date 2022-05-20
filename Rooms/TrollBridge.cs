@@ -8,10 +8,8 @@ namespace Shadowgate.Rooms
 {
     public class TrollBridge : Room
     {
-        public bool TrollAppearedFirstTime;
         public bool SpearThrown;
-        public bool CanTrollReappear;
-        public bool TrollReappeared;
+        public bool TrollHasSpear;
         public int CoinsGivenToTroll;
 
         public TrollBridge()
@@ -30,26 +28,42 @@ namespace Shadowgate.Rooms
             SubsequentEntry = FirstEntry;
             PointsOfInterest = trollBridgePOI;
 
-            GameFunctions.RoomEnteredEvent += (roomName) => { CoinsGivenToTroll = 0; };
+            GameFunctions.RoomEnteredEvent += (roomName) => { CoinsGivenToTroll = 0; SpearThrown = false; };
         }
 
-        public static void TriedToGiveCopperCoin()
+        public static void GaveTrollFirstCoin()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\nThe troll says that the toll has just been raised to two gold coins.");
+        }
+        
+        public void TriedToGiveCopperCoin()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\nThe troll shouts, \"Hey, what's this? It isn't gold! Are you trying to cheat me?\"");
+            DecideHowTrollKills();
         }
 
-        public static void TriedToGiveGoldCoin()
+        public void TriedToGiveGoldCoin()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\nThe troll says, \"I've changed my mind! I won't let you cross my bridge after all!");
-            TrollDestroysBridge();
+            DecideHowTrollKills();
         }
 
-        public static void TriedToTrickTroll()
+        public void TriedToTrickTroll()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\nThe troll cries, \"You can't trick me!\"");
+            DecideHowTrollKills();
+        }
+
+        public void DecideHowTrollKills()
+        {
+            if (!TrollHasSpear)
+                TrollDestroysBridge();
+            else
+                TrollKillsWithSpear();
         }
 
         public static void TrollDestroysBridge()
@@ -77,38 +91,33 @@ namespace Shadowgate.Rooms
                     GameFunctions.GameOver();
                     break;
                 case "Door at the end of the wooden bridge":
-                    if (!TrollAppearedFirstTime)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("\nAs you step on the bridge, a troll appears and says, \"This bridge is mine! It'll cost you a gold coin to cross!\"");
-                        TrollAppearedFirstTime = true;
-                        theTroll.IsHidden = false;
-                        GameFunctions.ReduceTorchFire();
-                    }
-                    else if (TrollAppearedFirstTime && theTroll.IsHidden == false && !TrollReappeared)
-                    {
-                        TriedToTrickTroll();
-                        TrollDestroysBridge();
-                    }
-                    else if (CanTrollReappear && !TrollReappeared)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("\nThe troll reappears, your spear in its hand, and demands you to pay a toll of one gold coin."); // altered line
-                        TrollReappeared = true;
-                        theTroll.IsHidden = false;
-                        GameFunctions.ReduceTorchFire();
-                    }
-                    else if (TrollReappeared)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("\nThe troll blows up like a volcano and throws his spear at your chest! " +
-                            "The spear pierces your chest and exits through your back!");
-                        GameFunctions.GameOver();
-                    }
+                    if (SpearThrown)
+                        base.MoveTo(objectName);
                     else
                     {
-                        base.MoveTo(objectName);
-                        CanTrollReappear = true;
+                        if (theTroll.IsHidden && !TrollHasSpear) // if the troll hasn't appeared yet, make it appear
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("\nAs you step on the bridge, a troll appears and says, \"This bridge is mine! It'll cost you a gold coin to cross!\"");
+                            theTroll.IsHidden = false;
+                            GameFunctions.ReduceTorchFire();
+                        }
+                        else if (!theTroll.IsHidden && !TrollHasSpear) // if troll is present but doesn't have spear, player dies by destroying bridge
+                            TriedToTrickTroll();
+                        else if (theTroll.IsHidden && TrollHasSpear) // if troll is hidden and has the spear, it appears with the spear
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("\nThe troll reappears, your spear in its hand, and demands you to pay a toll of one gold coin."); // altered line
+                            theTroll.IsHidden = false;
+                            GameFunctions.ReduceTorchFire();
+                        }
+                        else if (!theTroll.IsHidden && TrollHasSpear) // if the troll is present and has the spear, player dies from the spear
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\nThe troll blows up like a volcano and throws his spear at your chest! " +
+                                "The spear pierces your chest and exits through your back!");
+                            GameFunctions.GameOver();
+                        }
                     }
                     break;
                 default:
@@ -132,7 +141,7 @@ namespace Shadowgate.Rooms
                     break;
                 case "Door at the end of the wooden bridge":
                     var theTroll = GameFunctions.FindObject("Troll", PointsOfInterest);
-                    if (theTroll.IsHidden == false)
+                    if (!theTroll.IsHidden)
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("\nA terrible looking troll is standing in the way.");
@@ -153,15 +162,9 @@ namespace Shadowgate.Rooms
                 case "Troll":
                     Console.ForegroundColor = ConsoleColor.Red;
                     if (!SpearThrown)
-                    {
                         TriedToTrickTroll();
-                        TrollDestroysBridge();
-                    }
                     else
-                    {
                         TriedToTrickTroll();
-                        TrollKillsWithSpear();
-                    }
                     break;
                 default:
                     base.HitObject(objectName);

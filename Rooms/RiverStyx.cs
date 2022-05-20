@@ -8,7 +8,7 @@ namespace Shadowgate.Rooms
 {
     public class RiverStyx : Room
     {
-        public static bool GoldCoinGiven;
+        public bool GoldCoinGiven;
         
         public RiverStyx()
         {

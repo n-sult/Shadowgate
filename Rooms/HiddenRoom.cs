@@ -52,12 +52,14 @@ namespace Shadowgate.Rooms
             {
                 case "Doorway on an elevated ledge":
                     var theLedge = GameFunctions.FindObject("Ledge", PointsOfInterest);
+                    var theSupports = GameFunctions.FindObject("Pair of supports under the ledge", PointsOfInterest);
                     if (theLedge is not null) // if player hasn't tried to access this door yet...
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("\nThe ledge wasn't strong enough to hold you. You fall to the ground and land hard on your rump."); // alert player they fell
                         GameFunctions.FindObject("Rubble", PointsOfInterest).IsHidden = false; // make rubble POI visible
                         PointsOfInterest.Remove(theLedge); // remove ledge from POI list
+                        PointsOfInterest.Remove(theSupports); // remove support from POI list
                         GameFunctions.ReduceTorchFire();
                     }
                     else // otherwise, alert player they can't reach

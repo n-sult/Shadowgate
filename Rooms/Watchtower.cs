@@ -8,7 +8,7 @@ namespace Shadowgate.Rooms
 {
     public class Watchtower : Room
     {
-        public static bool WomanDead;
+        public bool WomanDead;
         
         public Watchtower()
         {
@@ -29,7 +29,7 @@ namespace Shadowgate.Rooms
             PointsOfInterest = watchtowerPOI;
         }
 
-        public static void DieToWerewolf()
+        public void DieToWerewolf()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\nThe woman suddenly transforms into a werewolf! \nWith a loud roar, the wolf pounces on you, taking your life!");

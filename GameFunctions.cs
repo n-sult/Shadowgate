@@ -76,9 +76,16 @@ namespace Shadowgate
             else
                 ClonePlayer(true); // if player died, set currentplayer to permanentplayer
 
-            if (room is not null && Globals.clonedRoom is not null)  
-                Globals.previousRoom = Globals.clonedRoom; // set the previous room to be the cloned room
-                                                           // add .Clone() if necessary
+            if (room is not null && Globals.clonedRoom is not null)
+            {
+                if (Globals.clonedRoom.RoomName == "Fire Bridge" && !Globals.currentPlayer.IsCloakEquipped)
+                {
+
+                }
+                else
+                    Globals.previousRoom = Globals.clonedRoom; // set the previous room to be the cloned room
+            }
+                
 
             if (playerDied)
             {
@@ -98,8 +105,16 @@ namespace Shadowgate
             {
                 if (Globals.previousRoom is not null)
                 {
-                    Room thatRoom = Globals.rooms.Find(x => x.RoomName == Globals.clonedRoom.RoomName); // attempt to save the room in the list to the cloned room
-                    Globals.rooms[Globals.rooms.IndexOf(thatRoom)] = Globals.clonedRoom;
+                    if (Globals.clonedRoom.RoomName == "Fire Bridge" && !Globals.currentPlayer.IsCloakEquipped)
+                    {
+
+                    }
+                    else
+                    {
+                        Room thatRoom = Globals.rooms.Find(x => x.RoomName == Globals.clonedRoom.RoomName); // attempt to save the room in the list to the cloned room
+                        Globals.rooms[Globals.rooms.IndexOf(thatRoom)] = Globals.clonedRoom;
+                    }
+                    
                 }
                 Globals.currentRoom = Globals.rooms.Find(x => x.RoomName == room);
             }

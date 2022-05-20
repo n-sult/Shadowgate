@@ -23,14 +23,12 @@ namespace Shadowgate.SwitchCave
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\nAs soon as you remove the orb, the cylinder closes.");
-            Rooms.SwitchCave.OrbTaken = true;
             return true;
         }
 
         public override void Use()
         {
             var result = GameFunctions.UseOn(ObjectName);
-
             if (result is not null)
             {
                 switch(result)

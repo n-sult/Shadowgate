@@ -36,7 +36,7 @@ namespace Shadowgate.Balcony
                 switch (result)
                 {
                     case "Sphinx":
-                        Rooms.SphinxChamber.UseItemOnSphinx(ObjectName);
+                        (Globals.clonedRoom as Rooms.SphinxChamber).UseItemOnSphinx(ObjectName);
                         break;
                     case "Giant Snake":
                         Console.ForegroundColor = ConsoleColor.Cyan;
