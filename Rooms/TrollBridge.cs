@@ -21,7 +21,7 @@ namespace Shadowgate.Rooms
             PointOfInterest trollBridgeChasm = new PointOfInterest("Chasm");
             Entry doorAtTheEndOfTheWoodenBridge = new Entry("Door at the end of the wooden bridge", false, true, false, false, "Courtyard");
             Entry doorFromTrollBridgeToFireBridge = new Entry("Door to Fire Bridge", true, true, false, false, "Fire Bridge");
-            var trollBridgePOI = new List<PointOfInterest>() { trollBridgeChasm, woodenBridge, troll, doorAtTheEndOfTheWoodenBridge, doorFromTrollBridgeToFireBridge };
+            var trollBridgePOI = new List<PointOfInterest>() { woodenBridge, trollBridgeChasm, troll, doorAtTheEndOfTheWoodenBridge, doorFromTrollBridgeToFireBridge };
 
             RoomName = "Troll Bridge";
             FirstEntry = "A sharp, cold wind whips up over the ledge of the deep, dark chasm.";

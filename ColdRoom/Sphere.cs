@@ -61,11 +61,10 @@ namespace Shadowgate.ColdRoom
 
                         PointOfInterest firedrake = (GameFunctions.FindObject("Firedrake", Globals.clonedRoom.PointsOfInterest));
                         
-                        if (firedrake.IsHidden == false) // if the firedrake appeared...
+                        if (!firedrake.IsHidden) // if the firedrake appeared...
                         {
                             Console.WriteLine("With nothing to feed itself on, the Firedrake immediately follows suit."); // also show message of it dying
                             Globals.clonedRoom.PointsOfInterest.Remove(firedrake); // remove firedrake from POI list
-                            GameFunctions.FindObject("Firedrake", Globals.clonedRoom.PointsOfInterest).ObjectName = "Door on the other side of the bridge"; // change entry name back to it's default name
                         }
 
                         GameFunctions.FindObject("Fire raging under the bridge", Globals.clonedRoom.PointsOfInterest).ObjectName = "Oil-soaked floor beneath the bridge"; // change fire to oil

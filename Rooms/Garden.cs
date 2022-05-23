@@ -21,7 +21,7 @@ namespace Shadowgate.Rooms
             PointOfInterest waterFountain = new PointOfInterest("Water Fountain");
             PointOfInterest treeHole = new PointOfInterest("Tree Hole", true);
             Entry doorFromGardenToLab = new Entry("Door to Laboratory", false, true, false, false, "Laboratory");
-            var gardenPOI = new List<PointOfInterest>() { ring, treeHole, tree, waterFountain, flute, doorFromGardenToLab };
+            var gardenPOI = new List<PointOfInterest>() { tree, ring, treeHole, waterFountain, flute, doorFromGardenToLab };
 
             RoomName = "Garden";
             FirstEntry = "You stand in a small garden within the castle walls. The outside air is cool and moist.";

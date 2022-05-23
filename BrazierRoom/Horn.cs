@@ -21,7 +21,7 @@ namespace Shadowgate.BrazierRoom
         public override bool Take()
         {
             if (Globals.clonedRoom.PointsOfInterest.Contains(GameFunctions.FindObject("Hellhound", Globals.clonedRoom.PointsOfInterest)))
-                if (GameFunctions.FindObject("Hellhound", Globals.clonedRoom.PointsOfInterest).IsHidden == false)
+                if (GameFunctions.FindObject("Hellhound", Globals.clonedRoom.PointsOfInterest).IsHidden)
                 {
                     Rooms.BrazierRoom.HoundAppears();
                     return false;

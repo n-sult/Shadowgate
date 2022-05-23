@@ -13,9 +13,10 @@ namespace Shadowgate.Rooms
             // All POI for Fire Bridge
             PointOfInterest fireOrOil = new PointOfInterest("Fire raging under the bridge"); // Name is set here. Toggled upon using the sphere
             PointOfInterest fireBridge = new PointOfInterest("Bridge");
+            PointOfInterest firedrake = new PointOfInterest("Firedrake", true);
             Entry doorOnTheOtherSideOfTheBridge = new Entry("Door on the other side of the bridge", true, false, false, false, "Troll Bridge");
             Entry doorFromFireBridgeToMirrorRoom = new Entry("Door to Mirror Room", true, true, false, false, "Mirror Room");
-            var fireBridgePOI = new List<PointOfInterest>() { fireOrOil, fireBridge, doorOnTheOtherSideOfTheBridge, doorFromFireBridgeToMirrorRoom };
+            var fireBridgePOI = new List<PointOfInterest>() { fireOrOil, fireBridge, firedrake, doorOnTheOtherSideOfTheBridge, doorFromFireBridgeToMirrorRoom };
 
             RoomName = "Fire Bridge";
             FirstEntry = "This room is incredibly hot! This must be what the lower levels of Hell are like.";
@@ -51,10 +52,11 @@ namespace Shadowgate.Rooms
         
         public override void MoveTo(string objectName)
         {
+            PointOfInterest theFiredrake = GameFunctions.FindObject("Firedrake", PointsOfInterest);
             switch(objectName)
             {
                 case "Door on the other side of the bridge":
-                    if (PointsOfInterest.Contains(GameFunctions.FindObject(objectName, PointsOfInterest)))
+                    if (PointsOfInterest.Contains(theFiredrake))
                         OpenObject(objectName);
                     else
                         base.MoveTo(objectName);
@@ -106,14 +108,19 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Door on the other side of the bridge":
-                    if (PointsOfInterest.Contains(GameFunctions.FindObject(objectName, PointsOfInterest)))
+                    PointOfInterest theFiredrake = GameFunctions.FindObject("Firedrake", PointsOfInterest);
+                    if (PointsOfInterest.Contains(theFiredrake))
                     {
-                        base.OpenObject(objectName);
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("\nSuddenly, you feel a gust of wind! A searing blast of heat knocks you across the room! A firedrake has emerged from the door!");
-                        GameFunctions.FindObject(objectName, PointsOfInterest).ObjectName = "Firedrake";
-                        GameFunctions.FindObject("Firedrake", PointsOfInterest).IsHidden = false;
-                        GameFunctions.ReduceTorchFire();
+                        if (!theFiredrake.IsHidden)
+                            DieToFiredrake();
+                        else
+                        {
+                            base.OpenObject(objectName);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("Suddenly, you feel a gust of wind! A searing blast of heat knocks you across the room! A firedrake has emerged from the door!");
+                            theFiredrake.IsHidden = false;
+                            GameFunctions.ReduceTorchFire();
+                        }
                     }
                     else
                         base.OpenObject(objectName);

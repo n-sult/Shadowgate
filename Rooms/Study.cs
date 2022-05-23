@@ -28,7 +28,7 @@ namespace Shadowgate.Rooms
             PointOfInterest studyRug = new PointOfInterest("Blue Rug");
             OutsideView studyWindow = new OutsideView("Window");
             Entry doorFromStudyToLibrary = new Entry("Door to Library", false, true, false, false, "Library");
-            var studyPOI = new List<PointOfInterest>() { key6, bottle5, fireplace, woodpile, bellows, poker, globe, goblet, 
+            var studyPOI = new List<PointOfInterest>() { key6, bottle5, globe, fireplace, woodpile, bellows, poker, goblet, 
                 studyRug, studyWindow, doorFromStudyToLibrary };
 
             RoomName = "Study";

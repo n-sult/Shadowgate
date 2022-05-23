@@ -45,20 +45,23 @@ namespace Shadowgate
 
         public override void Use()
         {
-            if (Globals.activeTorch1.FireRemaining <= 15)
+            ActiveTorch activeTorch1 = (ActiveTorch)Globals.currentPlayer.PlayerInventory[0];
+            ActiveTorch activeTorch2 = (ActiveTorch)Globals.currentPlayer.PlayerInventory[1];
+
+            if (activeTorch1.FireRemaining <= 15)
             {
-                if (Globals.activeTorch2.FireRemaining < Globals.activeTorch1.FireRemaining)
-                    LightTorch(Globals.activeTorch2);
+                if (activeTorch2.FireRemaining < activeTorch1.FireRemaining)
+                    LightTorch(activeTorch2);
                 else
-                    LightTorch(Globals.activeTorch1);
+                    LightTorch(activeTorch1);
                 RemoveTorch();
             }
-            else if (Globals.activeTorch2.FireRemaining <= 15)
+            else if (activeTorch2.FireRemaining <= 15)
             {
-                if (Globals.activeTorch1.FireRemaining < Globals.activeTorch2.FireRemaining)
-                    LightTorch(Globals.activeTorch1);
+                if (activeTorch1.FireRemaining < activeTorch2.FireRemaining)
+                    LightTorch(activeTorch1);
                 else
-                    LightTorch(Globals.activeTorch2);
+                    LightTorch(activeTorch2);
                 RemoveTorch();
             }
             else

@@ -65,7 +65,16 @@ namespace Shadowgate
             if (!didPlayerDie) // if the player changed rooms...
                 Globals.permanentPlayer = Globals.currentPlayer.Clone();
             else if (didPlayerDie) // if the player died...
+            {
                 Globals.currentPlayer = Globals.permanentPlayer.Clone();
+
+                ActiveTorch activeTorch1 = (ActiveTorch)Globals.currentPlayer.PlayerInventory[0];
+                ActiveTorch activeTorch2 = (ActiveTorch)Globals.currentPlayer.PlayerInventory[1];
+
+                activeTorch1.FireRemaining = 17; // set torches so one is at 16, and the other is empty (set to 17 so moving to previous room will set it to 16)
+                activeTorch2.FireRemaining = 0;
+            }
+                
         }
 
          // do the following when attempting to move rooms...
@@ -196,10 +205,13 @@ namespace Shadowgate
 
         public static void ReduceTorchFire() // after a valid action has been taken, reduce each torch's level by 1
         {
-            if (Globals.activeTorch1.FireRemaining != 0)
-                Globals.activeTorch1.FireRemaining--;
-            if (Globals.activeTorch2.FireRemaining != 0)
-                Globals.activeTorch2.FireRemaining--;
+            ActiveTorch activeTorch1 = (ActiveTorch)Globals.currentPlayer.PlayerInventory[0];
+            ActiveTorch activeTorch2 = (ActiveTorch)Globals.currentPlayer.PlayerInventory[1];
+            
+            if (activeTorch1.FireRemaining != 0)
+                activeTorch1.FireRemaining--;
+            if (activeTorch2.FireRemaining != 0)
+                activeTorch2.FireRemaining--;
         }
 
         public static void CheckTorchLevels(ActiveTorch activeTorch) // when listing torch levels, if it's above 15, list the number in yellow, otherwise, in red

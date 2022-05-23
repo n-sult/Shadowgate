@@ -12,8 +12,8 @@ namespace Shadowgate
     {
         // Create player inventory
         // torch values set to these amounts so they'll be at the correct amount after MoveRoom is called on launch
-        public static ActiveTorch activeTorch1 = new ActiveTorch("Active Torch 1", 61);
-        public static ActiveTorch activeTorch2 = new ActiveTorch("Active Torch 2", 0);
+        //public static ActiveTorch activeTorch1 = new ActiveTorch("Active Torch 1", 61);
+        //public static ActiveTorch activeTorch2 = new ActiveTorch("Active Torch 2", 0);
         public static List<Room> rooms = new List<Room>();
         public static Room currentRoom;
         public static Room previousRoom;
@@ -119,27 +119,30 @@ namespace Shadowgate
     {
         static void Main(string[] args)
         {
-            List<Item> startingInventory = new List<Item>() { Globals.activeTorch1, Globals.activeTorch2, Globals.key1, Globals.sling, Globals.sword,
-                Globals.key2, Globals.holyTorch, Globals.key3, Globals.stone, /*Globals.whiteGem,*/ Globals.redGem, /*Globals.blueGem,*/ Globals.sphere,
-                Globals.shield, Globals.hammer, Globals.spear, Globals.lairSkull, Globals.copperCoin1, Globals.copperCoin2, Globals.scepter, Globals.arrow, 
-                /*Globals.bottle1,*/ Globals.bottle2, /*Globals.bottle3, Globals.bottle4, Globals.bottle5,*/ Globals.cloak, Globals.broom, Globals.scroll2, 
-                /*Globals.scroll3, Globals.scroll4, Globals.gauntlet, Globals.bookOnDesk, Globals.glasses, Globals.libraryMap, Globals.librarySkull, 
-                Globals.bellows, Globals.poker, Globals.key5, Globals.key6, Globals.holyWater, Globals.horseshoe, Globals.flute, Globals.ring, 
-                Globals.key4, Globals.mirror, Globals.rod, Globals.star, Globals.blade, Globals.horn, Globals.talisman, Globals.wand, 
+            ActiveTorch activeTorch1 = new ActiveTorch("Active Torch 1", 61);
+            ActiveTorch activeTorch2 = new ActiveTorch("Active Torch 2", 0);
+            
+            List<Item> startingInventory = new List<Item>() { activeTorch1, activeTorch2, /*Globals.key1, Globals.sling, Globals.sword,
+                Globals.key2, Globals.holyTorch, Globals.key3, Globals.stone, Globals.whiteGem, Globals.redGem, Globals.blueGem, Globals.sphere,
+                Globals.shield, Globals.hammer, Globals.spear, */Globals.lairSkull, /*Globals.copperCoin1, Globals.copperCoin2, */Globals.scepter, Globals.arrow, 
+                /*Globals.bottle1, */Globals.bottle2,/* Globals.bottle3, Globals.bottle4, Globals.bottle5, */Globals.cloak, Globals.broom, Globals.scroll2, 
+                Globals.scroll3, Globals.scroll4, Globals.gauntlet, Globals.bookOnDesk, Globals.glasses, Globals.libraryMap, Globals.librarySkull, 
+                Globals.bellows, /*Globals.poker, */Globals.key5, Globals.key6, Globals.holyWater, Globals.horseshoe, /*Globals.flute,*/ Globals.ring, 
+                /*Globals.key4, */Globals.mirror, Globals.rod, Globals.star, Globals.blade, /*Globals.horn, Globals.talisman, Globals.wand, 
                 Globals.bigCoin, Globals.goldCoin1, Globals.goldCoin2, Globals.goldCoin3, Globals.staff, Globals.orb*/ };
             
             Globals.currentPlayer.PlayerInventory.AddRange(startingInventory);
             
             Entry.ChangeRoomEvent += GameFunctions.MoveRooms;
             GameFunctions.RoomCreation(); // add all rooms to global list of rooms
-            GameFunctions.MoveRooms("Mirror Room"); // TODO: in final, should be "Outside the Castle"
+            GameFunctions.MoveRooms("Brazier Room"); // TODO: in final, should be "Outside the Castle"
 
             while (!Globals.currentPlayer.IsPlayerDead && !Globals.isGameBeat) // as long as game is not over, run main game loop
             {
                 Console.ForegroundColor = ConsoleColor.Gray; // here as a safeguard to return text back to normal
 
-                GameFunctions.CheckTorchLevels(Globals.activeTorch1);
-                GameFunctions.CheckTorchLevels(Globals.activeTorch2);
+                GameFunctions.CheckTorchLevels((ActiveTorch)Globals.currentPlayer.PlayerInventory[0]);
+                GameFunctions.CheckTorchLevels((ActiveTorch)Globals.currentPlayer.PlayerInventory[1]);
 
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\n\nYou take note of the following in the room: "); 
@@ -495,10 +498,10 @@ namespace Shadowgate
                     Console.ForegroundColor = ConsoleColor.White;
                     foreach (Item item in Globals.currentPlayer.PlayerInventory)
                     {
-                        if (item == Globals.activeTorch1)
-                            Console.WriteLine($"{item.ObjectName}: Fire Left - {Globals.activeTorch1.FireRemaining}");
-                        else if (item == Globals.activeTorch2)
-                            Console.WriteLine($"{item.ObjectName}: Fire Left - {Globals.activeTorch2.FireRemaining}");
+                        if (item == activeTorch1)
+                            Console.WriteLine($"{item.ObjectName}: Fire Left - {activeTorch1.FireRemaining}");
+                        else if (item == activeTorch2)
+                            Console.WriteLine($"{item.ObjectName}: Fire Left - {activeTorch2.FireRemaining}");
                         else if (item.ObjectName == "Torch")
                             Console.WriteLine($"{item.ObjectName} - {Globals.currentPlayer.torchCount}");
                         else
@@ -511,7 +514,7 @@ namespace Shadowgate
                     Console.WriteLine("\nInvalid selection. Try again.");
                 }
 
-                if (Globals.activeTorch1.FireRemaining == 0 && Globals.activeTorch2.FireRemaining == 0)
+                if (activeTorch1.FireRemaining == 0 && activeTorch2.FireRemaining == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("\nYour torch goes out with a fizzle. With out-stretched arms. You move slowly, looking for a light. " +
@@ -532,9 +535,6 @@ namespace Shadowgate
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine("\nGoing back to previous room...");
                             Thread.Sleep(1500);
-
-                            Globals.activeTorch1.FireRemaining = 17; // set torches so one is at 16, and the other is empty (set to 17 so moving to previous room will set it to 16)
-                            Globals.activeTorch2.FireRemaining = 0;
 
                             Globals.currentPlayer.IsPlayerDead = false;
 

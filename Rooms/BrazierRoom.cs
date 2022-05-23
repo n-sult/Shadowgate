@@ -42,6 +42,7 @@ namespace Shadowgate.Rooms
             Console.WriteLine("\nA large fireball suddenly appears in the room and causes you to shield your eyes. " +
                 "\nWhen you open them, you notice that the fire has changed into something far more menacing: a hellhound!"); // altered line
             ReturnHellhound().IsHidden = false;
+            GameFunctions.ReduceTorchFire();
         }
         
         public static void DieToHound()
@@ -56,13 +57,13 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Ladder to the next floor":
-                    if (ReturnHellhound().IsHidden == true)
+                    if (PointsOfInterest.Contains(ReturnHellhound()))
                     {
-                        HoundAppears();
-                        GameFunctions.ReduceTorchFire();
+                        if (ReturnHellhound().IsHidden)
+                            HoundAppears();
+                        else
+                            DieToHound();
                     }
-                    else if (PointsOfInterest.Contains(ReturnHellhound()))
-                        DieToHound();
                     else
                         base.MoveTo(objectName);
                     break;

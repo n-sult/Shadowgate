@@ -100,6 +100,7 @@ namespace Shadowgate.Rooms
                     Console.WriteLine("\nThe stone falls away to reveal a secret passage!");
                     activeObject.ObjectName = "Wall Opening";
                     (activeObject as Entry).IsDoorOpen = true;
+                    GameFunctions.ReduceTorchFire();
                     break;
                 case "Wall Opening":
                     Console.ForegroundColor = ConsoleColor.White;
@@ -119,6 +120,7 @@ namespace Shadowgate.Rooms
                         }
 
                         _isBookOpen = true;
+                        GameFunctions.ReduceTorchFire();
                         break;
                     }
                     else
@@ -147,6 +149,7 @@ namespace Shadowgate.Rooms
                     Console.WriteLine("\nThe wall is closed.");
                     activeObject.ObjectName = "White Stone on the wall";
                     (activeObject as Entry).IsDoorOpen = false;
+                    GameFunctions.ReduceTorchFire();
                     break;
                 case "Book on a pedestal":
                     Console.ForegroundColor = ConsoleColor.Cyan;
@@ -158,6 +161,7 @@ namespace Shadowgate.Rooms
 
                     if (_isBookOpen)
                         _isBookOpen = false;
+                    GameFunctions.ReduceTorchFire();
                     break;
                 default:
                     base.CloseObject(objectName);

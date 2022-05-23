@@ -15,7 +15,7 @@ namespace Shadowgate.Watchtower
 
         public override void Look()
         {
-            Console.WriteLine("\nIt's some sort of spike that is made of previous metals. Ouch! The tips are as sharp as needles.");
+            Console.WriteLine("\nIt's some sort of spike that is made of precious metals. Ouch! The tips are as sharp as needles.");
         }
 
         public override bool Take()

@@ -40,7 +40,7 @@ namespace Shadowgate.Rooms
                 chamberStairs, doorFromSphinxChamberToBanquetHall };
 
             RoomName = "Sphinx's Chamber";
-            FirstEntry = "In this room, there appears to be a sphinx. It looks are you indifferently.";
+            FirstEntry = "In this room, there appears to be a sphinx. It looks at you indifferently.";
             SubsequentEntry = "The sphinx rests quietly in the room.";
             PointsOfInterest = sphinxChamberPOI;
 
@@ -64,7 +64,7 @@ namespace Shadowgate.Rooms
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"\nSuddenly, the room begins to fade! It seems that the sphinx's magic has taken you to the {roomName}!");
-            Entry.ChangeRoomEvent?.Invoke(roomName, true);
+            Entry.ChangeRoomEvent?.Invoke(roomName, false);
         }
 
         public void UseItemOnSphinx(string objectName)
@@ -168,8 +168,7 @@ namespace Shadowgate.Rooms
                     break;
                 case "Sphinx":
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\nSuddenly, the room begins to fade! It seems that the sphinx's magic has taken you to the troll bridge.");
-                    Entry.ChangeRoomEvent?.Invoke("Troll Bridge", true);
+                    SphinxTeleportsYou("Troll Bridge");
                     break;
                 default:
                     base.HitObject(objectName);
