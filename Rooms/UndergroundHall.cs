@@ -14,7 +14,7 @@ namespace Shadowgate.Rooms
             Torch underGroundLeftTorch1 = new Torch("Closer torch to the left");
             Torch underGroundLeftTorch2 = new Torch("Farther torch to the left");
             Torch underGroundRightTorch1 = new Torch("Closer torch to the right");
-            Torch underGroundRightTorch2 = new Torch("Closer torch to the right");
+            Torch underGroundRightTorch2 = new Torch("Farther torch to the right");
             Entry undergroundLeftDoorway = new Entry("Doorway to the left", false, true, false, false);
             Entry doorwayAtTheEndOfTheHall = new Entry("Doorway at the end of the hall", false, true, false, false, "Gargoyle Cave");
             Entry passagewayFromUndergroundHallToThroneRoom = new Entry("Passageway to Throne Room", false, true, false, false, "Throne Room");

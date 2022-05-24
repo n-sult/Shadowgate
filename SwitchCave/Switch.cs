@@ -9,7 +9,8 @@ namespace Shadowgate.SwitchCave
     public class Switch : PointOfInterest
     {
         public bool IsLowered;
-        
+        readonly List<string> _switchSequenceAnswer = new List<string> { "Right Switch", "Middle Switch", "Right Switch" };
+
 
         public Switch(string objectName, bool isLowered)
         {
@@ -43,7 +44,7 @@ namespace Shadowgate.SwitchCave
             if (switchRoom.SwitchSequence.Count == 3) // if 3 switches have been used...
             {
                 Rooms.SwitchCave switchCave = Globals.clonedRoom as Rooms.SwitchCave;
-                if (switchRoom.SwitchSequence.SequenceEqual(switchRoom.SwitchSequenceAnswer)) // check if the switches used match the names in the correct answer
+                if (switchRoom.SwitchSequence.SequenceEqual(_switchSequenceAnswer)) // check if the switches used match the names in the correct answer
                 {
                     SwitchCave.Orb theOrb = (SwitchCave.Orb)GameFunctions.FindObject("Orb", Globals.clonedRoom.PointsOfInterest);
 

@@ -15,7 +15,7 @@ namespace Shadowgate.Rooms
             // POI for Well Room
             PointOfInterest handle = new PointOfInterest("Well Handle");
             PointOfInterest wellCover = new PointOfInterest("Well Cover");
-            Entry well = new Entry("Old Well", false, true, false, false, "River Styx");
+            Entry well = new Entry("Old Well", false, false, false, false, "River Styx");
             PointOfInterest wellRoomDoor = new PointOfInterest("Door next to the Well");
             Entry doorwayBackToGargoyleCave = new Entry("Doorway back to Gargoyle Cave", false, true, false, false, "Gargoyle Cave");
             var wellRoomPOI = new List<PointOfInterest>() { handle, wellCover, well, wellRoomDoor, doorwayBackToGargoyleCave };

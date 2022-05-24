@@ -10,15 +10,6 @@ namespace Shadowgate
 {
     class Globals
     {
-        // Create player inventory
-        // torch values set to these amounts so they'll be at the correct amount after MoveRoom is called on launch
-        //public static ActiveTorch activeTorch1 = new ActiveTorch("Active Torch 1", 61);
-        //public static ActiveTorch activeTorch2 = new ActiveTorch("Active Torch 2", 0);
-        public static List<Room> rooms = new List<Room>();
-        public static Room currentRoom;
-        public static Room previousRoom;
-        public static Room clonedRoom;
-
         // debugging items to add to list of inventory,
         // TODO DELETE THIS LIST FOR FINAL
         public static Key key1 = new Key("Key 1", false, false);
@@ -79,8 +70,11 @@ namespace Shadowgate
         public static SwitchCave.Orb orb = new SwitchCave.Orb("Orb", false);
         // TODO: DELETE the above list FOR FINAL
 
+        public static List<Room> rooms = new List<Room>();
+        public static Room currentRoom;
+        public static Room previousRoom;
+        public static Room clonedRoom;
 
-        // public static int torchCount = 0;
         public static int selection;
         public static Player currentPlayer = new("Self", false, false, false);
         public static Player permanentPlayer = new("Self", false, false, false);
@@ -124,18 +118,18 @@ namespace Shadowgate
             
             List<Item> startingInventory = new List<Item>() { activeTorch1, activeTorch2, /*Globals.key1, Globals.sling, Globals.sword,
                 Globals.key2, Globals.holyTorch, Globals.key3, Globals.stone, Globals.whiteGem, Globals.redGem, Globals.blueGem, Globals.sphere,
-                Globals.shield, Globals.hammer, Globals.spear, */Globals.lairSkull, /*Globals.copperCoin1, Globals.copperCoin2, */Globals.scepter, Globals.arrow, 
-                /*Globals.bottle1, */Globals.bottle2,/* Globals.bottle3, Globals.bottle4, Globals.bottle5, */Globals.cloak, Globals.broom, Globals.scroll2, 
-                Globals.scroll3, Globals.scroll4, Globals.gauntlet, Globals.bookOnDesk, Globals.glasses, Globals.libraryMap, Globals.librarySkull, 
-                Globals.bellows, /*Globals.poker, */Globals.key5, Globals.key6, Globals.holyWater, Globals.horseshoe, /*Globals.flute,*/ Globals.ring, 
-                /*Globals.key4, */Globals.mirror, Globals.rod, Globals.star, Globals.blade, /*Globals.horn, Globals.talisman, Globals.wand, 
-                Globals.bigCoin, Globals.goldCoin1, Globals.goldCoin2, Globals.goldCoin3, Globals.staff, Globals.orb*/ };
+                Globals.shield, Globals.hammer, Globals.spear, Globals.lairSkull, Globals.copperCoin1, Globals.copperCoin2, Globals.scepter, Globals.arrow, 
+                Globals.bottle1, Globals.bottle2, Globals.bottle3, Globals.bottle4, Globals.bottle5, Globals.cloak, Globals.broom, */Globals.scroll2, 
+                Globals.scroll3, Globals.scroll4, /*Globals.gauntlet, */Globals.bookOnDesk, Globals.glasses, /*Globals.libraryMap, Globals.librarySkull, 
+                Globals.bellows, Globals.poker, Globals.key5, Globals.key6, Globals.holyWater, Globals.horseshoe, Globals.flute, Globals.ring, 
+                Globals.key4, Globals.mirror, Globals.rod, Globals.star, */Globals.blade, Globals.horn, Globals.talisman, /*Globals.wand, */
+                Globals.bigCoin, Globals.goldCoin1, /*Globals.goldCoin2, Globals.goldCoin3,*/ Globals.staff, Globals.orb };
             
             Globals.currentPlayer.PlayerInventory.AddRange(startingInventory);
             
             Entry.ChangeRoomEvent += GameFunctions.MoveRooms;
             GameFunctions.RoomCreation(); // add all rooms to global list of rooms
-            GameFunctions.MoveRooms("Brazier Room"); // TODO: in final, should be "Outside the Castle"
+            GameFunctions.MoveRooms("Well Room"); // TODO: in final, should be "Outside the Castle"
 
             while (!Globals.currentPlayer.IsPlayerDead && !Globals.isGameBeat) // as long as game is not over, run main game loop
             {
