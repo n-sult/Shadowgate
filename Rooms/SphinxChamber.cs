@@ -43,8 +43,12 @@ namespace Shadowgate.Rooms
             FirstEntry = "In this room, there appears to be a sphinx. It looks at you indifferently.";
             SubsequentEntry = "The sphinx rests quietly in the room.";
             PointsOfInterest = sphinxChamberPOI;
+        }
 
-            GameFunctions.RoomEnteredEvent += (roomName) => { if (roomName == RoomName) RiddleAsked = false; RiddleAnswered = false; };
+        public override void SetRoomStuff()
+        {
+            RiddleAsked = false;
+            RiddleAnswered = false;
         }
 
         static void PreRiddleMessage()
@@ -64,7 +68,7 @@ namespace Shadowgate.Rooms
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"\nSuddenly, the room begins to fade! It seems that the sphinx's magic has taken you to the {roomName}!");
-            Entry.ChangeRoomEvent?.Invoke(roomName, false);
+            GameFunctions.MoveRooms(roomName);
         }
 
         public void UseItemOnSphinx(string objectName)

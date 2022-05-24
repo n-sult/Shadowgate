@@ -29,6 +29,19 @@ namespace Shadowgate.Rooms
             PointsOfInterest = wraithRoomPOI;
         }
 
+        public override void SetRoomStuff()
+        {
+            if (Globals.previousRoom is not null && Globals.previousRoom.RoomName == "Bridge Room")
+            {
+                if (Globals.currentPlayer.Bottle2Used)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("\nThe effects of Bottle 2 have worn off! You slowly float back to the ground."); // altered line
+                    Globals.currentPlayer.Bottle2Used = false;
+                }
+            }
+        }
+
         public override void MoveTo(string objectName)
         {
             var activeObject = GameFunctions.FindObject(objectName, PointsOfInterest);

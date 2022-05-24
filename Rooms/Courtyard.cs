@@ -31,8 +31,12 @@ namespace Shadowgate.Rooms
             FirstEntry = "The moon casts a brilliant shadow over the grounds of the courtyard.";
             SubsequentEntry = "The castle Shadowgate looms before you.";
             PointsOfInterest = courtyardPOI;
+        }
 
-            GameFunctions.RoomEnteredEvent += (roomName) => { if (!CyclopsDead) CyclopsUnconcious = false; };
+        public override void SetRoomStuff()
+        {
+            if (!CyclopsDead) 
+                CyclopsUnconcious = false;
         }
 
         public static void DieToCyclops()

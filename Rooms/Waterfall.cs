@@ -29,23 +29,25 @@ namespace Shadowgate.Rooms
             FirstEntry = "Water cascades over a subterranean cliff into a cool, clean stream.";
             SubsequentEntry = "You're standing in a dark, underground cavern.";
             PointsOfInterest = waterfallPOI;
+        }
 
-            GameFunctions.RoomEnteredEvent += (roomName) => { 
-                if (roomName == RoomName && 
-                Globals.currentPlayer.PlayerInventory.Contains(GameFunctions.FindObject("Sling", null, Globals.currentPlayer.PlayerInventory))) //check if sling is in inventory
+        public override void SetRoomStuff()
+        {
+            if (Globals.currentPlayer.PlayerInventory.Contains(GameFunctions.FindObject("Sling", null, Globals.currentPlayer.PlayerInventory))) //check if sling is in inventory
+            {
+                Shadowgate.Closet.Sling theSling = (Shadowgate.Closet.Sling)GameFunctions.FindObject("Sling", null, Globals.currentPlayer.PlayerInventory); // if so, find it
+                if (theSling.StonesThrown == 5) // check if all stones have been used and if so, replenish them
                 {
-                    Shadowgate.Closet.Sling theSling = (Shadowgate.Closet.Sling)GameFunctions.FindObject("Sling", null, Globals.currentPlayer.PlayerInventory); // if so, find it
-                    if (theSling.StonesThrown == 5) // check if all stones have been used and if so, replenish them
-                    {
-                        Globals.clonedRoom.PointsOfInterest.Insert(0, stone1);
-                        Globals.clonedRoom.PointsOfInterest.Insert(1, stone2);
-                        Globals.clonedRoom.PointsOfInterest.Insert(2, stone3);
-                        Globals.clonedRoom.PointsOfInterest.Insert(3, stone4);
-                        Globals.clonedRoom.PointsOfInterest.Insert(4, stone5);
-                        theSling.StonesThrown = 0;
-                    };
-                }
-            };
+                    Shadowgate.Waterfall.Stone stone = new Shadowgate.Waterfall.Stone("Stone");
+
+                    Globals.clonedRoom.PointsOfInterest.Insert(0, stone);
+                    Globals.clonedRoom.PointsOfInterest.Insert(0, stone);
+                    Globals.clonedRoom.PointsOfInterest.Insert(0, stone);
+                    Globals.clonedRoom.PointsOfInterest.Insert(0, stone);
+                    Globals.clonedRoom.PointsOfInterest.Insert(0, stone);
+                    theSling.StonesThrown = 0;
+                };
+            }
         }
 
         public override void MoveTo(string objectName)

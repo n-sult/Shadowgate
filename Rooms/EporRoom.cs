@@ -34,13 +34,16 @@ namespace Shadowgate.Rooms
             FirstEntry = "This small stone chamber is lined on one side by two barred portals.";
             SubsequentEntry = "You're inside a small room.";
             PointsOfInterest = eporRoomPOI;
+        }
 
-            GameFunctions.RoomEnteredEvent += (roomName) => // if 3 bottle2s have been used, replenish the bottle2 items in the room
+        public override void SetRoomStuff()
+        {
+            if (Globals.NumberOfBottle2Consumed > 1 && Globals.NumberOfBottle2Consumed % 3 == 0)
             {
-                if (Globals.NumberOfBottle2Consumed > 1 && Globals.NumberOfBottle2Consumed % 3 == 0)
-                    if (!PointsOfInterest.Contains(eporBottle2))
-                        PointsOfInterest.Insert(4, eporBottle2);
-            };
+                Bottle eporBottle2 = new Bottle("Bottle 2");
+                if (!PointsOfInterest.Contains(eporBottle2))
+                    PointsOfInterest.Insert(4, eporBottle2);
+            }
         }
 
         public override void MoveTo(string objectName)

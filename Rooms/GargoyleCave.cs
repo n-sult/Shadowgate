@@ -24,8 +24,11 @@ namespace Shadowgate.Rooms
             FirstEntry = "On the opposite wall are a pair of stone beasts guarding a dark archway.";
             SubsequentEntry = "You are in a dark and gloomy cavern.";
             PointsOfInterest = gargoyleCavePOI;
+        }
 
-            GameFunctions.RoomEnteredEvent += (roomName) => { if (roomName == RoomName) IlluminaUsed = false; };
+        public override void SetRoomStuff()
+        {
+            IlluminaUsed = false;
         }
 
         void DieToGargoyle()

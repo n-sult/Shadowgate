@@ -32,8 +32,11 @@ namespace Shadowgate.Rooms
             FirstEntry = "Fear grips you as you enter this hot room!";
             SubsequentEntry = "This room is terribly hot!";
             PointsOfInterest = lairPOI;
+        }
 
-            GameFunctions.RoomEnteredEvent += (roomName) => { if (roomName == RoomName) numberOfDragonBreaths = 0; };
+        public override void SetRoomStuff()
+        {
+            numberOfDragonBreaths = 0;
         }
 
         public static void DieToDragon()

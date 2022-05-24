@@ -10,8 +10,6 @@ namespace Shadowgate
 {
     public class GameFunctions
     {
-        public static Action<string> RoomEnteredEvent;
-        
         public static string UseOn(string objectName)
         {
             List<PointOfInterest> allPOIsItemsAndSelf = PutPOIsItemsAndSelfInOneList();
@@ -144,7 +142,9 @@ namespace Shadowgate
             Console.WriteLine("***********************************************************************");
 
             Globals.clonedRoom.Visited = true; // set to true to determine which entry message to show
-            RoomEnteredEvent?.Invoke(Globals.clonedRoom.RoomName);
+
+            Globals.clonedRoom.SetRoomStuff();
+
             ReduceTorchFire();
         }
 

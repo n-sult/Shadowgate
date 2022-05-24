@@ -35,15 +35,19 @@ namespace Shadowgate.Rooms
             FirstEntry = "It smells like a kennel in here and there are no windows through which to circulate air.";
             SubsequentEntry = "You're in a small, stuffy laboratory.";
             PointsOfInterest = laboratoryPOI;
+        }
 
-            GameFunctions.RoomEnteredEvent += (roomName) => // if 3 bottle2s have been used, replenish the bottle2 items in the room
+        public override void SetRoomStuff()
+        {
+            if (Globals.NumberOfBottle2Consumed > 1 && Globals.NumberOfBottle2Consumed % 3 == 0) // if 3 bottle2s have been used, replenish the bottle2 items in the room
             {
-                if (Globals.NumberOfBottle2Consumed > 1 && Globals.NumberOfBottle2Consumed % 3 == 0)
-                    if (!PointsOfInterest.Contains(labBottle2First))
-                        PointsOfInterest.Insert(1, labBottle2First);
-                    else if (!PointsOfInterest.Contains(labBottle2Second))
-                        PointsOfInterest.Insert(2, labBottle2Second);
-            };
+                Bottle labBottle2First = new Bottle("Bottle 2");
+                Bottle labBottle2Second = new Bottle("Bottle 2");
+
+                PointsOfInterest.Insert(0, labBottle2First);
+                PointsOfInterest.Insert(0, labBottle2Second);
+            }
+                
         }
 
         public override void LookAt(string objectName)

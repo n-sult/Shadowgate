@@ -77,7 +77,7 @@ namespace Shadowgate
                                 Console.ForegroundColor = ConsoleColor.Cyan;
                                 Console.WriteLine("\nYou drink the liquid and immediately begin to rise in the air!");
                                 RemoveBottleFromInventory((Item)bottleThatWasUsed);
-                                (Globals.clonedRoom as Rooms.BridgeRoom).Bottle2Used = true;
+                                Globals.currentPlayer.Bottle2Used = true;
                                 Globals.NumberOfBottle2Consumed++;
                                 GameFunctions.ReduceTorchFire();
                             }

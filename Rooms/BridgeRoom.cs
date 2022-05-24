@@ -8,8 +8,6 @@ namespace Shadowgate.Rooms
 {
     public class BridgeRoom : Room
     {
-        public bool Bottle2Used;
-
         public BridgeRoom()
         {
             // All POI for Bridge Room
@@ -23,8 +21,11 @@ namespace Shadowgate.Rooms
             FirstEntry = "You stand at the edge of a deep chasm. From the darkness below arise the screams of the undead. This cave is hewn roughly in the chasm's wall.";
             SubsequentEntry = "There are two bridges that span the chasm.";
             PointsOfInterest = bridgeRoomPOI;
+        }
 
-            GameFunctions.RoomEnteredEvent += (roomName) => { if (roomName == RoomName) Bottle2Used = false; ; };
+        public override void SetRoomStuff()
+        {
+            Globals.currentPlayer.Bottle2Used = false;
         }
 
         public override void MoveTo(string objectName)
@@ -32,7 +33,7 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Right Bridge":
-                    if (!Bottle2Used)
+                    if (!Globals.currentPlayer.Bottle2Used)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nAs you reach the middle of the bridge, it collapses under your feet! " +

@@ -9,7 +9,6 @@ namespace Shadowgate
     public class Entry : PointOfInterest
     {
         // Universal entry properties
-        public static Action<string, bool> ChangeRoomEvent;
         public bool IsDoorOpen;
         protected bool _canDoorBeClosed;
         protected bool _isDoorLocked = false;
@@ -173,7 +172,7 @@ namespace Shadowgate
             if (!IsDoorOpen)
                 Open();
             else
-                ChangeRoomEvent?.Invoke(_destination, false);
+                GameFunctions.MoveRooms(_destination);    
         }
 
         public override void Hit()

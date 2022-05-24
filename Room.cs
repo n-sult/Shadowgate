@@ -21,11 +21,6 @@ namespace Shadowgate
             FirstEntry = firstEntry;
             SubsequentEntry = subsequentEntry;
             PointsOfInterest = pointsOfInterest;
-
-            //foreach (PointOfInterest pointOfInterest in PointsOfInterest) TODO: may be able to delete
-            //{
-            //    pointOfInterest.RoomReference = this;
-            //}
         }
 
         public Room() // remove?
@@ -38,6 +33,16 @@ namespace Shadowgate
             return RoomName;
         }
 
+        public virtual void SetRoomStuff()
+        {
+
+        }
+
+        public void Move(string roomName)
+        {
+            GameFunctions.MoveRooms(roomName);
+        }
+        
         public virtual void LookAt(string objectName)
         {
             if (GameFunctions.FindObject(objectName, PointsOfInterest) is not null)
@@ -75,11 +80,11 @@ namespace Shadowgate
             {
                 if (activeObject is Torch) // check if the item is a torch, if so...
                 {
-                    if (!Globals.currentPlayer.containsTorch)
+                    if (!Globals.currentPlayer.ContainsTorch)
                         Globals.currentPlayer.PlayerInventory.Add((Item)activeObject); // if the global bool is false, add a spot for torches
                     activeObject.ObjectName = "Torch";
-                    Globals.currentPlayer.containsTorch = true;
-                    Globals.currentPlayer.torchCount++; // increase torch count
+                    Globals.currentPlayer.ContainsTorch = true;
+                    Globals.currentPlayer.TorchCount++; // increase torch count
                 }
                 else                                                    // if it's not a torch...
                     Globals.currentPlayer.PlayerInventory.Add((Item)activeObject);  // add non-torch items to inventory

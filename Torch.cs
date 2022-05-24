@@ -22,13 +22,13 @@ namespace Shadowgate
 
         public static void RemoveTorch()
         {
-            Globals.currentPlayer.torchCount--;
+            Globals.currentPlayer.TorchCount--;
 
-            if (Globals.currentPlayer.torchCount == 0)
+            if (Globals.currentPlayer.TorchCount == 0)
             {
                 var activeObject = Globals.currentPlayer.PlayerInventory.FirstOrDefault(x => x is Torch);
                 Globals.currentPlayer.PlayerInventory.Remove(activeObject);
-                Globals.currentPlayer.containsTorch = false;
+                Globals.currentPlayer.ContainsTorch = false;
             }
             GameFunctions.ReduceTorchFire();
         }

@@ -29,21 +29,19 @@ namespace Shadowgate.Rooms
             FirstEntry = "As you enter the room, you see an arrow on the front wall.";
             SubsequentEntry = "Cold air rushes into this chamber from an opening some ten feet above the floor.";
             PointsOfInterest = hiddenRoomPOI;
+        }
 
-            //GameFunctions.RoomEnteredEvent += (roomName) => 
-            //{
-            //    if (RoomName == roomName)
-            //    {
-            //        if (Globals.previousRoom is not null && Globals.previousRoom.RoomName == "Bridge Room")
-            //        {
-            //            if ((Globals.previousRoom as Rooms.BridgeRoom).Bottle2Used)
-            //            {
-            //                Console.ForegroundColor = ConsoleColor.Yellow;
-            //                Console.WriteLine("\n\nThe effects of Bottle 2 have worn off! You slowly float back to the ground."); // altered line
-            //            }
-            //        }
-            //    }
-            //};
+        public override void SetRoomStuff()
+        {
+            if (Globals.previousRoom is not null && Globals.previousRoom.RoomName == "Bridge Room")
+            {
+                if (Globals.currentPlayer.Bottle2Used)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("\nThe effects of Bottle 2 have worn off! You slowly float back to the ground."); // altered line
+                    Globals.currentPlayer.Bottle2Used = false;
+                }
+            }
         }
 
         public override void MoveTo(string objectName)

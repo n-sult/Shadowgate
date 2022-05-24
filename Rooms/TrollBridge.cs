@@ -27,8 +27,12 @@ namespace Shadowgate.Rooms
             FirstEntry = "A sharp, cold wind whips up over the ledge of the deep, dark chasm.";
             SubsequentEntry = FirstEntry;
             PointsOfInterest = trollBridgePOI;
+        }
 
-            GameFunctions.RoomEnteredEvent += (roomName) => { CoinsGivenToTroll = 0; SpearThrown = false; };
+        public override void SetRoomStuff()
+        {
+            CoinsGivenToTroll = 0;
+            SpearThrown = false;
         }
 
         public static void GaveTrollFirstCoin()

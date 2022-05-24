@@ -22,18 +22,15 @@ namespace Shadowgate.Rooms
             FirstEntry = "This room is incredibly hot! This must be what the lower levels of Hell are like.";
             SubsequentEntry = "It's so hot, you begin to sweat profusely.";
             PointsOfInterest = fireBridgePOI;
+        }
 
-            GameFunctions.RoomEnteredEvent += (roomName) => 
-            { 
-                if (roomName == RoomName) 
-                { 
-                    if (!Globals.currentPlayer.IsCloakEquipped)
-                    {
-                        HeatIsUnbearableMessage();
-                        GameFunctions.MoveRooms("Mirror Room"); //TODO: CHANGE BACK TO GLOBALS.PREVIOUSROOM.ROOMNAME
-                    } 
-                } 
-            } ;
+        public override void SetRoomStuff()
+        {
+            if (!Globals.currentPlayer.IsCloakEquipped)
+            {
+                HeatIsUnbearableMessage();
+                GameFunctions.MoveRooms(Globals.previousRoom.RoomName, false);
+            }
         }
 
         void HeatIsUnbearableMessage()
