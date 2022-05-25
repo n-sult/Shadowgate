@@ -54,21 +54,21 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Giant Skull":
-                    Console.WriteLine("\nHot, dry air emanates from the hole.");
+                    GameFunctions.WriteLine("\nHot, dry air emanates from the hole.");
                     break;
                 case "Left Pillar":
-                    Console.WriteLine("\nThe shape of a sword is carved into the left pillar.");
+                    GameFunctions.WriteLine("\nThe shape of a sword is carved into the left pillar.");
                     break;
                 case "Middle Pillar":
-                    Console.WriteLine("\nThe shape of a crown is carved into the middle pillar.");
+                    GameFunctions.WriteLine("\nThe shape of a crown is carved into the middle pillar.");
                     break;
                 case "Right Pillar":
-                    Console.WriteLine("\nThe shape of a jewel is carved into the right pillar.");
+                    GameFunctions.WriteLine("\nThe shape of a jewel is carved into the right pillar.");
                     break;
                 case "Left Pillar Hole":
                 case "Middle Pillar Hole":
                 case "Right Pillar Hole":
-                    Console.WriteLine("\nIt's a polished stone slab with an odd-shaped niche cut out of it.");
+                    GameFunctions.WriteLine("\nIt's a polished stone slab with an odd-shaped niche cut out of it.");
                     break;
                 default:
                     base.LookAt(objectName);

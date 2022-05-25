@@ -15,7 +15,7 @@ namespace Shadowgate.Lair
 
         public override void Look()
         {
-            Console.WriteLine("\nThis seems to be a helmet of the sort commonly worn by hobgoblins.");
+            GameFunctions.WriteLine("\nThis seems to be a helmet of the sort commonly worn by hobgoblins.");
         }
 
         public override bool Take()

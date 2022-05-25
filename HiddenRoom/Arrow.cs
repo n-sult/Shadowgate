@@ -15,7 +15,7 @@ namespace Shadowgate.HiddenRoom
 
         public override void Look()
         {
-            Console.WriteLine("\nA finely crafted silver arrow is not uncommon in the Elven lands.");
+            GameFunctions.WriteLine("\nA finely crafted silver arrow is not uncommon in the Elven lands.");
         }
 
         public override bool Take()
@@ -44,7 +44,7 @@ namespace Shadowgate.HiddenRoom
                         break;
                     case "Captive Woman": // if used on the captive woman
                         Console.ForegroundColor = ConsoleColor.Cyan; // show message of killing the werewolf
-                        Console.WriteLine("\nAs you ready your arrow, the beautiful lady suddenly transforms into a wolf! \nIt breaks the chain as it attempts to lunge " +
+                        GameFunctions.WriteLine("\nAs you ready your arrow, the beautiful lady suddenly transforms into a wolf! \nIt breaks the chain as it attempts to lunge " +
                             "at you! \nHowever, your aim is true as you plunge the silver arrow into the wolf."); // heavily altered line
                         GameFunctions.FindObject("Captive Woman", Globals.clonedRoom.PointsOfInterest).ObjectName = "Dead Werewolf"; // change object name
                         (Globals.clonedRoom as Rooms.Watchtower).WomanDead = true; // mark woman/wolf as dead

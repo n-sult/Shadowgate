@@ -33,12 +33,12 @@ namespace Shadowgate.Rooms
                 case "Giant Snake":
                     if (!_lookedAtSnake)
                     {
-                        Console.Write("\nIt's a giant snake. It doesn't move. Perhaps it's getting ready to strike! " +
+                        GameFunctions.Write("\nIt's a giant snake. It doesn't move. Perhaps it's getting ready to strike! " +
                             "\nYou wait for the creature to kill you but it still has yet to move. " +
                             "\nUpon closer inspection, you laugh at your foolishness. It is only a statue!");
                         _lookedAtSnake = true;
                     }
-                    Console.WriteLine("\nThis huge statue is carved in the shape of a giant snake. It is extremely life-like.");
+                    GameFunctions.WriteLine("\nThis huge statue is carved in the shape of a giant snake. It is extremely life-like.");
                     break;
                 default:
                     base.LookAt(objectName);

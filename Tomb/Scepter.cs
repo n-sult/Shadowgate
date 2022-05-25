@@ -16,7 +16,7 @@ namespace Shadowgate.Tomb
 
         public override void Look()
         {
-            Console.WriteLine("\nThis jewel-studded scepter is truly made for a king!");
+            GameFunctions.WriteLine("\nThis jewel-studded scepter is truly made for a king!");
         }
 
         public override bool Take()
@@ -36,7 +36,7 @@ namespace Shadowgate.Tomb
                         break;
                     case "Skeletal King":
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nAs soon as you give the scepter to the skeleton, the seal on the right pillar lowers. " +
+                        GameFunctions.WriteLine("\nAs soon as you give the scepter to the skeleton, the seal on the right pillar lowers. " +
                             "\nYou can now see a ringe-shaped hole where the seal was!"); // altered line
                         GameFunctions.FindObject("Hole in the Right Pillar", Globals.clonedRoom.PointsOfInterest).IsHidden = false;
                         (Globals.clonedRoom as Rooms.ThroneRoom).IsScepterUsed = true;

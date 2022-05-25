@@ -36,7 +36,7 @@ namespace Shadowgate.Rooms
                 if (Globals.currentPlayer.Bottle2Used)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\nThe effects of Bottle 2 have worn off! You slowly float back to the ground."); // altered line
+                    GameFunctions.WriteLine("\nThe effects of Bottle 2 have worn off! You slowly float back to the ground."); // altered line
                     Globals.currentPlayer.Bottle2Used = false;
                 }
             }
@@ -67,7 +67,7 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Wraith":
-                    Console.WriteLine("\nIt's a shadow wraith, a hideous spectre, who eternally walks the line between life and death.");
+                    GameFunctions.WriteLine("\nIt's a shadow wraith, a hideous spectre, who eternally walks the line between life and death.");
                     break;
                 default:
                     base.LookAt(objectName);

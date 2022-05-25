@@ -42,7 +42,7 @@ namespace Shadowgate.Rooms
         public static void DieToCyclops()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nA battle cry dies in your throat, as the cyclops curshes your skull with his club.");
+            GameFunctions.WriteLine("\nA battle cry dies in your throat, as the cyclops curshes your skull with his club.");
             GameFunctions.GameOver();
         }
 
@@ -53,7 +53,7 @@ namespace Shadowgate.Rooms
             {
                 case "Well":
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nWith a mighty leap, you jump head first into the well. On the way down, you see no water below. " +
+                    GameFunctions.WriteLine("\nWith a mighty leap, you jump head first into the well. On the way down, you see no water below. " +
                         "\nThe well was deeper than you imagined. You have just broken every bone in your body.");
                     GameFunctions.GameOver();
                     break;
@@ -74,24 +74,24 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Well":
-                    Console.WriteLine("\nIt's a finely crafted well, made of stone and mortar.");
+                    GameFunctions.WriteLine("\nIt's a finely crafted well, made of stone and mortar.");
                     break;
                 case "Well Rope":
-                    Console.WriteLine("\nThe teeth marks of water rats are evident on this rope.");
+                    GameFunctions.WriteLine("\nThe teeth marks of water rats are evident on this rope.");
                     break;
                 case "Well Crank":
-                    Console.WriteLine("\nIt's a finely crafted well, made of stone and mortar.");
+                    GameFunctions.WriteLine("\nIt's a finely crafted well, made of stone and mortar.");
                     break;
                 case "Well Bucket":
-                    Console.WriteLine("\nThis small bucket is used to fetch water from the depths.");
+                    GameFunctions.WriteLine("\nThis small bucket is used to fetch water from the depths.");
                     break;
                 case "Cyclops":
                     if (!CyclopsUnconcious)
-                        Console.WriteLine("\nThe Cyclops stands before you, ready for battle!");
+                        GameFunctions.WriteLine("\nThe Cyclops stands before you, ready for battle!");
                     else if (CyclopsUnconcious && !CyclopsDead)
-                        Console.WriteLine("\nYou can almost see the stars revolving around the cyclops' head. He is down, but not out.");
+                        GameFunctions.WriteLine("\nYou can almost see the stars revolving around the cyclops' head. He is down, but not out.");
                     else if (CyclopsDead)
-                        Console.WriteLine("\nIt's a dead cyclops. What do you expect after stabbing him with your sword?");
+                        GameFunctions.WriteLine("\nIt's a dead cyclops. What do you expect after stabbing him with your sword?");
                     break;
                 default:
                     base.LookAt(objectName);
@@ -105,10 +105,10 @@ namespace Shadowgate.Rooms
             {
                 case "Well Bucket":
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\nThe Bucket is open.");
+                    GameFunctions.WriteLine("\nThe Bucket is open.");
                     if (PointsOfInterest.Contains(GameFunctions.FindObject("Gauntlet", PointsOfInterest)))
                     {
-                        Console.WriteLine("There's a pair of Gauntlets inside.");
+                        GameFunctions.WriteLine("There's a pair of Gauntlets inside.");
                         GameFunctions.FindObject("Gauntlet", PointsOfInterest).IsHidden = false;
                     }
                     GameFunctions.ReduceTorchFire();
@@ -131,7 +131,7 @@ namespace Shadowgate.Rooms
             {
                 case "Well Bucket":
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\nThe Bucket is closed.");
+                    GameFunctions.WriteLine("\nThe Bucket is closed.");
                     if (PointsOfInterest.Contains(GameFunctions.FindObject("Gauntlet", PointsOfInterest)))
                         GameFunctions.FindObject("Gauntlet", PointsOfInterest).IsHidden = true;
                     GameFunctions.ReduceTorchFire();
@@ -148,7 +148,7 @@ namespace Shadowgate.Rooms
             {
                 case "Well Rope":
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nThe rope is loose. You reach out for it but as you do, you slip and fall down the well! " +
+                    GameFunctions.WriteLine("\nThe rope is loose. You reach out for it but as you do, you slip and fall down the well! " +
                         "\nThe well was deeper than you imagined. You have just broken every bone in your body.");
                     GameFunctions.GameOver();
                     break;
@@ -156,13 +156,13 @@ namespace Shadowgate.Rooms
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     if (!BucketRaised)
                     {
-                        Console.WriteLine("\nThe crank turns rather easily. At the end of the rope there is a small bucket.");
+                        GameFunctions.WriteLine("\nThe crank turns rather easily. At the end of the rope there is a small bucket.");
                         GameFunctions.FindObject("Well Bucket", PointsOfInterest).IsHidden = false;
                         BucketRaised = true;
                     }
                     else
                     {
-                        Console.WriteLine("\nYou turn the brank. The rope and bucket lower to the bottom of the well.");
+                        GameFunctions.WriteLine("\nYou turn the brank. The rope and bucket lower to the bottom of the well.");
                         GameFunctions.FindObject("Well Bucket", PointsOfInterest).IsHidden = true;
                         BucketRaised = false;
                         if (PointsOfInterest.Contains(GameFunctions.FindObject("Gauntlet", PointsOfInterest)))

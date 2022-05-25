@@ -20,11 +20,11 @@ namespace Shadowgate.SnakeCave
         public override void Look()
         {
             if (HasOrb)
-                Console.WriteLine("\nPower emanates from the staff! The three are, now and forever, one.");
+                GameFunctions.WriteLine("\nPower emanates from the staff! The three are, now and forever, one.");
             else if (HasBlade)
-                Console.WriteLine("\nThe golden thorn is permanently bonded onto the staff.");
+                GameFunctions.WriteLine("\nThe golden thorn is permanently bonded onto the staff.");
             else
-                Console.WriteLine("\nDruidic script winds it's way around this staff. You can feel power emanating from it!");
+                GameFunctions.WriteLine("\nDruidic script winds it's way around this staff. You can feel power emanating from it!");
         }
 
         public override bool Take()
@@ -44,7 +44,7 @@ namespace Shadowgate.SnakeCave
                     {
                         case "Behemoth":
                             Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.WriteLine("\nYou pray, as you raise the Staff of Ages, that it has the power that the prophets claimed! " +
+                            GameFunctions.WriteLine("\nYou pray, as you raise the Staff of Ages, that it has the power that the prophets claimed! " +
                                 "\nThe staff pulsates with power and a beam of light explodes from it striking the behemoth! " +
                                 "\nThe creature screams in agony, thrashing back and forth in great pain! " +
                                 "\nIn his rage, he grabs the Warlock Lord, and descends into the depths of forever. " +

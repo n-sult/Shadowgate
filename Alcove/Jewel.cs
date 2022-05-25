@@ -16,17 +16,17 @@ namespace Shadowgate.Alcove
         public static void DoesNothingMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\nThe gem seems to fit but nothing happens.");
+            GameFunctions.WriteLine("\nThe gem seems to fit but nothing happens.");
         }
         
         public override void Look()
         {
             if (ObjectName == "White Gem")
-                Console.WriteLine("\nIt's a white stone of unknown origin. A fine thing to gamble away in a good card game!");
+                GameFunctions.WriteLine("\nIt's a white stone of unknown origin. A fine thing to gamble away in a good card game!");
             else if (ObjectName == "Red Gem")
-                Console.WriteLine("\nIt's a fine red ruby! \nIt's color reminds you of your adventure across the sea of blood.");
+                GameFunctions.WriteLine("\nIt's a fine red ruby! \nIt's color reminds you of your adventure across the sea of blood.");
             else
-                Console.WriteLine("\nIt's a dark blue gemstone that is as big as the pommel of a sword!");
+                GameFunctions.WriteLine("\nIt's a dark blue gemstone that is as big as the pommel of a sword!");
         }
 
         public override bool Take()
@@ -45,7 +45,7 @@ namespace Shadowgate.Alcove
                         if (result == "Small hole next to the wooden door")
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan; // show message of using the correct gem
-                            Console.WriteLine("\nThe gem fits perfectly in the hole. \nA small crystal sphere magically appears on the stand!");
+                            GameFunctions.WriteLine("\nThe gem fits perfectly in the hole. \nA small crystal sphere magically appears on the stand!");
                             (Globals.clonedRoom as Rooms.ColdRoom).IsWhiteGemUsed = true;
                             Globals.currentPlayer.PlayerInventory.Remove(this); // permanently remove gem from inventory
                             GameFunctions.FindObject("Sphere", Globals.clonedRoom.PointsOfInterest).IsHidden = false; // unhide the sphere
@@ -62,7 +62,7 @@ namespace Shadowgate.Alcove
                         else if (result == "Floor Stone")
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan; // show message of using the correct gem
-                            Console.WriteLine("\nAs soon as you place the blue gem in the hole, you hear the sound of grinding stone. " +
+                            GameFunctions.WriteLine("\nAs soon as you place the blue gem in the hole, you hear the sound of grinding stone. " +
                                 "\nThe wall slowly rises to reveal a magical image of an old wizard. " +
                                 "\n\n\"Listen, warrior! The Warlock Lord can only be defeated by thy courage and the Staff of Ages. " +
                                 "\nRemember, five to find, three for the staff, one to be the key, and one to be they pathway. " +
@@ -81,7 +81,7 @@ namespace Shadowgate.Alcove
                         else if (result == "Hole next to bookcase")
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan; // show message of using the correct gem
-                            Console.WriteLine("\nThe right bookcase slowly slides away revealing a hidden passage.");
+                            GameFunctions.WriteLine("\nThe right bookcase slowly slides away revealing a hidden passage.");
                             Globals.currentPlayer.PlayerInventory.Remove(this); // permanently remove gem from inventory
                             GameFunctions.FindObject("Doorway behind the bookcase", Globals.clonedRoom.PointsOfInterest).IsHidden = false; // unhide entry behind the bookcase
                             GameFunctions.ReduceTorchFire();

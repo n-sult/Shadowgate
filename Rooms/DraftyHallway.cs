@@ -31,7 +31,7 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Rug expanding the hallway":
-                    Console.WriteLine("\nThis finely woven rug spans the entire hallway.");
+                    GameFunctions.WriteLine("\nThis finely woven rug spans the entire hallway.");
                     break;
                 default:
                     base.LookAt(objectName);

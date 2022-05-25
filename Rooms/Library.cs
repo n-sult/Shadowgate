@@ -51,59 +51,59 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Left Bookcase":
-                    Console.WriteLine("\nThe bookcase in front of you is full of books.");
+                    GameFunctions.WriteLine("\nThe bookcase in front of you is full of books.");
                     break;
                 case "Right Bookcase":
-                    Console.WriteLine("\nIt's full of books. You don't have time to read every one of them. Think of your quest!");
+                    GameFunctions.WriteLine("\nIt's full of books. You don't have time to read every one of them. Think of your quest!");
                     break;
                 case "Book 1":
-                    Console.WriteLine("\nThis book's title is \"Westland\". You open the book and read it. \n\n'Areas not mentioned in this book are " +
+                    GameFunctions.WriteLine("\nThis book's title is \"Westland\". You open the book and read it. \n\n'Areas not mentioned in this book are " +
                         "still not known to neither man nor elf.' \n'The chief borders are the Torlin Forest to the south, the Westland Sea to the " +
                         "west, Swamplands to the north and the Darken Range to the east.'");
                     break;
                 case "Book 2":
-                    Console.WriteLine("\nThis book's title is \"The Castle Shadowgate\". You open the book and read it. " +
+                    GameFunctions.WriteLine("\nThis book's title is \"The Castle Shadowgate\". You open the book and read it. " +
                         "\n\n'The Castle Shadowgate is not the largest lands on Tarkus, but is the most powerful. " +
                         "The castle is surrounded by an impenetrable mountain known as Gatekeeper.' " +
                         "\n'Only members of the now lost Circle of Twelve can enter it.' " +
                         "\n'It is said that the walls of Shadowgate themselves are quite alive.'");
                     break;
                 case "Book 3":
-                    Console.WriteLine("\nThis book's title is \"Blue Dragon\". You open the book and read it. \n\n'And then there shall come a day when " +
+                    GameFunctions.WriteLine("\nThis book's title is \"Blue Dragon\". You open the book and read it. \n\n'And then there shall come a day when " +
                         "things will be lost and people won't know where.' \n'And brothers will run away for absolutely no reason at all and things " +
                         "will happen in the sky.' \n'And people will marvel at friends who have new names and birds will be different!'");
                     break;
                 case "Book 4":
-                    Console.WriteLine("\nThe book is opened and examined. The words are like none you have ever seen!");
+                    GameFunctions.WriteLine("\nThe book is opened and examined. The words are like none you have ever seen!");
                     break;
                 case "Book 5":
-                    Console.WriteLine("\nThis book's title is \"Gods\". You open the book and read it. " +
+                    GameFunctions.WriteLine("\nThis book's title is \"Gods\". You open the book and read it. " +
                         "\n\n'And when these days appear, the people will call upon their gods and there will be no answer.' " +
                         "\n'Nay, only he who carries the sword shall truly be given the scales to judge them by.'");
                     break;
                 case "Book 6":
-                    Console.WriteLine("\nThis book's title is \"The Circle of Twelve\". You open the book and read it. " +
+                    GameFunctions.WriteLine("\nThis book's title is \"The Circle of Twelve\". You open the book and read it. " +
                         "\n\n'The Circle of Twelve was formed before most things began to be. Their names are...Framas, Garolin, Talotin, Ronlin, " +
                         "Talimar, Magnas, Wontave, Butwik, Tenmakk, Sharnir, Lakmir, and Turgor.' " +
                         "\n'The Circle was broken when Talimar took a new name: The Warlock Lord!'");
                     break;
                 case "Book 7":
-                    Console.WriteLine("\nThis book's title is \"The History of the War\". You open the book and read it. " +
+                    GameFunctions.WriteLine("\nThis book's title is \"The History of the War\". You open the book and read it. " +
                         "\n\n'And when the Warlock Lord had finally gained power, he went up against the great kings!' " +
                         "\n'The evil one would have succeeded if it were not for the Circle of Twelve.' " +
                         "\n'If he ever returns to power, Tarkus will not live to see the rising sun...'");
                     break;
                 case "Encyclopedia Set":
-                    Console.WriteLine("\nThis is a complete twelve-volume set of 'Encyclopedia Druidica.'");
+                    GameFunctions.WriteLine("\nThis is a complete twelve-volume set of 'Encyclopedia Druidica.'");
                     break;
                 case "Library Desk":
-                    Console.WriteLine("\nIt's a strong, wooden desk fit for a king. There are a couple of drawers in it.");
+                    GameFunctions.WriteLine("\nIt's a strong, wooden desk fit for a king. There are a couple of drawers in it.");
                     break;
                 case "Hole next to bookcase":
                     if (!RedGemUsed)
-                        Console.WriteLine("\nIt's a small hole in the wall some three inches deep.");
+                        GameFunctions.WriteLine("\nIt's a small hole in the wall some three inches deep.");
                     else
-                        Console.WriteLine("\nThe gem fits perfectly into the hole.");
+                        GameFunctions.WriteLine("\nThe gem fits perfectly into the hole.");
                     break;
                 default:
                     base.LookAt(objectName);
@@ -129,7 +129,7 @@ namespace Shadowgate.Rooms
                     break;
                 case "Library Desk":
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\nThe desk is opened.");
+                    GameFunctions.WriteLine("\nThe desk is opened.");
 
                     string[] deskItems = { "Glasses", "Key 5", "Scroll 3", "Scroll 4" };
 
@@ -150,7 +150,7 @@ namespace Shadowgate.Rooms
             {
                 case "Library Desk":
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\nThe desk is closed.");
+                    GameFunctions.WriteLine("\nThe desk is closed.");
 
                     string[] deskItems = { "Glasses", "Key 5", "Scroll 3", "Scroll 5" };
 

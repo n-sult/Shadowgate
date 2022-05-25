@@ -16,13 +16,13 @@ namespace Shadowgate.SwitchCave
 
         public override void Look()
         {
-            Console.WriteLine("\nAha! It's an orb made of silver. Its glowing surface causes your skin to tingle.");
+            GameFunctions.WriteLine("\nAha! It's an orb made of silver. Its glowing surface causes your skin to tingle.");
         }
 
         public override bool Take()
         {
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("\nAs soon as you remove the orb, the cylinder closes.");
+            GameFunctions.WriteLine("\nAs soon as you remove the orb, the cylinder closes.");
             return true;
         }
 
@@ -40,7 +40,7 @@ namespace Shadowgate.SwitchCave
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.WriteLine("\nLight cascades through the room as the staff becomes a living entity!");
+                            GameFunctions.WriteLine("\nLight cascades through the room as the staff becomes a living entity!");
                             theStaff.HasOrb = true;
                             Globals.currentPlayer.PlayerInventory.Remove(this);
                             GameFunctions.ReduceTorchFire();

@@ -37,13 +37,13 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Balcony":
-                    Console.WriteLine("\nIt's a sturdy stone balcony.");
+                    GameFunctions.WriteLine("\nIt's a sturdy stone balcony.");
                     break;
                 case "Tapestry":
-                    Console.WriteLine("\nIt's a silk tapestry.");
+                    GameFunctions.WriteLine("\nIt's a silk tapestry.");
                     break;
                 case "Banquet Rug":
-                    Console.WriteLine("\nIt's a beautifully woven rug.");
+                    GameFunctions.WriteLine("\nIt's a beautifully woven rug.");
                     break;
                 default:
                     base.LookAt(objectName);
@@ -57,7 +57,7 @@ namespace Shadowgate.Rooms
             {
                 case "Tapestry":
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\nYou can't reach it from here.");
+                    GameFunctions.WriteLine("\nYou can't reach it from here.");
                     return false;
                 default:
                     base.TakeObject(objectName);

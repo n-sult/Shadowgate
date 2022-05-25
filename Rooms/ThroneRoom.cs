@@ -46,18 +46,18 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Skeletal King":
-                    Console.WriteLine("\nAlthough he looks dead enough, this royal skeleton sends shivers down your spine!");
+                    GameFunctions.WriteLine("\nAlthough he looks dead enough, this royal skeleton sends shivers down your spine!");
                     if (!IsScepterUsed)
-                        Console.WriteLine("In his right hand is an axe, but his left hand is open, as if expecting something."); // altered line
+                        GameFunctions.WriteLine("In his right hand is an axe, but his left hand is open, as if expecting something."); // altered line
                     break;
                 case "Hole in the Right Pillar":
-                    Console.WriteLine("\nA ring-shaped hole has appeared in the pillar.");
+                    GameFunctions.WriteLine("\nA ring-shaped hole has appeared in the pillar.");
                     break;
                 case "Left Pillar":
-                    Console.WriteLine("\nIn the center of the pillar is a carving of a sword.");
+                    GameFunctions.WriteLine("\nIn the center of the pillar is a carving of a sword.");
                     break;
                 case "Right Pillar":
-                    Console.WriteLine("\nSir Dugan's royal seal is carved on the stone pillar in vivid colors.");
+                    GameFunctions.WriteLine("\nSir Dugan's royal seal is carved on the stone pillar in vivid colors.");
                     break;
                 default:
                     base.LookAt(objectName);

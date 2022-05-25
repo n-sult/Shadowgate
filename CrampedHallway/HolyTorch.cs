@@ -15,7 +15,7 @@ namespace Shadowgate.CrampedHallway
 
         public override void Look()
         {
-            Console.WriteLine("\nThere is something out of the ordinary about this torch but you can't put a finger on it.");
+            GameFunctions.WriteLine("\nThere is something out of the ordinary about this torch but you can't put a finger on it.");
         }
 
         public override bool Take()
@@ -33,7 +33,7 @@ namespace Shadowgate.CrampedHallway
                 {
                     case "Wraith":
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("\nYou put the torch close to the wraith but nothing happens. \nHmm. There must be more than one way to do it.");
+                        GameFunctions.WriteLine("\nYou put the torch close to the wraith but nothing happens. \nHmm. There must be more than one way to do it.");
                         GameFunctions.ReduceTorchFire();
                         break;
                     default:

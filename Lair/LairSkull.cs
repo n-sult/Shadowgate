@@ -15,7 +15,7 @@ namespace Shadowgate.Lair
 
         public override void Look()
         {
-            Console.WriteLine("\nThe skull looks like it has been dried and cracked by extreme heat.");
+            GameFunctions.WriteLine("\nThe skull looks like it has been dried and cracked by extreme heat.");
         }
 
         public override bool Take()

@@ -36,14 +36,14 @@ namespace Shadowgate.Rooms
         void HeatIsUnbearableMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\nThe heat is unbearable! Returning to the previous room...");
+            GameFunctions.WriteLine("\nThe heat is unbearable! Returning to the previous room...");
             Thread.Sleep(7000);
         }
         
         public static void DieToFiredrake()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nThe Firedrake screams triumphantly and gives you an eternal sunburn.");
+            GameFunctions.WriteLine("\nThe Firedrake screams triumphantly and gives you an eternal sunburn.");
             GameFunctions.GameOver();
         }
         
@@ -63,12 +63,12 @@ namespace Shadowgate.Rooms
                     break;
                 case "Fire raging under the bridge":
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nBellowing like a fool, you leap off the bridge and into the blaze! You are instantly fried.");
+                    GameFunctions.WriteLine("\nBellowing like a fool, you leap off the bridge and into the blaze! You are instantly fried.");
                     GameFunctions.GameOver();
                     break;
                 case "Oil-soaked floor beneath the bridge":
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nSuicide obviously does not solve problems.");
+                    GameFunctions.WriteLine("\nSuicide obviously does not solve problems.");
                     GameFunctions.GameOver();
                     break;
                 default:
@@ -82,17 +82,17 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Bridge":
-                    Console.WriteLine("\nIt's a long, thin bridge forged of fine metal.");
+                    GameFunctions.WriteLine("\nIt's a long, thin bridge forged of fine metal.");
                     break;
                 case "Fire raging under the bridge":
-                    Console.WriteLine("\nThis tireless fire burns with such heat that this room seems to be in the belly of Hell itself.");
+                    GameFunctions.WriteLine("\nThis tireless fire burns with such heat that this room seems to be in the belly of Hell itself.");
                     break;
                 case "Oil-soaked floor beneath the bridge":
-                    Console.WriteLine("\nYour view of the floor is totally obscured by a thick, black oil.");
+                    GameFunctions.WriteLine("\nYour view of the floor is totally obscured by a thick, black oil.");
                     break;
                 case "Firedrake":
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\nA flaming horror appears at the end of the bridge!");
+                    GameFunctions.WriteLine("\nA flaming horror appears at the end of the bridge!");
                     break;
                 default:
                     base.LookAt(objectName);
@@ -114,7 +114,7 @@ namespace Shadowgate.Rooms
                         {
                             base.OpenObject(objectName);
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("Suddenly, you feel a gust of wind! A searing blast of heat knocks you across the room! A firedrake has emerged from the door!");
+                            GameFunctions.WriteLine("Suddenly, you feel a gust of wind! A searing blast of heat knocks you across the room! A firedrake has emerged from the door!");
                             theFiredrake.IsHidden = false;
                             GameFunctions.ReduceTorchFire();
                         }
@@ -151,7 +151,7 @@ namespace Shadowgate.Rooms
                 case "Fire raging under the bridge":
                 case "Oil-soaked floor beneath the bridge":
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("\nYou now have terrific second-degree burns on your hands.");
+                    GameFunctions.WriteLine("\nYou now have terrific second-degree burns on your hands.");
                     break;
                 case "Firedrake":
                     DieToFiredrake();

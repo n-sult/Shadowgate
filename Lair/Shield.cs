@@ -15,7 +15,7 @@ namespace Shadowgate.Lair
 
         public override void Look()
         {
-            Console.WriteLine("\nIt's a heavy shield. There are only a few dents on it.");
+            GameFunctions.WriteLine("\nIt's a heavy shield. There are only a few dents on it.");
         }
 
         public override bool Take()

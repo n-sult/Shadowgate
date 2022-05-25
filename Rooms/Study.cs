@@ -42,18 +42,18 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Fireplace":
-                    Console.WriteLine("\nThis fireplace is quite large.");
+                    GameFunctions.WriteLine("\nThis fireplace is quite large.");
                     break;
                 case "Globe":
-                    Console.WriteLine("\nIt is a globe mounted on a stand for display. It shows all of the known lands.");
+                    GameFunctions.WriteLine("\nIt is a globe mounted on a stand for display. It shows all of the known lands.");
                     if (!TerrakkUsed)
-                        Console.WriteLine("Looking closely, you can see a seam along the equator.");
+                        GameFunctions.WriteLine("Looking closely, you can see a seam along the equator.");
                     break;
                 case "Blue Rug":
-                    Console.WriteLine("\nIt's a beautifully woven rug.");
+                    GameFunctions.WriteLine("\nIt's a beautifully woven rug.");
                     break;
                 case "Woodpile":
-                    Console.WriteLine("\nKindling rests within the fireplace.");
+                    GameFunctions.WriteLine("\nKindling rests within the fireplace.");
                     break;
                 default:
                     base.LookAt(objectName);
@@ -69,7 +69,7 @@ namespace Shadowgate.Rooms
                     if (TerrakkUsed && !GlobeOpen)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nThe globe is open.");
+                        GameFunctions.WriteLine("\nThe globe is open.");
                         GlobeOpen = true;
 
                         string[] globeItems = { "Key 6", "Bottle 5" };
@@ -82,7 +82,7 @@ namespace Shadowgate.Rooms
                     else if (GlobeOpen)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nThe globe is opened.");
+                        GameFunctions.WriteLine("\nThe globe is opened.");
                         GameFunctions.ReduceTorchFire();
                     }
                     else
@@ -103,7 +103,7 @@ namespace Shadowgate.Rooms
                     if (GlobeOpen)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nYou closed the globe.");
+                        GameFunctions.WriteLine("\nYou closed the globe.");
                         GlobeOpen = false;
 
                         string[] globeItems = { "Key 6", "Bottle 5" };
@@ -116,7 +116,7 @@ namespace Shadowgate.Rooms
                     else if (GlobeOpen)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nThe globe is closed.");
+                        GameFunctions.WriteLine("\nThe globe is closed.");
                         GameFunctions.ReduceTorchFire();
                     }
                     else

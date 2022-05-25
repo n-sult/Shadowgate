@@ -34,7 +34,7 @@ namespace Shadowgate.Rooms
             {
                 case "River":
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nAs soon as you jump in, you find that you cannot escape the strong current of this river. " +
+                    GameFunctions.WriteLine("\nAs soon as you jump in, you find that you cannot escape the strong current of this river. " +
                         "\nYour cries for help are cut off as your lungs fill with water!");
                     GameFunctions.GameOver();
                     break;
@@ -42,7 +42,7 @@ namespace Shadowgate.Rooms
                     if (!GoldCoinGiven)
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("\nThe ferryman will not let you board. He is still waiting for a fare.");
+                        GameFunctions.WriteLine("\nThe ferryman will not let you board. He is still waiting for a fare.");
                         GameFunctions.ReduceTorchFire();
                     }
                     else
@@ -59,16 +59,16 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Gong":
-                    Console.WriteLine("\nIt's a great gold gong. Its beauty is enhanced by the intricate stand that supports it.");
+                    GameFunctions.WriteLine("\nIt's a great gold gong. Its beauty is enhanced by the intricate stand that supports it.");
                     break;
                 case "Mallet":
-                    Console.WriteLine("\nThis mallet is made from, what appears to be, Centaur hide.");
+                    GameFunctions.WriteLine("\nThis mallet is made from, what appears to be, Centaur hide.");
                     break;
                 case "River":
-                    Console.WriteLine("\nThe river's water is dead calm. It wouldn't surprise you if this were the River Styx.");
+                    GameFunctions.WriteLine("\nThe river's water is dead calm. It wouldn't surprise you if this were the River Styx.");
                     break;
                 case "Ferryman":
-                    Console.WriteLine("\nThe specter is wrapped in tattered rags. You can see a skeleton within the cloak. " +
+                    GameFunctions.WriteLine("\nThe specter is wrapped in tattered rags. You can see a skeleton within the cloak. " +
                         "\nJust gazing at this apparition is enough to give you the creeps!");
                     break;
                 default:
@@ -92,7 +92,7 @@ namespace Shadowgate.Rooms
                                 if (GameFunctions.FindObject("Ferryman", PointsOfInterest).IsHidden)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Cyan;
-                                    Console.WriteLine("\nAfter the gong sounds, a specter materializes right before your eyes. " +
+                                    GameFunctions.WriteLine("\nAfter the gong sounds, a specter materializes right before your eyes. " +
                                         "\nThe ghostly ferryman doesn't look friendly. You hear a faint voice ask for a fare.");
                                     GameFunctions.FindObject("Ferryman", PointsOfInterest).IsHidden = false;
                                     GameFunctions.FindObject("Raft", PointsOfInterest).IsHidden = false;

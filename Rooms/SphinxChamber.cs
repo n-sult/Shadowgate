@@ -54,20 +54,20 @@ namespace Shadowgate.Rooms
         static void PreRiddleMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\nAs you moved, the sphinx spoke, \n'Who are you? No one may pass without my permission. " + // initial sphinx dialogue
+            GameFunctions.WriteLine("\nAs you moved, the sphinx spoke, \n'Who are you? No one may pass without my permission. " + // initial sphinx dialogue
                 "To pass, you must answer a riddle!'");
         }
 
         static void PostRiddleMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\n'Dost thou know? Bring me the answer to my riddle and I shall let thee pass.'"); // post riddle dialogue
+            GameFunctions.WriteLine("\n'Dost thou know? Bring me the answer to my riddle and I shall let thee pass.'"); // post riddle dialogue
         }
         
         public static void SphinxTeleportsYou(string roomName)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"\nSuddenly, the room begins to fade! It seems that the sphinx's magic has taken you to the {roomName}!");
+            GameFunctions.WriteLine($"\nSuddenly, the room begins to fade! It seems that the sphinx's magic has taken you to the {roomName}!");
             GameFunctions.MoveRooms(roomName);
         }
 
@@ -104,7 +104,7 @@ namespace Shadowgate.Rooms
                 else if (RiddleAsked && objectName == AnswerForRiddle)
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\nThe sphinx nods its head. 'You have correctly answered my riddle, warrior. Thou may now pass.'"); // altered line
+                    GameFunctions.WriteLine("\nThe sphinx nods its head. 'You have correctly answered my riddle, warrior. Thou may now pass.'"); // altered line
                     RiddleAnswered = true;
                 }
             }
@@ -121,7 +121,7 @@ namespace Shadowgate.Rooms
                     {
                         PreRiddleMessage();
                         _riddleIndex = rnd.Next(riddles.Count); // randomly choose a riddle from dictionary
-                        Console.WriteLine(riddles.Values.ElementAt(_riddleIndex)); // show riddle at given index (which is also used to determine item to use)
+                        GameFunctions.WriteLine(riddles.Values.ElementAt(_riddleIndex)); // show riddle at given index (which is also used to determine item to use)
                         AnswerForRiddle = ItemsForRiddle[_riddleIndex]; 
                         RiddleAsked = true;
                         PostRiddleMessage();
@@ -130,7 +130,7 @@ namespace Shadowgate.Rooms
                     else if (RiddleAsked && !RiddleAnswered) // if riddle has already been asked since entering room, ask same riddle
                     {
                         PreRiddleMessage();
-                        Console.WriteLine(riddles.Values.ElementAt(_riddleIndex)); // show riddle at given index 
+                        GameFunctions.WriteLine(riddles.Values.ElementAt(_riddleIndex)); // show riddle at given index 
                         PostRiddleMessage();
                         GameFunctions.ReduceTorchFire();
                     }
@@ -148,12 +148,12 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Sphinx":
-                    Console.WriteLine("\nYou have sumbled upon a sphinx. It has the body of a lion and the head of a man.");
+                    GameFunctions.WriteLine("\nYou have sumbled upon a sphinx. It has the body of a lion and the head of a man.");
                     break;
                 case "Left Torch":
                 case "Center Torch":
                 case "Right Torch":
-                    Console.WriteLine("\nThe strange, eerie flame burns silently.");
+                    GameFunctions.WriteLine("\nThe strange, eerie flame burns silently.");
                     break;
                 default:
                     base.LookAt(objectName);

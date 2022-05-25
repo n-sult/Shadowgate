@@ -42,7 +42,7 @@ namespace Shadowgate.Rooms
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("\nA broken fragment of a wooden ladder hangs from the opening." +
+                        GameFunctions.WriteLine("\nA broken fragment of a wooden ladder hangs from the opening." +
                             "\nAs you go down the trap door, you realize you took a big step. The fall is quite fatal.");
                         GameFunctions.GameOver();
                     }
@@ -59,12 +59,12 @@ namespace Shadowgate.Rooms
             {
                 case "Small hole next to the wooden door":
                     if (!IsWhiteGemUsed)
-                        Console.WriteLine("\nIt's a small hole in the wall some three inches deep.");
+                        GameFunctions.WriteLine("\nIt's a small hole in the wall some three inches deep.");
                     else
-                        Console.WriteLine("\nThe gem fits perfectly in the hole.");
+                        GameFunctions.WriteLine("\nThe gem fits perfectly in the hole.");
                     break;
                 case "Pedestal":
-                    Console.WriteLine("\nIt's a large pedestal with iron trim.");
+                    GameFunctions.WriteLine("\nIt's a large pedestal with iron trim.");
                     break;
                 default:
                     base.LookAt(objectName);

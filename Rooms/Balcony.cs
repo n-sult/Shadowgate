@@ -35,12 +35,12 @@ namespace Shadowgate.Rooms
             {
                 case "Hole on the balcony wall":
                     if (!IsRodUsed)
-                        Console.WriteLine("\nThis appears to be a mount of some sort, perhaps for a flagpole.");
+                        GameFunctions.WriteLine("\nThis appears to be a mount of some sort, perhaps for a flagpole.");
                     else
-                        Console.WriteLine("\nThe small hole in the center is perfectly round.");
+                        GameFunctions.WriteLine("\nThe small hole in the center is perfectly round.");
                     break;
                 case "Skeletal Hand":
-                    Console.WriteLine("\nAlthough the hand is skeletal, it holds the wand rather tightly.");
+                    GameFunctions.WriteLine("\nAlthough the hand is skeletal, it holds the wand rather tightly.");
                     break;
                 default:
                     base.LookAt(objectName);

@@ -15,7 +15,7 @@ namespace Shadowgate.MirrorRoom
 
         public override void Look()
         {
-            Console.WriteLine("\nThis broom looks remarkably like the one owned by the Sirens of the isle of Yeklum Iret.");
+            GameFunctions.WriteLine("\nThis broom looks remarkably like the one owned by the Sirens of the isle of Yeklum Iret.");
         }
 
         public override bool Take()
@@ -34,7 +34,7 @@ namespace Shadowgate.MirrorRoom
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("\nI know neatness counts, but there would seem to be better ways to spend your time.");
+                    GameFunctions.WriteLine("\nI know neatness counts, but there would seem to be better ways to spend your time.");
                     GameFunctions.ReduceTorchFire();
                 }
             }

@@ -41,7 +41,7 @@ namespace Shadowgate.Rooms
                     if (!eporRoom.IsEporActive)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("\nYou jump down the hole and, after a couple moments, hit the floor! " +
+                        GameFunctions.WriteLine("\nYou jump down the hole and, after a couple moments, hit the floor! " +
                             "\nIt seems that you have broken both of your legs! It's only a matter of time before you die!");
                         GameFunctions.GameOver();
                     }
@@ -60,10 +60,10 @@ namespace Shadowgate.Rooms
             {
                 case "Left Mirror":
                 case "Right Mirror":
-                    Console.WriteLine("\nThe mirror has a carved oak frame.");
+                    GameFunctions.WriteLine("\nThe mirror has a carved oak frame.");
                     break;
                 case "Middle Mirror":
-                    Console.WriteLine("\nThis mirror throws back a fine reflection.");
+                    GameFunctions.WriteLine("\nThis mirror throws back a fine reflection.");
                     break;
                 default:
                     base.LookAt(objectName);

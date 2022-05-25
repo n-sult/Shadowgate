@@ -32,19 +32,19 @@ namespace Shadowgate
         void OddBehaviorMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\nWhat odd behavior for such a brave warrior!");
+            GameFunctions.WriteLine("\nWhat odd behavior for such a brave warrior!");
         }
 
         public override void Look()
         {
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("\nThou art truly a brave knight!");
+            GameFunctions.WriteLine("\nThou art truly a brave knight!");
             if (IsCloakEquipped)
-                Console.WriteLine("You are wearing the cloak.");
+                GameFunctions.WriteLine("You are wearing the cloak.");
             if (IsGlassesEquipped)
-                Console.WriteLine("You are wearing the glasses.");
+                GameFunctions.WriteLine("You are wearing the glasses.");
             if (IsGauntletEquipped)
-                Console.WriteLine("You are wearing the silver gauntlets.");
+                GameFunctions.WriteLine("You are wearing the silver gauntlets.");
         }
 
         public override void Use()
@@ -55,7 +55,7 @@ namespace Shadowgate
         public override void Hit()
         {
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("\nSmash!! Now you see stars!");
+            GameFunctions.WriteLine("\nSmash!! Now you see stars!");
             GameFunctions.ReduceTorchFire();
         }
 

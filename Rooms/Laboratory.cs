@@ -55,13 +55,13 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Cage":
-                    Console.WriteLine("\nThis steel mesh cage rattles constantly. A simple latch secures it.");
+                    GameFunctions.WriteLine("\nThis steel mesh cage rattles constantly. A simple latch secures it.");
                     break;
                 case "Green Pot":
-                    Console.WriteLine("\nUgh! There's a strange, poisonous-looking liquid in the pot. It really stinks!");
+                    GameFunctions.WriteLine("\nUgh! There's a strange, poisonous-looking liquid in the pot. It really stinks!");
                     break;
                 case "Stone protruding from the Floor":
-                    Console.WriteLine("\nLab animals can be chained to this stone while performing experiments on them.");
+                    GameFunctions.WriteLine("\nLab animals can be chained to this stone while performing experiments on them.");
                     break;
                 default:
                     base.LookAt(objectName);
@@ -75,7 +75,7 @@ namespace Shadowgate.Rooms
             {
                 case "Cage":
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nYou remove the latch and a mutated dog pounces on you! \nIt looks like the doctor " +
+                    GameFunctions.WriteLine("\nYou remove the latch and a mutated dog pounces on you! \nIt looks like the doctor " +
                         "put something strange in the dog's water. \nBefore you can do anything else, the mutation quickly rips you apart!");
                     GameFunctions.GameOver();
                     break;
@@ -93,19 +93,19 @@ namespace Shadowgate.Rooms
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     if (!DrankFromPot)
                     {
-                        Console.WriteLine("\nSlurp! You taste the poisonous-looking liquid in the pot. \nYou notice small blue hairs being " +
+                        GameFunctions.WriteLine("\nSlurp! You taste the poisonous-looking liquid in the pot. \nYou notice small blue hairs being " +
                             "to grow on the palms of your hand. \nThe viscous liquid seems to contain body altering ingredients.");
                         DrankFromPot = true;
                         GameFunctions.ReduceTorchFire();
                     }
                     else
-                        Console.WriteLine("\nLooking at the blue hair covering your hands, you hesistate to drink the awful, stinking liquid.");
+                        GameFunctions.WriteLine("\nLooking at the blue hair covering your hands, you hesistate to drink the awful, stinking liquid.");
                     break;
                 case "Stone protruding from the Floor":
                     if (!StoneInFloorUsed)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nThe stone rises slowly out of the floor. A shining vial is inside it.");
+                        GameFunctions.WriteLine("\nThe stone rises slowly out of the floor. A shining vial is inside it.");
                         GameFunctions.FindObject("Water", PointsOfInterest).IsHidden = false;
                         StoneInFloorUsed = true;
                         GameFunctions.ReduceTorchFire();

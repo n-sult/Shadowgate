@@ -46,21 +46,21 @@ namespace Shadowgate.Rooms
         public void LidOpenMessage()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("\nThe lid of the coffin is open.");
+            GameFunctions.WriteLine("\nThe lid of the coffin is open.");
             GameFunctions.ReduceTorchFire();
         }
 
         public void LidCloseMessage()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("\nThe lid of the coffin is closed.");
+            GameFunctions.WriteLine("\nThe lid of the coffin is closed.");
             GameFunctions.ReduceTorchFire();
         }
 
         void DieToSlime()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nYou try to pass the slime but it engulfs your body, dissolving it in seconds. " +
+            GameFunctions.WriteLine("\nYou try to pass the slime but it engulfs your body, dissolving it in seconds. " +
                 "\n...you die instantly. No pain, no nothing. You were slimed.");
             GameFunctions.GameOver();
         }
@@ -86,25 +86,25 @@ namespace Shadowgate.Rooms
             switch (objectName)
             {
                 case "Closest coffin on the left":
-                    Console.WriteLine("\nThe cold, marble coffin lid seals an ancient death bed.");
+                    GameFunctions.WriteLine("\nThe cold, marble coffin lid seals an ancient death bed.");
                     break;
                 case "Middle coffin on the left":
-                    Console.WriteLine("\nThis tomb is sealed with a silver lid.");
+                    GameFunctions.WriteLine("\nThis tomb is sealed with a silver lid.");
                     break;
                 case "Closest coffin on the right":
-                    Console.WriteLine("\nThis standing sarcophagus is sealed with a dragon scale cover.");
+                    GameFunctions.WriteLine("\nThis standing sarcophagus is sealed with a dragon scale cover.");
                     break;
                 case "Middle coffin on the right":
-                    Console.WriteLine("\nThe lid to this coffin is made of solid gold. It must be worth a fortune.");
+                    GameFunctions.WriteLine("\nThe lid to this coffin is made of solid gold. It must be worth a fortune.");
                     break;
                 case "Farthest coffin on the right":
-                    Console.WriteLine("\nIt's a cold stone coffin.");
+                    GameFunctions.WriteLine("\nIt's a cold stone coffin.");
                     break;
                 case "Green slime":
-                    Console.WriteLine("\nThe green slime is very thick and is warm to the touch.");
+                    GameFunctions.WriteLine("\nThe green slime is very thick and is warm to the touch.");
                     break;
                 case "Mummy":
-                    Console.WriteLine("\nThis carefully embalmed six-footer stands straight and still.");
+                    GameFunctions.WriteLine("\nThis carefully embalmed six-footer stands straight and still.");
                     break;
                 default:
                     base.LookAt(objectName);
@@ -119,7 +119,7 @@ namespace Shadowgate.Rooms
                 case "Closest coffin on the left":
                     LidOpenMessage();
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\nAs you open the tomb, a banshee flies out and emits an ear-shattering scream. " +
+                    GameFunctions.WriteLine("\nAs you open the tomb, a banshee flies out and emits an ear-shattering scream. " +
                             "\nYou're all right, but it is very hard to hear.");
                     break;
                 case "Middle coffin on the left":
@@ -127,7 +127,7 @@ namespace Shadowgate.Rooms
                     if (!_isMiddleLeftCoffinOpen)
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("\nGreen slime has covered the floor of the coffin you opened. It's quite disgusting!");
+                        GameFunctions.WriteLine("\nGreen slime has covered the floor of the coffin you opened. It's quite disgusting!");
                         _isMiddleLeftCoffinOpen = true;
                         GameFunctions.FindObject("Green slime", PointsOfInterest).IsHidden = false;
                     }
@@ -139,7 +139,7 @@ namespace Shadowgate.Rooms
                         if (!IsMummyBurned)
                         {
                             Console.ForegroundColor = ConsoleColor.White;
-                            Console.WriteLine("\nA mummy stands silently before you.");
+                            GameFunctions.WriteLine("\nA mummy stands silently before you.");
                             GameFunctions.FindObject("Mummy", PointsOfInterest).IsHidden = false;
                         }
                         if (IsMummyBurned && !IsScepterTaken)
@@ -155,7 +155,7 @@ namespace Shadowgate.Rooms
                         if (theBag.IsHidden)
                         {
                             Console.ForegroundColor = ConsoleColor.White;
-                            Console.WriteLine("\nA small bag falls out of the coffin.");
+                            GameFunctions.WriteLine("\nA small bag falls out of the coffin.");
                             theBag.IsHidden = false;
                         }
                         _isMiddleRightCoffinOpen = true;
@@ -183,7 +183,7 @@ namespace Shadowgate.Rooms
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("\nYou can't close the tomb. The slime blocks the door.");
+                        GameFunctions.WriteLine("\nYou can't close the tomb. The slime blocks the door.");
                     }
                     break;
                 case "Closest coffin on the right":

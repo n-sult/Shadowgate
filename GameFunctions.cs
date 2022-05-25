@@ -2,6 +2,7 @@
 using Shadowgate.Rooms;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -10,44 +11,77 @@ namespace Shadowgate
 {
     public class GameFunctions
     {
+        static string _gameLogPath = @"Logs\";
+        static string _logFileName;
+        
+        public static void Write(string? text, bool printText = true)
+        {
+            Console.Write(text);
+            if (printText)
+                File.AppendAllText(_gameLogPath + _logFileName, text);
+        }
+        
+        public static void WriteLine(string? text, bool printText = true)
+        {
+            Write(text + "\n", printText);
+        }
+        
+        public static string ReadLine()
+        {
+            string text = Console.ReadLine();
+            File.AppendAllText(_gameLogPath + _logFileName, $"\n===========> {text}\n");
+            return text;
+        }
+
+        public static void CreateLog()
+        {
+            Directory.CreateDirectory(_gameLogPath);
+            
+            DirectoryInfo directoryInfo = new DirectoryInfo(_gameLogPath);
+            while (directoryInfo.GetFiles().Length > 4)
+                File.Delete(directoryInfo.GetFiles().OrderBy(f => f.LastWriteTime).First().FullName);
+
+            _logFileName = $"log_{ DateTime.Now.ToString("HH.mm.ss")}.txt";
+        }
+        
         public static string UseOn(string objectName)
         {
             List<PointOfInterest> allPOIsItemsAndSelf = PutPOIsItemsAndSelfInOneList();
             
-            var activeObject = GameFunctions.FindObject(objectName, allPOIsItemsAndSelf); // to be used later to remove object from list shown to player
+            var activeObject = FindObject(objectName, allPOIsItemsAndSelf); // to be used later to remove object from list shown to player
 
             bool selectionMade = false;
             while (!selectionMade)
             {
                 Globals.selection = 1;
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.WriteLine($"\nWhat do you want to use {activeObject.ObjectName} on?");
+                WriteLine($"\nWhat do you want to use {activeObject.ObjectName} on?");
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("\nIn the room: ");
+                WriteLine("\nIn the room: ");
                 Console.ForegroundColor = ConsoleColor.Gray;
                 foreach (PointOfInterest POI in Globals.clonedRoom.PointsOfInterest)
                 {
                     if (!POI.IsHidden)
                     {
-                        Console.WriteLine($"{Globals.selection} - {POI.ObjectName}");
+                        WriteLine($"{Globals.selection} - {POI.ObjectName}");
                         Globals.selection++;
                     }
                 }
 
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("\nIn your inventory: ");
+                WriteLine("\nIn your inventory: ");
                 Console.ForegroundColor = ConsoleColor.Gray;
                 foreach (Item item in Globals.currentPlayer.PlayerInventory)
                 {
-                    Console.WriteLine($"{Globals.selection} - {item.ObjectName}");
+                    WriteLine($"{Globals.selection} - {item.ObjectName}");
                     Globals.selection++;
                 }
-                Console.Write($"\n{Globals.selection++} - Self");
-                Console.WriteLine($"\n{Globals.selection} - Never mind");
+                Write($"\n{Globals.selection++} - Self");
+                WriteLine($"\n{Globals.selection} - Never mind");
 
-                string userInput = Console.ReadLine();
+                string userInput = ReadLine();
 
-                GameFunctions.UserInputResult inputResult = GameFunctions.CheckUserInput(userInput, allPOIsItemsAndSelf);
+                UserInputResult inputResult = CheckUserInput(userInput, allPOIsItemsAndSelf);
                 if (inputResult.Result < 1 && inputResult.Result != -5)
                     continue;
                 else if (inputResult.Result == -5)
@@ -130,16 +164,16 @@ namespace Shadowgate
             Globals.clonedRoom.PointsOfInterest.RemoveRange(0, Globals.clonedRoom.PointsOfInterest.Count - Globals.currentRoom.PointsOfInterest.Count);
 
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("\n***********************************************************************"); // show entry message for the room
+            WriteLine("\n***********************************************************************"); // show entry message for the room
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.WriteLine("Current location: " + Globals.clonedRoom.RoomName); // list off the current room
+            WriteLine("Current location: " + Globals.clonedRoom.RoomName); // list off the current room
 
             Console.ForegroundColor = ConsoleColor.Gray;
             if (Globals.currentRoom.Visited)
-                Console.WriteLine($"\n{Globals.clonedRoom.SubsequentEntry}");
+                WriteLine($"\n{Globals.clonedRoom.SubsequentEntry}");
             else
-                Console.WriteLine($"\n{Globals.clonedRoom.FirstEntry}");
-            Console.WriteLine("***********************************************************************");
+                WriteLine($"\n{Globals.clonedRoom.FirstEntry}");
+            WriteLine("***********************************************************************");
 
             Globals.clonedRoom.Visited = true; // set to true to determine which entry message to show
 
@@ -155,9 +189,9 @@ namespace Shadowgate
             {
                 if (!pointOfInterest.IsHidden)
                     if (pointOfInterest is Player)
-                        Console.Write($"\n{Globals.selection++} - {pointOfInterest.ObjectName}");
+                        Write($"\n{Globals.selection++} - {pointOfInterest.ObjectName}");
                     else
-                        Console.WriteLine($"{Globals.selection++} - {pointOfInterest.ObjectName}");
+                        WriteLine($"{Globals.selection++} - {pointOfInterest.ObjectName}");
             }
         }
 
@@ -178,21 +212,21 @@ namespace Shadowgate
         public static void KillSelf(string objectName)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"\nYou thrust the {objectName} into your chest! Blood begins to flow! Suicide won't help in your quest!");
+            WriteLine($"\nYou thrust the {objectName} into your chest! Blood begins to flow! Suicide won't help in your quest!");
             GameOver();
         }
 
         public static void GameOver() // show default game over message and set player status to dead
         {
-            Console.WriteLine("\nIt's a sad thing that your adventures have ended here!");
-            Console.WriteLine("Game Over");
+            WriteLine("\nIt's a sad thing that your adventures have ended here!");
+            WriteLine("Game Over");
 
             Globals.currentPlayer.IsPlayerDead = true;
         }
 
         public static void GameEnding()
         {
-            Console.WriteLine("\n\nWord of your historic quest has already reached the farthest parts of the land. " +
+            WriteLine("\n\nWord of your historic quest has already reached the farthest parts of the land. " +
                 "\nYou are triumphantly greeted as you enter the gates of the royal city of Stormhaven. " +
                 "\nMoments later, you are ushered into the royal palace where you are greeted by the king! " +
                 "\n\n'I know what thou hast done, brave one. The world would be dark forever without thee!' " +
@@ -217,12 +251,12 @@ namespace Shadowgate
         public static void CheckTorchLevels(ActiveTorch activeTorch) // when listing torch levels, if it's above 15, list the number in yellow, otherwise, in red
         {
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.Write($"\n{activeTorch.ObjectName} fire left: ");
+            Write($"\n{activeTorch.ObjectName} fire left: ");
             if (activeTorch.FireRemaining > 15)
                 Console.ForegroundColor = ConsoleColor.Yellow;
             else
                 Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write(activeTorch.FireRemaining);
+            Write(activeTorch.FireRemaining.ToString());
         }
 
         public static List<PointOfInterest> AddSelfToCurrentList(List<PointOfInterest> list) // add player to a list of interests for selection 
@@ -273,7 +307,7 @@ namespace Shadowgate
                 else if (result < 1) // if the input was less than 1, alert player this is invalid
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nInvalid selection. Try again.");
+                    WriteLine("\nInvalid selection. Try again.");
                     inputResult.Result = -5;
                 }
                 else if (result > list.Count) // if the input was greater than the number of elements in the list...
@@ -281,7 +315,7 @@ namespace Shadowgate
                     if (result > Globals.selection) // if the input was greater than the current selection, alert player to invalid selection
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("\nInvalid selection. Try again.");
+                        WriteLine("\nInvalid selection. Try again.");
                     }
                     inputResult.Result = -5; // otherwise, it's assumed result == selection which is "cancel". either way, return negative number to return to previous menu
                 }
@@ -289,7 +323,7 @@ namespace Shadowgate
             else // if input was not numeric, alert player and return negative number to return to previous menu
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\nInvalid input. Try again.");
+                WriteLine("\nInvalid input. Try again.");
                 inputResult.Result = -5;
             }
             return inputResult;

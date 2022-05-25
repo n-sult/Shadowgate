@@ -26,8 +26,8 @@ namespace Shadowgate
             foreach (Item item in bagInventory)
             {
                 if (showSelectionNumber) // if player wants to look at or take something, show a selection number
-                    Console.Write($"{Globals.selection} - ");
-                Console.WriteLine($"{item.ObjectName}");
+                    GameFunctions.Write($"{Globals.selection} - ");
+                GameFunctions.WriteLine($"{item.ObjectName}");
                 if (showSelectionNumber) // if players wants to look at or take something, increment the selection number
                     Globals.selection++;
             }
@@ -36,9 +36,9 @@ namespace Shadowgate
         public override void Look()
         {
             if (ObjectName == "Bag 3" || ObjectName == "Pouch")
-                Console.WriteLine("\nThis canvas pouch looks to be quite light. Close inspection reveals some druidic script on it.");
+                GameFunctions.WriteLine("\nThis canvas pouch looks to be quite light. Close inspection reveals some druidic script on it.");
             else
-                Console.WriteLine("\nIt's a leather pouch.");
+                GameFunctions.WriteLine("\nIt's a leather pouch.");
         }
 
         public override bool Take()
@@ -51,38 +51,38 @@ namespace Shadowgate
         public override void Open()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"\nThe {ObjectName} is open.");
+            GameFunctions.WriteLine($"\nThe {ObjectName} is open.");
             isBagCurrentlyOpen = true;
             GameFunctions.ReduceTorchFire();
 
             while (isBagCurrentlyOpen)
             {
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("\nYou take note of the following in the bag: ");
+                GameFunctions.WriteLine("\nYou take note of the following in the bag: ");
                 Console.ForegroundColor = ConsoleColor.Gray;
                 if (bagInventory.Count > 0)
                     PrintItems(false);
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("EMPTY");
+                    GameFunctions.WriteLine("EMPTY");
                 }
 
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("\nWhat would you like to do?");
+                GameFunctions.WriteLine("\nWhat would you like to do?");
                 Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine("1 - Look \n2 - Take \n3 - Close the bag");
+                GameFunctions.WriteLine("1 - Look \n2 - Take \n3 - Close the bag");
                 
-                string userInput = Console.ReadLine();
+                string userInput = GameFunctions.ReadLine();
 
                 if (userInput == "1")
                 {
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("\nWhat would you like to look at?");
+                    GameFunctions.WriteLine("\nWhat would you like to look at?");
                     PrintItems(true);
-                    Console.WriteLine($"\n{Globals.selection} - Never mind");
+                    GameFunctions.WriteLine($"\n{Globals.selection} - Never mind");
                     
-                    string lookInput = Console.ReadLine();
+                    string lookInput = GameFunctions.ReadLine();
 
                     GameFunctions.UserInputResult inputResult = GameFunctions.CheckUserInput(lookInput, null, bagInventory);
                     if (inputResult.Result < 1)
@@ -97,11 +97,11 @@ namespace Shadowgate
                 else if (userInput == "2")
                 {
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("\nWhat would you like to take");
+                    GameFunctions.WriteLine("\nWhat would you like to take");
                     PrintItems(true);
-                    Console.WriteLine($"\n{Globals.selection} - Never mind");
+                    GameFunctions.WriteLine($"\n{Globals.selection} - Never mind");
 
-                    string takeInput = Console.ReadLine();
+                    string takeInput = GameFunctions.ReadLine();
 
                     GameFunctions.UserInputResult inputResult = GameFunctions.CheckUserInput(takeInput, null, bagInventory);
                     if (inputResult.Result < 1)
@@ -113,7 +113,7 @@ namespace Shadowgate
                             Globals.currentPlayer.PlayerInventory.Add(bagInventory[inputResult.Result - 1]); // add the item to inventory
 
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("\nThe " + bagInventory[inputResult.Result - 1].ObjectName + " is in hand."); // message for taking item
+                            GameFunctions.WriteLine("\nThe " + bagInventory[inputResult.Result - 1].ObjectName + " is in hand."); // message for taking item
 
                             bagInventory.Remove(bagInventory[inputResult.Result - 1]);   // remove item from bag
 
@@ -124,14 +124,14 @@ namespace Shadowgate
                 else if (userInput == "3")
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine($"\nThe {ObjectName} is closed.");
+                    GameFunctions.WriteLine($"\nThe {ObjectName} is closed.");
                     isBagCurrentlyOpen = false;
                     GameFunctions.ReduceTorchFire();
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nInvalid selection. Try again.");
+                    GameFunctions.WriteLine("\nInvalid selection. Try again.");
                 }
             }
         }

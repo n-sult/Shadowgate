@@ -58,10 +58,10 @@ namespace Shadowgate.Rooms
             switch (objectName)
             {
                 case "Stone Skull":
-                    Console.WriteLine("\nIt's the skull of some creature. It's meaning seems quite clear: death lurks inside.");
+                    GameFunctions.WriteLine("\nIt's the skull of some creature. It's meaning seems quite clear: death lurks inside.");
                     break;
                 case "Wall":
-                    Console.WriteLine("\nIt's a stone wall.");
+                    GameFunctions.WriteLine("\nIt's a stone wall.");
                     break;
                 default:
                     base.LookAt(objectName);
@@ -79,7 +79,7 @@ namespace Shadowgate.Rooms
                     if (!(activeObject as Entry).IsDoorOpen)
                     {
                         base.OpenObject(objectName);
-                        Console.WriteLine("It's the door leading into the castle Shadowgate.");
+                        GameFunctions.WriteLine("It's the door leading into the castle Shadowgate.");
                     }
                     else
                         base.OpenObject(objectName);
@@ -88,12 +88,12 @@ namespace Shadowgate.Rooms
                     if (!skullOpen)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nAs if by magic, the skull rises.");
+                        GameFunctions.WriteLine("\nAs if by magic, the skull rises.");
 
                         var key = GameFunctions.FindObject("Key 1", PointsOfInterest);
                         if (key is not null)
                         {
-                            Console.WriteLine("There's a key inside!");
+                            GameFunctions.WriteLine("There's a key inside!");
                             key.IsHidden = false;
                         }
                         skullOpen = true;
@@ -103,7 +103,7 @@ namespace Shadowgate.Rooms
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("\nThe Skull is opened.");
+                        GameFunctions.WriteLine("\nThe Skull is opened.");
                     }
                     GameFunctions.ReduceTorchFire();
                     break;
@@ -119,7 +119,7 @@ namespace Shadowgate.Rooms
             {
                 case "Stone Skull":
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\nThe Skull is closed.");
+                    GameFunctions.WriteLine("\nThe Skull is closed.");
                     if (skullOpen)
                     {
                         skullOpen = false;

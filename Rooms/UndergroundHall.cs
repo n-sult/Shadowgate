@@ -33,7 +33,7 @@ namespace Shadowgate.Rooms
             {
                 case "Doorway to the left":
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nWithout thinking, you jump through the opening and immediately hear a loud click. " +
+                    GameFunctions.WriteLine("\nWithout thinking, you jump through the opening and immediately hear a loud click. " +
                         "\nSuddenly, the granite slab above you gives way and crushes you beneath it. " +
                         "\nIt breaks every bone in your body.");
                     GameFunctions.GameOver();

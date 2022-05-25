@@ -38,7 +38,7 @@ namespace Shadowgate.Rooms
                 if (Globals.currentPlayer.Bottle2Used)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\nThe effects of Bottle 2 have worn off! You slowly float back to the ground."); // altered line
+                    GameFunctions.WriteLine("\nThe effects of Bottle 2 have worn off! You slowly float back to the ground."); // altered line
                     Globals.currentPlayer.Bottle2Used = false;
                 }
             }
@@ -54,7 +54,7 @@ namespace Shadowgate.Rooms
                     if (theLedge is not null) // if player hasn't tried to access this door yet...
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("\nThe ledge wasn't strong enough to hold you. You fall to the ground and land hard on your rump."); // alert player they fell
+                        GameFunctions.WriteLine("\nThe ledge wasn't strong enough to hold you. You fall to the ground and land hard on your rump."); // alert player they fell
                         GameFunctions.FindObject("Rubble", PointsOfInterest).IsHidden = false; // make rubble POI visible
                         PointsOfInterest.Remove(theLedge); // remove ledge from POI list
                         PointsOfInterest.Remove(theSupports); // remove support from POI list
@@ -74,19 +74,19 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Left Torch":
-                    Console.WriteLine("\nThis torch seems to be fastened to the wall with rather modern-looking nails.");
+                    GameFunctions.WriteLine("\nThis torch seems to be fastened to the wall with rather modern-looking nails.");
                     break;
                 case "Right Torch":
-                    Console.WriteLine("\nThis torch is attached securely to the wall.");
+                    GameFunctions.WriteLine("\nThis torch is attached securely to the wall.");
                     break;
                 case "Ledge":
-                    Console.WriteLine("\nA slab of concrete rests upon two stone supports, some ten feet from the floor.");
+                    GameFunctions.WriteLine("\nA slab of concrete rests upon two stone supports, some ten feet from the floor.");
                     break;
                 case "Rubble":
-                    Console.WriteLine("\nIt's rubble from the broken ledge.");
+                    GameFunctions.WriteLine("\nIt's rubble from the broken ledge.");
                     break;
                 case "Pair of supports under the ledge":
-                    Console.WriteLine("\nIt's part of the wall.");
+                    GameFunctions.WriteLine("\nIt's part of the wall.");
                     break;
                 default:
                     base.LookAt(objectName);
@@ -103,14 +103,14 @@ namespace Shadowgate.Rooms
                     if (theHiddenStairway.IsHidden == true)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nYou moved the torch. On the left wall, a hidden door opens. There is a spiral staircase leading down.");
+                        GameFunctions.WriteLine("\nYou moved the torch. On the left wall, a hidden door opens. There is a spiral staircase leading down.");
                         theHiddenStairway.IsHidden = false;
                         (theHiddenStairway as Entry).IsDoorOpen = true;
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nYou moved the torch. The hidden door on the left wall is closed.");
+                        GameFunctions.WriteLine("\nYou moved the torch. The hidden door on the left wall is closed.");
                         theHiddenStairway.IsHidden = true;
                         (theHiddenStairway as Entry).IsDoorOpen = false;
                     }

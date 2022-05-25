@@ -16,13 +16,13 @@ namespace Shadowgate.Balcony
 
         public override void Look()
         {
-            Console.WriteLine("\nIt's a wand of sorts. Carved on the side of the wand is a small picture of a serpent.");
+            GameFunctions.WriteLine("\nIt's a wand of sorts. Carved on the side of the wand is a small picture of a serpent.");
         }
 
         public override bool Take()
         {
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("\nAs you take the wand from the skeletal hand, it begins to descend. \nThe hole then closes up as if it had never been.");
+            GameFunctions.WriteLine("\nAs you take the wand from the skeletal hand, it begins to descend. \nThe hole then closes up as if it had never been.");
             GameFunctions.FindObject("Skeletal Hand", Globals.clonedRoom.PointsOfInterest).IsHidden = true;
             return true;
         }
@@ -40,7 +40,7 @@ namespace Shadowgate.Balcony
                         break;
                     case "Giant Snake":
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nThe snake begins to shake and shutter. Is it just your eyes or is it shrinking? \n" +
+                        GameFunctions.WriteLine("\nThe snake begins to shake and shutter. Is it just your eyes or is it shrinking? \n" +
                             "The serpentine statue begins to change! It grows smaller and smaller! " +
                             "\nIt dematerializes and forms anew as a staff of tremendous beauty!");
                         Globals.clonedRoom.PointsOfInterest.Remove(GameFunctions.FindObject(result, Globals.clonedRoom.PointsOfInterest));

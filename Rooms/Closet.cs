@@ -30,7 +30,7 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Shelf":
-                    Console.WriteLine("\nA very sturdy shelf rests against the wall.");
+                    GameFunctions.WriteLine("\nA very sturdy shelf rests against the wall.");
                     break;
                 default:
                     base.LookAt(objectName);

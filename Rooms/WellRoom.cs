@@ -29,14 +29,14 @@ namespace Shadowgate.Rooms
         public void OpenWellMessage()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("\nThe cover of the well is open.");
+            GameFunctions.WriteLine("\nThe cover of the well is open.");
             GameFunctions.ReduceTorchFire();
         }
 
         public void CloseWellMessage()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("\nThe cover of the well is closed.");
+            GameFunctions.WriteLine("\nThe cover of the well is closed.");
             GameFunctions.ReduceTorchFire();
         }
         
@@ -51,14 +51,14 @@ namespace Shadowgate.Rooms
                     if (!theWell.IsDoorOpen) // if well is closed
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("\nYou can't do that. \nYou have to open the door before you go through it.");
+                        GameFunctions.WriteLine("\nYou can't do that. \nYou have to open the door before you go through it.");
                     }
                     else // if well is open...
                     {
                         if (!BigCoinUsed) // check if big coin was used. if not, player dies
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("\nWith a mighty leap, you jump head first into the well. On the way down, you see no water below.");
+                            GameFunctions.WriteLine("\nWith a mighty leap, you jump head first into the well. On the way down, you see no water below.");
                             GameFunctions.GameOver();
                         }
                         else // otherwise, they go to next room
@@ -79,17 +79,17 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Well Handle":
-                    Console.WriteLine("\nIt's a small handle attached to an assortment of gears.");
+                    GameFunctions.WriteLine("\nIt's a small handle attached to an assortment of gears.");
                     break;
                 case "Well Cover":
                     Entry theWell = (Entry)GameFunctions.FindObject("Old Well", PointsOfInterest);
                     if (!theWell.IsDoorOpen)
-                        Console.WriteLine("\nThese wooden planks act as a cover for the well.");
+                        GameFunctions.WriteLine("\nThese wooden planks act as a cover for the well.");
                     else
-                        Console.WriteLine("\nThe cover of the well is opened.");
+                        GameFunctions.WriteLine("\nThe cover of the well is opened.");
                     break;
                 case "Door next to the Well":
-                    Console.WriteLine("\nThis door is covered with dust and dirt.");
+                    GameFunctions.WriteLine("\nThis door is covered with dust and dirt.");
                     break;
                 default:
                     base.LookAt(objectName);
@@ -109,7 +109,7 @@ namespace Shadowgate.Rooms
                     break;
                 case "Door next to the Well":
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\nThe door is locked.");
+                    GameFunctions.WriteLine("\nThe door is locked.");
                     GameFunctions.ReduceTorchFire();
                     break;
                 default:

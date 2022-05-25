@@ -71,29 +71,29 @@ namespace Shadowgate.Rooms
             {
                 case "Closer Cage":
                 case "Farther Cage":
-                    Console.WriteLine("\nSturdy bars seal this cage. Your nose detects the presence of a concealed animal.");
+                    GameFunctions.WriteLine("\nSturdy bars seal this cage. Your nose detects the presence of a concealed animal.");
                     break;
                 case "Sign":
                     if (LookedAtSign == 0)
                     {
-                        Console.WriteLine("\nThis sign reads \"Epor\"");
+                        GameFunctions.WriteLine("\nThis sign reads \"Epor\"");
                         LookedAtSign++;
                     }
                     else if (LookedAtSign == 1)
                     {
-                        Console.WriteLine("\nEpor, Epor, Epor... You got it! It seems to be some sort of magic word!");
+                        GameFunctions.WriteLine("\nEpor, Epor, Epor... You got it! It seems to be some sort of magic word!");
                         Globals.currentPlayer.Spellbook.Add(new Spell("Epor"));
-                        Console.WriteLine("You've learned one magic spell."); // added line
+                        GameFunctions.WriteLine("You've learned one magic spell."); // added line
                         LookedAtSign++;
                     }
                     else
-                        Console.WriteLine("\nIt's a strange sounding word, indeed!");
+                        GameFunctions.WriteLine("\nIt's a strange sounding word, indeed!");
                     break;
                 case "Rope":
                     if (!IsEporActive)
-                        Console.WriteLine("\nIt's a hemp of rope.");
+                        GameFunctions.WriteLine("\nIt's a hemp of rope.");
                     else
-                        Console.WriteLine("\nThe rope is stretched toward the ceiling and resists all efforts to move it.");
+                        GameFunctions.WriteLine("\nThe rope is stretched toward the ceiling and resists all efforts to move it.");
                     break;
                 default:
                     base.LookAt(objectName);

@@ -15,7 +15,7 @@ namespace Shadowgate.LookoutPoint
 
         public override void Look()
         {
-            Console.WriteLine("\nIt is a large gold coin with a well-engraved on it.");
+            GameFunctions.WriteLine("\nIt is a large gold coin with a well-engraved on it.");
         }
 
         public override bool Take()
@@ -36,7 +36,7 @@ namespace Shadowgate.LookoutPoint
                         if (theWell.IsDoorOpen)
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.WriteLine("\nAs soon as you throw the coin into the well, a huge wind erupts from within it. " +
+                            GameFunctions.WriteLine("\nAs soon as you throw the coin into the well, a huge wind erupts from within it. " +
                                 "\nIt reminds you of the small 'dust devils' you see in the autumn months.");
                             (Globals.clonedRoom as Rooms.WellRoom).BigCoinUsed = true;
                             Globals.currentPlayer.PlayerInventory.Remove(this);

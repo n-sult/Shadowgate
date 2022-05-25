@@ -15,7 +15,7 @@ namespace Shadowgate.Library
 
         public override void Look()
         {
-            Console.WriteLine("\nIt seems to be the skull of some unfortunate individual.");
+            GameFunctions.WriteLine("\nIt seems to be the skull of some unfortunate individual.");
         }
 
         public override bool Take()

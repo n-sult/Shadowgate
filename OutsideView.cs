@@ -16,15 +16,15 @@ namespace Shadowgate
         public override void Look()
         {
             if (ObjectName == "The Night Sky" || ObjectName == "Lightning-filled Sky")
-                Console.WriteLine("\nThe sky foretells the coming of a great storm.");
+                GameFunctions.WriteLine("\nThe sky foretells the coming of a great storm.");
             else
-                Console.WriteLine("\nThrough this portal you can see the moon hovering over the darkened mountains.");
+                GameFunctions.WriteLine("\nThrough this portal you can see the moon hovering over the darkened mountains.");
         }
 
         public override void Move()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nWith a cry you jump to your death! \nIt takes only a couple of seconds before you hit the bottom with a thud.");
+            GameFunctions.WriteLine("\nWith a cry you jump to your death! \nIt takes only a couple of seconds before you hit the bottom with a thud.");
             GameFunctions.GameOver();
         }
     }

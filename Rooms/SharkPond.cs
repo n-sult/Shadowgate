@@ -37,7 +37,7 @@ namespace Shadowgate.Rooms
                     if (!WasSphereUsed)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("\nAs you swim toward the skeleton, you feel the jaws of a shark grab you and pull you under. \nYou curse yourself for using " +
+                        GameFunctions.WriteLine("\nAs you swim toward the skeleton, you feel the jaws of a shark grab you and pull you under. \nYou curse yourself for using " +
                             "your body as bait! \nEven before the life has left your body, the lake will be filled with your blood.");
                         GameFunctions.GameOver();
                     }
@@ -56,14 +56,14 @@ namespace Shadowgate.Rooms
             {
                 case "Pond":
                     if (!WasSphereUsed)
-                        Console.WriteLine("\nThe waters of this subterranean lake are as still as a corpse.");
+                        GameFunctions.WriteLine("\nThe waters of this subterranean lake are as still as a corpse.");
                     else
-                        Console.WriteLine("\nThe lake has become a solid sheet of ice.");
+                        GameFunctions.WriteLine("\nThe lake has become a solid sheet of ice.");
                     break;
                 case "Skeleton in the pond":
-                    Console.WriteLine("\nA lime covered skeleton stares at you through eyeless sockets.");
+                    GameFunctions.WriteLine("\nA lime covered skeleton stares at you through eyeless sockets.");
                     if (GameFunctions.FindObject("Key 3", PointsOfInterest) is not null)
-                        Console.WriteLine("It's holding a key in its right hand.");
+                        GameFunctions.WriteLine("It's holding a key in its right hand.");
                     break;
                 default:
                     base.LookAt(objectName);
@@ -77,7 +77,7 @@ namespace Shadowgate.Rooms
             {
                 case "Skeleton in the pond":
                     if (!WasSphereUsed)
-                        Console.WriteLine("\nYou can't reach it from here. Swimming the shark-infested pool would be suicidal.");
+                        GameFunctions.WriteLine("\nYou can't reach it from here. Swimming the shark-infested pool would be suicidal.");
                     else
                         ThatSmartsMessage();
                     break;

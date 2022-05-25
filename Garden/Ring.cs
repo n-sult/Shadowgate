@@ -16,7 +16,7 @@ namespace Shadowgate.Garden
 
         public override void Look()
         {
-            Console.WriteLine("\nIt's a ring! Set with a large, black sapphire.");
+            GameFunctions.WriteLine("\nIt's a ring! Set with a large, black sapphire.");
         }
 
         public override bool Take()
@@ -36,7 +36,7 @@ namespace Shadowgate.Garden
                         break;
                     case "Hole in the Right Pillar":
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nThe ring fits perfectly. The throne magically rises, revealing a secret passageway.");
+                        GameFunctions.WriteLine("\nThe ring fits perfectly. The throne magically rises, revealing a secret passageway.");
                         GameFunctions.FindObject("Trap Door hidden under the Throne", Globals.clonedRoom.PointsOfInterest).IsHidden = false;
                         Globals.currentPlayer.PlayerInventory.Remove(this);
                         GameFunctions.ReduceTorchFire();

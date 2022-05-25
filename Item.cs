@@ -11,13 +11,13 @@ namespace Shadowgate
         public override void Close()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\nYou seem to be wasting your time.");
+            GameFunctions.WriteLine("\nYou seem to be wasting your time.");
         }
 
         public override void Use()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\nNothing happened.");
+            GameFunctions.WriteLine("\nNothing happened.");
         }
     }
 }

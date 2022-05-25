@@ -15,7 +15,7 @@ namespace Shadowgate.Study
 
         public override void Look()
         {
-            Console.WriteLine("\nIt's a black iron poker. It is used to stir the embers of an ongoing fire.");
+            GameFunctions.WriteLine("\nIt's a black iron poker. It is used to stir the embers of an ongoing fire.");
         }
 
         public override bool Take()

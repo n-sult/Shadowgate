@@ -20,7 +20,7 @@ namespace Shadowgate.SwitchCave
 
         public override void Look()
         {
-            Console.WriteLine("\nIt's a finely-crafted wooden handle. \nThere are three handles here, side by side.");
+            GameFunctions.WriteLine("\nIt's a finely-crafted wooden handle. \nThere are three handles here, side by side.");
         }
 
         public override void Use()
@@ -28,13 +28,13 @@ namespace Shadowgate.SwitchCave
             if (!IsLowered) // first, check if the switch is lowered/raised. then show the correct message based on that, and set it's status to lowered/raised
             {
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine($"\nThe {ObjectName} was lowered.");
+                GameFunctions.WriteLine($"\nThe {ObjectName} was lowered.");
                 this.IsLowered = true;
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine($"\nThe {ObjectName} was raised.");
+                GameFunctions.WriteLine($"\nThe {ObjectName} was raised.");
                 this.IsLowered = false;
             }
 
@@ -51,7 +51,7 @@ namespace Shadowgate.SwitchCave
                     if (!switchCave.CylinderOpen && theOrb is not null) // if cylinder's closed and orb isn't taken, show this message and reveal orb
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nScree! The top half of the cylinder lifts with a shuddering sound. " +
+                        GameFunctions.WriteLine("\nScree! The top half of the cylinder lifts with a shuddering sound. " +
                             "\nYou're momentarily dazzled as the darkness is lit by a blinding flash! \nThe silver orb is revealed inside!");
                         switchCave.CylinderOpen = true;
                         theOrb.IsHidden = false;
@@ -59,27 +59,27 @@ namespace Shadowgate.SwitchCave
                     else if (switchCave.CylinderOpen && theOrb is not null) // if cylinder's open and orb isn't taken, hide the cylinder
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nThe top half of the cylinder descends. It is now closed."); // altered line
+                        GameFunctions.WriteLine("\nThe top half of the cylinder descends. It is now closed."); // altered line
                         switchCave.CylinderOpen = false;
                         theOrb.IsHidden = true;
                     }
                     else if (!switchCave.CylinderOpen && theOrb is null) // if cylinder's closed but orb is taken, just show this message
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nThe top half of the cylinder rises!"); // altered line
+                        GameFunctions.WriteLine("\nThe top half of the cylinder rises!"); // altered line
                         switchCave.CylinderOpen = true;
                     }
                     else // and if cylinder's open and orb is taken, just show this message
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nThe top half of the cylinder descends. It is now closed."); // altered line
+                        GameFunctions.WriteLine("\nThe top half of the cylinder descends. It is now closed."); // altered line
                         switchCave.CylinderOpen = false;
                     }
                 }
                 else // if incorrect sequence was used...
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\nNothing happened. \nThe switches returned to their original positions."); // altered line
+                    GameFunctions.WriteLine("\nNothing happened. \nThe switches returned to their original positions."); // altered line
                 }
                 
                 foreach (PointOfInterest POI in Globals.currentRoom.PointsOfInterest)

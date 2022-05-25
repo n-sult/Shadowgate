@@ -29,7 +29,7 @@ namespace Shadowgate.Rooms
         void DieToLava()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nShouting a battle cry, you catapult yourself off of the platform. " +
+            GameFunctions.WriteLine("\nShouting a battle cry, you catapult yourself off of the platform. " +
                 "\nYou are brave, warrior, but stupid! Your body explodes as you plunge into the lava.");
             GameFunctions.GameOver();
         }
@@ -58,16 +58,16 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Lava Pit":
-                    Console.WriteLine("\nThis dark-red lava comes from the earth's core.");
+                    GameFunctions.WriteLine("\nThis dark-red lava comes from the earth's core.");
                     break;
                 case "Bridgeway":
-                    Console.WriteLine("\nIt's a narrow stone bridgeway.");
+                    GameFunctions.WriteLine("\nIt's a narrow stone bridgeway.");
                     break;
                 case "Giant Statue":
                     if (!MotariUsed)
-                        Console.WriteLine("\nThis huge statue is made of precious metals. It holds a basin of smoldering coals.");
+                        GameFunctions.WriteLine("\nThis huge statue is made of precious metals. It holds a basin of smoldering coals.");
                     else
-                        Console.WriteLine("\nThe eerie statue descends into the lava.");
+                        GameFunctions.WriteLine("\nThe eerie statue descends into the lava.");
                     break;
                 default:
                     base.LookAt(objectName);

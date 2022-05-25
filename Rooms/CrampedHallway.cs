@@ -36,7 +36,7 @@ namespace Shadowgate.Rooms
         void DieToTrap()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nWhen you remove the book from its pedestal, the floor collapses, and you fall to your death.");
+            GameFunctions.WriteLine("\nWhen you remove the book from its pedestal, the floor collapses, and you fall to your death.");
             GameFunctions.GameOver();
         }
         
@@ -61,13 +61,13 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Book on a pedestal":
-                    Console.WriteLine("\nIt's an ancient tome. It seems that no one has disturbed it's pages for centuries.");
+                    GameFunctions.WriteLine("\nIt's an ancient tome. It seems that no one has disturbed it's pages for centuries.");
                     break;
                 case "Candle":
-                    Console.WriteLine("\nIt's a small candle, perfect for reading.");
+                    GameFunctions.WriteLine("\nIt's a small candle, perfect for reading.");
                     break;
                 case "Back wall":
-                    Console.WriteLine("\nThese stones seem to be set loosely in the mortar.");
+                    GameFunctions.WriteLine("\nThese stones seem to be set loosely in the mortar.");
                     break;
                 default:
                     base.LookAt(objectName);
@@ -97,25 +97,25 @@ namespace Shadowgate.Rooms
             {
                 case "White Stone on the wall":
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\nThe stone falls away to reveal a secret passage!");
+                    GameFunctions.WriteLine("\nThe stone falls away to reveal a secret passage!");
                     activeObject.ObjectName = "Wall Opening";
                     (activeObject as Entry).IsDoorOpen = true;
                     GameFunctions.ReduceTorchFire();
                     break;
                 case "Wall Opening":
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("\nThe wall is opened.");
+                    GameFunctions.WriteLine("\nThe wall is opened.");
                     break;
                 case "Book on a pedestal":
                     if (!_isBookOpen)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nThe book is opened and examined. \nA rectangular hole has been cut out of the inside of the book.");
+                        GameFunctions.WriteLine("\nThe book is opened and examined. \nA rectangular hole has been cut out of the inside of the book.");
                         
                         var key = GameFunctions.FindObject("Key 2", PointsOfInterest);
                         if (key != null)
                         {
-                            Console.WriteLine("There's a key inside!");
+                            GameFunctions.WriteLine("There's a key inside!");
                             key.IsHidden = false;
                         }
 
@@ -126,7 +126,7 @@ namespace Shadowgate.Rooms
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("\nThe book is opened.");
+                        GameFunctions.WriteLine("\nThe book is opened.");
                         break;
                     }
                 default:
@@ -142,18 +142,18 @@ namespace Shadowgate.Rooms
             {
                 case "White Stone on the wall":
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\nThe wall is closed.");
+                    GameFunctions.WriteLine("\nThe wall is closed.");
                     break;
                 case "Wall Opening":
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\nThe wall is closed.");
+                    GameFunctions.WriteLine("\nThe wall is closed.");
                     activeObject.ObjectName = "White Stone on the wall";
                     (activeObject as Entry).IsDoorOpen = false;
                     GameFunctions.ReduceTorchFire();
                     break;
                 case "Book on a pedestal":
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\nThe book is closed");
+                    GameFunctions.WriteLine("\nThe book is closed");
                     
                     var key = GameFunctions.FindObject("Key 2", PointsOfInterest);
                     if (key != null)

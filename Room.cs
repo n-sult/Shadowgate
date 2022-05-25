@@ -91,7 +91,7 @@ namespace Shadowgate
 
                 Globals.clonedRoom.PointsOfInterest.Remove(activeObject);   // remove item from POI
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"\nThe {activeObject.ObjectName} is in hand."); // message for taking item
+                GameFunctions.WriteLine($"\nThe {activeObject.ObjectName} is in hand."); // message for taking item
 
                 GameFunctions.ReduceTorchFire();
 
@@ -124,7 +124,7 @@ namespace Shadowgate
         public virtual void ThatSmartsMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_ouchMessage);
+            GameFunctions.WriteLine(_ouchMessage);
         }
     }
 }

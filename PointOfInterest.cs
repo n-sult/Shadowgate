@@ -56,115 +56,115 @@ namespace Shadowgate
         public virtual void Move()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_moveResult);
+            GameFunctions.WriteLine(_moveResult);
         }
 
         public virtual void Look()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(LookResult);
+            GameFunctions.WriteLine(LookResult);
         }
 
         public virtual bool Take()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_takeResult);
+            GameFunctions.WriteLine(_takeResult);
             return false;
         }
 
         public virtual void Open()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_openResult);
+            GameFunctions.WriteLine(_openResult);
         }
 
         public virtual void Close()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_closeResult);
+            GameFunctions.WriteLine(_closeResult);
         }
 
         public virtual void Use()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_useResult);
+            GameFunctions.WriteLine(_useResult);
         }
 
         public virtual void Hit()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_hitResult);
+            GameFunctions.WriteLine(_hitResult);
         }
 
         public virtual void Leave()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_leaveResult);
+            GameFunctions.WriteLine(_leaveResult);
         }
 
         public virtual void Speak()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_speakResult);
+            GameFunctions.WriteLine(_speakResult);
         }
 
         public virtual void DoNotDoThatMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_doNoDoThatMessage);
+            GameFunctions.WriteLine(_doNoDoThatMessage);
         }
 
         public virtual void WhatDidYouExpectMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_whatDidYouExpectMessage);
+            GameFunctions.WriteLine(_whatDidYouExpectMessage);
             GameFunctions.ReduceTorchFire();
         }
 
         public virtual void ThatSmartsMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_ouchMessage);
+            GameFunctions.WriteLine(_ouchMessage);
             GameFunctions.ReduceTorchFire();
         }
 
         public virtual void BumpedHeadMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_bumpedHeadMessage);
+            GameFunctions.WriteLine(_bumpedHeadMessage);
             GameFunctions.ReduceTorchFire();
         }
         
         public virtual void ThumpMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_thumpMessage);
+            GameFunctions.WriteLine(_thumpMessage);
             GameFunctions.ReduceTorchFire();
         }
 
         public virtual void DoesNotUnderstandMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_doesNotUnderstandMessage);
+            GameFunctions.WriteLine(_doesNotUnderstandMessage);
             GameFunctions.ReduceTorchFire();
         }
         
         public virtual void CannotReachMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_cannotReachMessage);
+            GameFunctions.WriteLine(_cannotReachMessage);
         }
 
         public virtual void AfraidToGetNearMessage()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(_afraidToGetNearMessage);
+            GameFunctions.WriteLine(_afraidToGetNearMessage);
         }
 
         public static void LeaveInFountainMessage(string objectName)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"\nThe {objectName} was dropped into the fountain and immediately melted in the acidic liquid.");
+            GameFunctions.WriteLine($"\nThe {objectName} was dropped into the fountain and immediately melted in the acidic liquid.");
             var itemToRemove = GameFunctions.FindObject(objectName, null, Globals.currentPlayer.PlayerInventory);
             Globals.currentPlayer.PlayerInventory.Remove((Item)itemToRemove);
             GameFunctions.ReduceTorchFire();

@@ -15,7 +15,7 @@ namespace Shadowgate.Laboratory
 
         public override void Look()
         {
-            Console.WriteLine("\nIt's an empty test tube on a wooden rack.");
+            GameFunctions.WriteLine("\nIt's an empty test tube on a wooden rack.");
         }
 
         public override bool Take()

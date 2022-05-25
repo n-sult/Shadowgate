@@ -15,7 +15,7 @@ namespace Shadowgate.Watchtower
 
         public override void Look()
         {
-            Console.WriteLine("\nIt's some sort of spike that is made of precious metals. Ouch! The tips are as sharp as needles.");
+            GameFunctions.WriteLine("\nIt's some sort of spike that is made of precious metals. Ouch! The tips are as sharp as needles.");
         }
 
         public override bool Take()
@@ -42,7 +42,7 @@ namespace Shadowgate.Watchtower
                         break;
                     case "Staff":
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nSuddenly, lightning begins to flash in the room! \nThen, the golden spike slides smoothly onto the staff " +
+                        GameFunctions.WriteLine("\nSuddenly, lightning begins to flash in the room! \nThen, the golden spike slides smoothly onto the staff " +
                             "and locks into place.");
                         SnakeCave.Staff currentStaff = (SnakeCave.Staff)GameFunctions.FindObject(result, null, Globals.currentPlayer.PlayerInventory);
                         currentStaff.HasBlade = true;

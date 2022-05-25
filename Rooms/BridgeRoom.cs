@@ -36,7 +36,7 @@ namespace Shadowgate.Rooms
                     if (!Globals.currentPlayer.Bottle2Used)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("\nAs you reach the middle of the bridge, it collapses under your feet! " +
+                        GameFunctions.WriteLine("\nAs you reach the middle of the bridge, it collapses under your feet! " +
                             "\nThe bridge won't hold you. You can't cross unless you lose some weight!");
                         GameFunctions.GameOver();
                     }
@@ -45,7 +45,7 @@ namespace Shadowgate.Rooms
                     break;
                 case "Chasm":
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nWith a loud cry, you take the big plunge. \nThe Grim Reaper stands below, waiting to catch you.");
+                    GameFunctions.WriteLine("\nWith a loud cry, you take the big plunge. \nThe Grim Reaper stands below, waiting to catch you.");
                     GameFunctions.GameOver();
                     break;
                 default:
@@ -59,7 +59,7 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Chasm":
-                    Console.WriteLine("\nYou hear moans coming from the bottom of the chasm.");
+                    GameFunctions.WriteLine("\nYou hear moans coming from the bottom of the chasm.");
                     break;
                 default:
                     base.LookAt(objectName);

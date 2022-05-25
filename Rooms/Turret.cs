@@ -29,7 +29,7 @@ namespace Shadowgate.Rooms
         public static void DieToWyvern()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nWith the speed of lightning, the wyvern wraps its tail around your neck. \nYou die, screaming silently.");
+            GameFunctions.WriteLine("\nWith the speed of lightning, the wyvern wraps its tail around your neck. \nYou die, screaming silently.");
             GameFunctions.GameOver();
         }
 
@@ -38,10 +38,10 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Wyvern":
-                    Console.WriteLine("\nIt's a wyvern! This beastie is a distant cousin of a dragon but is smaller and fiercer!");
+                    GameFunctions.WriteLine("\nIt's a wyvern! This beastie is a distant cousin of a dragon but is smaller and fiercer!");
                     break;
                 case "Pedestal":
-                    Console.WriteLine("\nThis pedestal is some thirteen inches tall, and made of some unknown metal.");
+                    GameFunctions.WriteLine("\nThis pedestal is some thirteen inches tall, and made of some unknown metal.");
                     break;
                 default:
                     base.LookAt(objectName);

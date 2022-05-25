@@ -15,7 +15,7 @@ namespace Shadowgate.Lair
 
         public override void Look()
         {
-            Console.WriteLine("\nIt's an ancient Gnome war hammer. This weapon does not show the signs of battle.");
+            GameFunctions.WriteLine("\nIt's an ancient Gnome war hammer. This weapon does not show the signs of battle.");
         }
 
         public override bool Take()
@@ -32,19 +32,19 @@ namespace Shadowgate.Lair
                 {
                     case "Left Mirror":
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("\nAs soon as you break the mirror, shards of glass fly through the air and slice into your body! " +
+                        GameFunctions.WriteLine("\nAs soon as you break the mirror, shards of glass fly through the air and slice into your body! " +
                             "\nBlood pours from your wounds and your body slumps to the floor.");
                         GameFunctions.GameOver();
                         break;
                     case "Right Mirror":
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("\nBehind the broken mirror, you find a magic portal into deep space. You are immediately sucked through. " + // altered line
+                        GameFunctions.WriteLine("\nBehind the broken mirror, you find a magic portal into deep space. You are immediately sucked through. " + // altered line
                             "\nThe lack of air causes you to quickly lose consciousness. \nThe Grim Reaper quickly embraces you!");
                         GameFunctions.GameOver();
                         break;
                     case "Middle Mirror":
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nBellowing like some Norse God, you smash the hammer into the mirror. You shatter the mirror, revealing an iron door!");
+                        GameFunctions.WriteLine("\nBellowing like some Norse God, you smash the hammer into the mirror. You shatter the mirror, revealing an iron door!");
                         GameFunctions.FindObject("Door behind broken mirror", Globals.clonedRoom.PointsOfInterest).IsHidden = false; // unhide the door behind the mirror
                         Globals.clonedRoom.PointsOfInterest.Remove(GameFunctions.FindObject("Middle Mirror", Globals.clonedRoom.PointsOfInterest)); // remove middle mirror from POI
                         CanBeDiscarded = true; // once the mirror is broken, the hammer can be discarded

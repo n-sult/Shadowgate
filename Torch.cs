@@ -17,7 +17,7 @@ namespace Shadowgate
         {
             activeTorch.FireRemaining = 60;
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\nThe Torch is lit.");
+            GameFunctions.WriteLine("\nThe Torch is lit.");
         }
 
         public static void RemoveTorch()
@@ -35,7 +35,7 @@ namespace Shadowgate
 
         public override void Look()
         {
-            Console.WriteLine("\nIt's a torch. An oil soaked rag is wrapped around it.");
+            GameFunctions.WriteLine("\nIt's a torch. An oil soaked rag is wrapped around it.");
         }
 
         public override bool Take()
@@ -67,7 +67,7 @@ namespace Shadowgate
             else
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("\nThe torches are burning strongly. You need not light any more.");
+                GameFunctions.WriteLine("\nThe torches are burning strongly. You need not light any more.");
             }
         }
 

@@ -15,7 +15,7 @@ namespace Shadowgate.Study
 
         public override void Look()
         {
-            Console.WriteLine("\nIt's a pewter goblet, which glows with a lustrous shine.");
+            GameFunctions.WriteLine("\nIt's a pewter goblet, which glows with a lustrous shine.");
         }
 
         public override bool Take()

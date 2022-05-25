@@ -39,14 +39,14 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Table":
-                    Console.WriteLine("\nIt's a round wooden table.");
+                    GameFunctions.WriteLine("\nIt's a round wooden table.");
                     break;
                 case "Star Map":
-                    Console.WriteLine("\nIt's a map of the known galaxy. You can see billions and billions of stars. " +
+                    GameFunctions.WriteLine("\nIt's a map of the known galaxy. You can see billions and billions of stars. " +
                         "\nThe map seems to be only loosely attached to the wall.");
                     break;
                 case "Telescope":
-                    Console.WriteLine("\nAs you peer through the telescope, you are amazed by the clarity of the night sky.");
+                    GameFunctions.WriteLine("\nAs you peer through the telescope, you are amazed by the clarity of the night sky.");
                     break;
                 default:
                     base.LookAt(objectName);
@@ -61,9 +61,9 @@ namespace Shadowgate.Rooms
             {
                 case "Star Map":
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\nThe Star Map is open.");
+                    GameFunctions.WriteLine("\nThe Star Map is open.");
                     if (!PointsOfInterest.Contains(GameFunctions.FindObject(theRod.ObjectName, PointsOfInterest)))
-                        Console.WriteLine("There's a rod behind the poster!");
+                        GameFunctions.WriteLine("There's a rod behind the poster!");
                     if (!StarMapOpen)
                     {
                         if (PointsOfInterest.Contains(theRod))
@@ -86,7 +86,7 @@ namespace Shadowgate.Rooms
             {
                 case "Star Map":
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\nThe Star Map is closed");
+                    GameFunctions.WriteLine("\nThe Star Map is closed");
                     if (StarMapOpen)
                     {
                         if (PointsOfInterest.Contains(theRod))

@@ -69,7 +69,7 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Waterfall":
-                    Console.WriteLine("\nCold water cascades down a cliff into a small stream.");
+                    GameFunctions.WriteLine("\nCold water cascades down a cliff into a small stream.");
                     break;
                 default:
                     base.LookAt(objectName);

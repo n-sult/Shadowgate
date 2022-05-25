@@ -34,13 +34,13 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Tree Hole":
-                    Console.WriteLine("\nSuddenly, a small hole appears in the side of the tree!");
+                    GameFunctions.WriteLine("\nSuddenly, a small hole appears in the side of the tree!");
                     break;
                 case "Tree":
-                    Console.WriteLine("\nThe bark on this tree shows no hint of disease and it's leaves are an awesome gold color.");
+                    GameFunctions.WriteLine("\nThe bark on this tree shows no hint of disease and it's leaves are an awesome gold color.");
                     break;
                 case "Water Fountain":
-                    Console.WriteLine("\nThis exquisite marble fountain is shaped into the image of a sea serpent. " +
+                    GameFunctions.WriteLine("\nThis exquisite marble fountain is shaped into the image of a sea serpent. " +
                         "\nFrom it's mouth spews an acidic liquid.");
                     break;
                 default:

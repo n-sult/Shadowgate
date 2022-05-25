@@ -15,7 +15,7 @@ namespace Shadowgate.Lair
 
         public override void Look()
         {
-            Console.WriteLine("\nThis spear is some seven feet long. The tip seems to be made of finely forged silver.");
+            GameFunctions.WriteLine("\nThis spear is some seven feet long. The tip seems to be made of finely forged silver.");
         }
 
         public override bool Take()
@@ -35,7 +35,7 @@ namespace Shadowgate.Lair
                         break;
                     case "Troll": // when using on the troll...
                         Console.ForegroundColor = ConsoleColor.Cyan; // show message of the troll disappearing
-                        Console.WriteLine("\nThe troll falls silently into the dark cavern. You listen, but you do not hear him crash.");
+                        GameFunctions.WriteLine("\nThe troll falls silently into the dark cavern. You listen, but you do not hear him crash.");
 
                         var theTroll = GameFunctions.FindObject(result, Globals.clonedRoom.PointsOfInterest);
                         theTroll.IsHidden = true; // hide the troll

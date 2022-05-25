@@ -15,7 +15,7 @@ namespace Shadowgate.BanquetHall
 
         public override void Look()
         {
-            Console.WriteLine("\nThe frame of this fine mirror is laced with silver and gold.");
+            GameFunctions.WriteLine("\nThe frame of this fine mirror is laced with silver and gold.");
         }
 
         public override bool Take()

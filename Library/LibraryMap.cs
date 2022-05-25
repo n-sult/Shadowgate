@@ -15,7 +15,7 @@ namespace Shadowgate.Library
 
         public override void Look()
         {
-            Console.WriteLine("\nThis fine map of the lands of Tarkus is quite detailed, although incomplete.");
+            GameFunctions.WriteLine("\nThis fine map of the lands of Tarkus is quite detailed, although incomplete.");
         }
 
         public override bool Take()

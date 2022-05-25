@@ -38,7 +38,7 @@ namespace Shadowgate.Rooms
             {
                 case "Pit":
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nAs you approach the pit, an enormous monster rises from it! It's a furry, winged beast sporting killer teeth " +
+                    GameFunctions.WriteLine("\nAs you approach the pit, an enormous monster rises from it! It's a furry, winged beast sporting killer teeth " +
                         "and nails! \nIt appears that you woke the sleeping guard from his beauty sleep. \nHe decides to eat you for breakfast."); // altered line
                     GameFunctions.GameOver();
                     break;
@@ -53,10 +53,10 @@ namespace Shadowgate.Rooms
             switch (objectName)
             {
                 case "Pit":
-                    Console.WriteLine("\nIt looks like a large, very deep pit.");
+                    GameFunctions.WriteLine("\nIt looks like a large, very deep pit.");
                     break;
                 case "Metal Cylinder":
-                    Console.WriteLine("\nIt's a strong-looking metal cylinder.");
+                    GameFunctions.WriteLine("\nIt's a strong-looking metal cylinder.");
                     break;
                 default:
                     base.LookAt(objectName);

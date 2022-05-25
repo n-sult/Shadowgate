@@ -32,7 +32,7 @@ namespace Shadowgate.Rooms
         public void DieToWerewolf()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nThe woman suddenly transforms into a werewolf! \nWith a loud roar, the wolf pounces on you, taking your life!");
+            GameFunctions.WriteLine("\nThe woman suddenly transforms into a werewolf! \nWith a loud roar, the wolf pounces on you, taking your life!");
             GameFunctions.GameOver();
         }
 
@@ -41,16 +41,16 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Captive Woman":
-                    Console.WriteLine("\nThe fine lass lies upon the floor, chained to the wall. She is extremely beautiful.");
+                    GameFunctions.WriteLine("\nThe fine lass lies upon the floor, chained to the wall. She is extremely beautiful.");
                     break;
                 case "Dead Werewolf":
-                    Console.WriteLine("\nThis looks like your typical dead werewolf. Your arrow is deeply lodged in it's body.");
+                    GameFunctions.WriteLine("\nThis looks like your typical dead werewolf. Your arrow is deeply lodged in it's body.");
                     break;
                 case "Chain":
                     if (WomanDead)
-                        Console.WriteLine("\nIt must have taken super strength to have ripped the chain apart!");
+                        GameFunctions.WriteLine("\nIt must have taken super strength to have ripped the chain apart!");
                     else
-                        Console.WriteLine("\nThis silver chain seems to be strongly secured to the wall.");
+                        GameFunctions.WriteLine("\nThis silver chain seems to be strongly secured to the wall.");
                     break;
                 default:
                     base.LookAt(objectName);
@@ -81,7 +81,7 @@ namespace Shadowgate.Rooms
             {
                 case "Captive Woman":
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\nShe doesn't seem to understand what you say.");
+                    GameFunctions.WriteLine("\nShe doesn't seem to understand what you say.");
                     GameFunctions.ReduceTorchFire();
                     break;
                 default:

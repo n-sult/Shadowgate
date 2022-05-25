@@ -16,7 +16,7 @@ namespace Shadowgate.Courtyard
 
         public override void Look()
         {
-            Console.WriteLine("\nIt's a gauntlet of silver plate. It bears the symbol of the Circle of Twelve.");
+            GameFunctions.WriteLine("\nIt's a gauntlet of silver plate. It bears the symbol of the Circle of Twelve.");
         }
 
         public override bool Take()
@@ -37,7 +37,7 @@ namespace Shadowgate.Courtyard
                         break;
                     case "Self":
                         Console.ForegroundColor = ConsoleColor.Cyan; // show message of eqipping gauntlet
-                        Console.WriteLine("\nYou place the gauntlet on your hand. It feels like it was made just for you.");
+                        GameFunctions.WriteLine("\nYou place the gauntlet on your hand. It feels like it was made just for you.");
                         Globals.currentPlayer.IsGauntletEquipped = true; // set player to have gauntlets eqipped
                         Globals.currentPlayer.PlayerInventory.Remove(this); // remove gauntlet from inventory
                         GameFunctions.ReduceTorchFire();

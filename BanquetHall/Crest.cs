@@ -15,7 +15,7 @@ namespace Shadowgate.BanquetHall
 
         public override void Look()
         {
-            Console.WriteLine("\nIt's the family crest of Sir Dugan himself.");
+            GameFunctions.WriteLine("\nIt's the family crest of Sir Dugan himself.");
         }
 
         public override bool Take()

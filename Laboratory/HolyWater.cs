@@ -16,13 +16,13 @@ namespace Shadowgate.Laboratory
 
         public override void Look()
         {
-            Console.WriteLine("\nThe glass vial is filled with a clear liquid. The sign of the cross is on it.");
+            GameFunctions.WriteLine("\nThe glass vial is filled with a clear liquid. The sign of the cross is on it.");
         }
 
         public override bool Take()
         {
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("\nAs you grab the water, the stone descends back into place."); // altered line
+            GameFunctions.WriteLine("\nAs you grab the water, the stone descends back into place."); // altered line
             return true;
         }
 
@@ -39,7 +39,7 @@ namespace Shadowgate.Laboratory
                         break;
                     case "Hellhound":
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nThe holy water has sent the hellhound back to the place where it was spawned. " +
+                        GameFunctions.WriteLine("\nThe holy water has sent the hellhound back to the place where it was spawned. " +
                             "\nIt's engulfed by a huge flame! The flame dies out. The room is quiet, as though nothing had happened.");
                         Globals.clonedRoom.PointsOfInterest.Remove(GameFunctions.FindObject(result, Globals.clonedRoom.PointsOfInterest));
                         Globals.currentPlayer.PlayerInventory.Remove(this);

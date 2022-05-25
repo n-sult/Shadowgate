@@ -18,9 +18,9 @@ namespace Shadowgate.Library
             if (Globals.currentPlayer.IsGlassesEquipped) // if you have the glasses eqipped
             {
                 Console.ForegroundColor = ConsoleColor.Cyan; // show message of reading the book
-                Console.WriteLine("\nWow! With these glasses, you can understand and read what you could not before!");
+                GameFunctions.WriteLine("\nWow! With these glasses, you can understand and read what you could not before!");
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("\n'The light grows faint' \n'the path winds down.' \n'Where life is lost,' \n'wisdom is found.' \n'The seed of the dream,' " +
+                GameFunctions.WriteLine("\n'The light grows faint' \n'the path winds down.' \n'Where life is lost,' \n'wisdom is found.' \n'The seed of the dream,' " +
                     "\n'fore the evil is free,' \n'where the sword is hung,' \n'he must place the key.' \n'A bridge to form,' \n'amidst burning death.' " +
                     "\n'A demon to guard.' \n\n'Motari Riseth' \n\nYou've learned one magic spell. As the spell was chanted, the book quickly vanished.");
                 Globals.currentPlayer.Spellbook.Add(new Spell("Motari")); // add Motari spell to player spellbook
@@ -32,7 +32,7 @@ namespace Shadowgate.Library
                 GameFunctions.ReduceTorchFire();
             }
             else // show this message if glasses are not equipped
-                Console.WriteLine("\nThis book looks quite old. The words \"The Prophecy\" are written upon it.");
+                GameFunctions.WriteLine("\nThis book looks quite old. The words \"The Prophecy\" are written upon it.");
         }
 
         public override bool Take()
@@ -49,9 +49,9 @@ namespace Shadowgate.Library
             else
             {
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("\nThe book is opened.");
+                GameFunctions.WriteLine("\nThe book is opened.");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("\nYou can't read the strange writing in the book.");
+                GameFunctions.WriteLine("\nYou can't read the strange writing in the book.");
                 GameFunctions.ReduceTorchFire();
             }
         }
@@ -59,7 +59,7 @@ namespace Shadowgate.Library
         public override void Close()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("\nThe book is closed.");
+            GameFunctions.WriteLine("\nThe book is closed.");
             GameFunctions.ReduceTorchFire();
         }
 

@@ -15,7 +15,7 @@ namespace Shadowgate.Study
 
         public override void Look()
         {
-            Console.WriteLine("\nThis wooden bellows has stoked many a floundering fire.");
+            GameFunctions.WriteLine("\nThis wooden bellows has stoked many a floundering fire.");
         }
 
         public override bool Take()

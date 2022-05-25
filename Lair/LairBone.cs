@@ -15,7 +15,7 @@ namespace Shadowgate.Lair
 
         public override void Look()
         {
-            Console.WriteLine("\nThis bone has been picked clean.");
+            GameFunctions.WriteLine("\nThis bone has been picked clean.");
         }
 
         public override bool Take()

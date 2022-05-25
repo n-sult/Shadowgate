@@ -30,7 +30,7 @@ namespace Shadowgate.Rooms
         public static void DieToWarlock()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nThe Warlock Lord feels your presence and knows that you are the seed that must be destroyed. " +
+            GameFunctions.WriteLine("\nThe Warlock Lord feels your presence and knows that you are the seed that must be destroyed. " +
                 "\nFlame shoots forth from his staff and engulfs your body. You have failed!");
             GameFunctions.GameOver();
         }
@@ -40,18 +40,18 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Behemoth":
-                    Console.WriteLine("\nYour jaw drops and you stare in awed silence at the sight of the Great Titan! " +
+                    GameFunctions.WriteLine("\nYour jaw drops and you stare in awed silence at the sight of the Great Titan! " +
                         "\nAcid drips from his jaws and sizzles on the ledge below!");
                     break;
                 case "Warlock Lord":
-                    Console.WriteLine("\nAlthough his back is turned, you know beyond a shadow of a doubt that it's the Warlock Lord. " +
+                    GameFunctions.WriteLine("\nAlthough his back is turned, you know beyond a shadow of a doubt that it's the Warlock Lord. " +
                         "\nIt seems that his staff is controlling the creature, keeping it at bay!");
                     break;
                 case "Line of braziers":
-                    Console.WriteLine("\nFlame burns intensely within the braziers as if in celebration of the Dark One's victory!");
+                    GameFunctions.WriteLine("\nFlame burns intensely within the braziers as if in celebration of the Dark One's victory!");
                     break;
                 case "Stone Platform":
-                    Console.WriteLine("\nIt's a huge stone platform with stairs descending from it.");
+                    GameFunctions.WriteLine("\nIt's a huge stone platform with stairs descending from it.");
                     break;
                 default:
                     base.LookAt(objectName);

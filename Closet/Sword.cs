@@ -15,7 +15,7 @@ namespace Shadowgate.Closet
 
         public override void Look()
         {
-            Console.WriteLine("\nIt's a double-edged broadsword. The handle has druidic script written upon it.");
+            GameFunctions.WriteLine("\nIt's a double-edged broadsword. The handle has druidic script written upon it.");
         }
 
         public override bool Take()
@@ -42,7 +42,7 @@ namespace Shadowgate.Closet
                         else // but if it's unconcious, kill it
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.WriteLine("\nYou drive the sword deep into the cyclops. Blood pours out of the wound and onto the grass.");
+                            GameFunctions.WriteLine("\nYou drive the sword deep into the cyclops. Blood pours out of the wound and onto the grass.");
                             (Globals.clonedRoom as Rooms.Courtyard).CyclopsDead = true;
                             foreach (Item item in Globals.currentPlayer.PlayerInventory) // once the cyclops is dead, the sword, sling and any stones can be discarded
                                 if (item.ObjectName == "Sword" || item.ObjectName == "Sling" || item.ObjectName == "Stone")

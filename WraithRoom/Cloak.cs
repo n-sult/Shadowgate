@@ -15,7 +15,7 @@ namespace Shadowgate.WraithRoom
 
         public override void Look()
         {
-            Console.WriteLine("\nThis heavy cloak contains no frivolous adornments, such as pockets or a hood.");
+            GameFunctions.WriteLine("\nThis heavy cloak contains no frivolous adornments, such as pockets or a hood.");
         }
 
         public override bool Take()
@@ -33,7 +33,7 @@ namespace Shadowgate.WraithRoom
                 {
                     case "Self":
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nYou try on the cloak and find it very unbecoming. It barely fits over your armor.");
+                        GameFunctions.WriteLine("\nYou try on the cloak and find it very unbecoming. It barely fits over your armor.");
                         Globals.currentPlayer.IsCloakEquipped = true; // mark player status as having the cloak equipped
                         Globals.currentPlayer.PlayerInventory.Remove(this); // remove cloak from inventory
                         GameFunctions.ReduceTorchFire();

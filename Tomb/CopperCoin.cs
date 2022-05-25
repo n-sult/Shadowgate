@@ -15,7 +15,7 @@ namespace Shadowgate.Tomb
 
         public override void Look()
         {
-            Console.WriteLine("\nHey! Wait a minute! This is no gold coin. It's but a brass slug. What a royal rip!");
+            GameFunctions.WriteLine("\nHey! Wait a minute! This is no gold coin. It's but a brass slug. What a royal rip!");
         }
 
         public override bool Take()
@@ -46,7 +46,7 @@ namespace Shadowgate.Tomb
                         break;
                     case "Ferryman":
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("\nThe ferryman will not take the copper coin as a fare. Suddenly, he disappears!");
+                        GameFunctions.WriteLine("\nThe ferryman will not take the copper coin as a fare. Suddenly, he disappears!");
                         GameFunctions.FindObject(result, Globals.clonedRoom.PointsOfInterest).IsHidden = true;
                         GameFunctions.FindObject("Raft", Globals.clonedRoom.PointsOfInterest).IsHidden = true;
                         GameFunctions.ReduceTorchFire();

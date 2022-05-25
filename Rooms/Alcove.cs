@@ -32,10 +32,10 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Alcove Wall":
-                    Console.WriteLine("\nThe wall juts out in multiple places.");
+                    GameFunctions.WriteLine("\nThe wall juts out in multiple places.");
                     break;
                 case "Rock jutting from the wall":
-                    Console.WriteLine("\nThe rock is quite loose.");
+                    GameFunctions.WriteLine("\nThe rock is quite loose.");
                     break;
                 default:
                     base.LookAt(objectName);
@@ -53,7 +53,7 @@ namespace Shadowgate.Rooms
                     break;
                 case "Rock jutting from the wall":
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\nYou hit the rock as hard as you can. \nPOW! \nThe loose rock falls down as if hinged to the wall.");
+                    GameFunctions.WriteLine("\nYou hit the rock as hard as you can. \nPOW! \nThe loose rock falls down as if hinged to the wall.");
                     PointsOfInterest.Remove(GameFunctions.FindObject("Rock jutting from the wall", PointsOfInterest)); // make the rock disappear forever
                     GameFunctions.FindObject("Bag 1", PointsOfInterest).IsHidden = false; // reveal the bag
                     GameFunctions.ReduceTorchFire();

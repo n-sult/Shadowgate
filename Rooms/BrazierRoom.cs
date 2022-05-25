@@ -39,7 +39,7 @@ namespace Shadowgate.Rooms
         public static void HoundAppears()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\nA large fireball suddenly appears in the room and causes you to shield your eyes. " +
+            GameFunctions.WriteLine("\nA large fireball suddenly appears in the room and causes you to shield your eyes. " +
                 "\nWhen you open them, you notice that the fire has changed into something far more menacing: a hellhound!"); // altered line
             ReturnHellhound().IsHidden = false;
             GameFunctions.ReduceTorchFire();
@@ -48,7 +48,7 @@ namespace Shadowgate.Rooms
         public static void DieToHound()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nThe demon dog snarls and pounces on you. Its teeth sink deep into your flesh.");
+            GameFunctions.WriteLine("\nThe demon dog snarls and pounces on you. Its teeth sink deep into your flesh.");
             GameFunctions.GameOver();
         }
         
@@ -79,14 +79,14 @@ namespace Shadowgate.Rooms
             {
                 case "Left Brazier":
                 case "Right Brazier":
-                    Console.WriteLine("\nA flame burns within this brazier, lighting the entire room.");
+                    GameFunctions.WriteLine("\nA flame burns within this brazier, lighting the entire room.");
                     break;
                 case "Left Pillar":
                 case "Right Pillar":
-                    Console.WriteLine("\nThis marble pillar seems to be supporting the ceiling.");
+                    GameFunctions.WriteLine("\nThis marble pillar seems to be supporting the ceiling.");
                     break;
                 case "Hellhound":
-                    Console.WriteLine("\nThe hellhound makes this hot room even hotter. \nThere must be a way to cool the room off " +
+                    GameFunctions.WriteLine("\nThe hellhound makes this hot room even hotter. \nThere must be a way to cool the room off " +
                         "before you roast!");
                     break;
                 default:

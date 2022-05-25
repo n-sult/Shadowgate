@@ -18,7 +18,7 @@ namespace Shadowgate.Closet
 
         public override void Look()
         {
-            Console.WriteLine("\nIt's a small leather sling. This would come in handy for long-range battles!");
+            GameFunctions.WriteLine("\nIt's a small leather sling. This would come in handy for long-range battles!");
         }
 
         public override bool Take()
@@ -38,7 +38,7 @@ namespace Shadowgate.Closet
                     if (!HasStone) // otherwise, show this message if there's no stone in the sling
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("\nWaving a sling around in the air doesn't seem to be very useful. It won't work without stones.");
+                        GameFunctions.WriteLine("\nWaving a sling around in the air doesn't seem to be very useful. It won't work without stones.");
                     }
                     else // if there is a stone in the sling...
                     {
@@ -47,7 +47,7 @@ namespace Shadowgate.Closet
                         else if (result == "Cyclops") // if used on cyclops, flag it as unconcious
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.WriteLine("\nAs soon as you start twirling the sling, a magical influence takes over your body! " +
+                            GameFunctions.WriteLine("\nAs soon as you start twirling the sling, a magical influence takes over your body! " +
                                 "\nYou cry out, \"Death to the Philistine!\", and release the stone. " +
                                 "\nBullseye!! The cyclops has been rendered unconcious."); // altered line
                             (Globals.clonedRoom as Rooms.Courtyard).CyclopsUnconcious = true;
@@ -61,7 +61,7 @@ namespace Shadowgate.Closet
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.White;
-                            Console.WriteLine("\nYou whirl the sling over your head and release the stone. Not bad for a beginner!");
+                            GameFunctions.WriteLine("\nYou whirl the sling over your head and release the stone. Not bad for a beginner!");
                             HasStone = false; // mark sling as no longer having a stone
                             StonesThrown++; // increment number of stones thrown for stone replenish check
                         }

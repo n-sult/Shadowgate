@@ -34,7 +34,7 @@ namespace Shadowgate.Rooms
         void DieToGargoyle()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nSuddenly, the beasts begin to shudder and their eyes begin to glow red! " +
+            GameFunctions.WriteLine("\nSuddenly, the beasts begin to shudder and their eyes begin to glow red! " +
                     "\nThe gargoyles, angered at your presence, spring from their frozen state and rip you to pieces! " +
                     "\nThere's not enough left of you to even feed to the birds.");
             GameFunctions.GameOver();
@@ -62,7 +62,7 @@ namespace Shadowgate.Rooms
             {
                 case "Gargoyle statue left of the Central Doorway":
                 case "Gargoyle statue right of the Central Doorway":
-                    Console.WriteLine("\nThis stone statue is some three and a half feet tall and ugly as all heck. " +
+                    GameFunctions.WriteLine("\nThis stone statue is some three and a half feet tall and ugly as all heck. " +
                         "\nIt is very cold to the touch.");
                     break;
                 default:

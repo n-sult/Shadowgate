@@ -42,7 +42,7 @@ namespace Shadowgate.Rooms
         public static void DieToDragon()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nDragon flame engulfs your body. You pay for your curiosity with your life.");
+            GameFunctions.WriteLine("\nDragon flame engulfs your body. You pay for your curiosity with your life.");
             GameFunctions.GameOver();
         }
         
@@ -53,7 +53,7 @@ namespace Shadowgate.Rooms
             if (result is null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("\nWhoosh! Flames suddenly shoot from the dragon's mouth!");
+                GameFunctions.Write("\nWhoosh! Flames suddenly shoot from the dragon's mouth!");
                 DieToDragon();
                 return;
             }
@@ -62,24 +62,24 @@ namespace Shadowgate.Rooms
                 if (result is not null) // if inventory has shield, then block flames
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nFlames spew out from the dragon's mouth!");
+                    GameFunctions.WriteLine("\nFlames spew out from the dragon's mouth!");
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("You raise your shield just in time to block the dragon flame.");
+                    GameFunctions.WriteLine("You raise your shield just in time to block the dragon flame.");
                     numberOfDragonBreaths++;
                 }
             }
             else if (numberOfDragonBreaths > 0 && numberOfDragonBreaths < 4) // if inventory has shield, block flames up to 4 times
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("\nAgain flame spews forth! You use the shield for protection.");
+                GameFunctions.WriteLine("\nAgain flame spews forth! You use the shield for protection.");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("It's getting hot! You don't know how much longer you can stand it.");
+                GameFunctions.WriteLine("It's getting hot! You don't know how much longer you can stand it.");
                 numberOfDragonBreaths++;
             }
             else // if inventory has shield and flame has been blocked 4 times already, die
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("\nFlames spew out yet again. The shield melts under the intensity of the dragon flame. Your body fares no better! " +
+                GameFunctions.Write("\nFlames spew out yet again. The shield melts under the intensity of the dragon flame. Your body fares no better! " +
                     "Not even your best friend could recognize your burning body.");
                 DieToDragon();
             }
@@ -103,13 +103,13 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Pair of eyes glowing in a dark doorway":
-                    Console.WriteLine("\nAll you can see are two eyes in the darkness. They seem to be watching every move you make.");
+                    GameFunctions.WriteLine("\nAll you can see are two eyes in the darkness. They seem to be watching every move you make.");
                     break;
                 case "Large Chest":
-                    Console.WriteLine("\nThis is an extremely heavy iron-bound chest. It is securly locked.");
+                    GameFunctions.WriteLine("\nThis is an extremely heavy iron-bound chest. It is securly locked.");
                     break;
                 case "Pile of Gold":
-                    Console.WriteLine("\nThis pile of gold is worth a king's ransom! The pieces have been melted together.");
+                    GameFunctions.WriteLine("\nThis pile of gold is worth a king's ransom! The pieces have been melted together.");
                     break;
                 default:
                     base.LookAt(objectName);

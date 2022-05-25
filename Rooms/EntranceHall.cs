@@ -31,7 +31,7 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Red Rug":
-                    Console.WriteLine("\nIt's a beautifully woven rug.");
+                    GameFunctions.WriteLine("\nIt's a beautifully woven rug.");
                     break;
                 default:
                     base.LookAt(objectName);

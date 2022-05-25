@@ -15,7 +15,7 @@ namespace Shadowgate.Laboratory
 
         public override void Look()
         {
-            Console.WriteLine("\nThis horseshoe seems to have taken quite a beating.");
+            GameFunctions.WriteLine("\nThis horseshoe seems to have taken quite a beating.");
         }
 
         public override bool Take()

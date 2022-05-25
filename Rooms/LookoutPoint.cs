@@ -34,7 +34,7 @@ namespace Shadowgate.Rooms
         public static void DieToGold()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nAs you move the pot, you realize that you have fallen for the oldest trick in the book. " +
+            GameFunctions.WriteLine("\nAs you move the pot, you realize that you have fallen for the oldest trick in the book. " +
                 "\nYou suddenly find yourself knee-deep in the moat. \nIt seems that the alligators really enjoy your company!");
             GameFunctions.GameOver();
         }
@@ -57,10 +57,10 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Lookout Point":
-                    Console.WriteLine("\nHeavy stone stairs lead down to a sturdy lookout point.");
+                    GameFunctions.WriteLine("\nHeavy stone stairs lead down to a sturdy lookout point.");
                     break;
                 case "Pot of Gold":
-                    Console.WriteLine("\nIt's a pot of gold! The leprechaun must have skipped town.");
+                    GameFunctions.WriteLine("\nIt's a pot of gold! The leprechaun must have skipped town.");
                     break;
                 default:
                     base.LookAt(objectName);

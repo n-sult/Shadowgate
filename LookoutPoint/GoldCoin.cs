@@ -15,7 +15,7 @@ namespace Shadowgate.LookoutPoint
 
         public override void Look()
         {
-            Console.WriteLine("\nThis coin has a mark on it that looks like a human skull.");
+            GameFunctions.WriteLine("\nThis coin has a mark on it that looks like a human skull.");
         }
 
         public override bool Take()
@@ -46,7 +46,7 @@ namespace Shadowgate.LookoutPoint
                         break;
                     case "Ferryman":
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nThe ferryman takes the coin and gestures you to board quickly.");
+                        GameFunctions.WriteLine("\nThe ferryman takes the coin and gestures you to board quickly.");
                         (Globals.clonedRoom as Rooms.RiverStyx).GoldCoinGiven = true;
                         Globals.currentPlayer.PlayerInventory.Remove(this);
                         GameFunctions.ReduceTorchFire();

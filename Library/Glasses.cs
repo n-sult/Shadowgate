@@ -16,7 +16,7 @@ namespace Shadowgate.Library
         
         public override void Look()
         {
-            Console.WriteLine("\nThese glasses are worn. They've probably been used for a long time.");
+            GameFunctions.WriteLine("\nThese glasses are worn. They've probably been used for a long time.");
         }
 
         public override bool Take()
@@ -37,7 +37,7 @@ namespace Shadowgate.Library
                         break;
                     case "Self":
                         Console.ForegroundColor = ConsoleColor.Cyan; // show message of equipping glasses
-                        Console.WriteLine("\nYou try the glasses on and they fit perfectly. Hmm, you can see very well.");
+                        GameFunctions.WriteLine("\nYou try the glasses on and they fit perfectly. Hmm, you can see very well.");
                         Globals.currentPlayer.IsGlassesEquipped = true; // mark player status as glasses equipped
                         Globals.currentPlayer.PlayerInventory.Remove(this); // remove glasses from inventory
                         GameFunctions.ReduceTorchFire();

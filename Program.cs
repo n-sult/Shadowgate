@@ -114,23 +114,25 @@ namespace Shadowgate
     {
         static void Main(string[] args)
         {
+            GameFunctions.CreateLog();
+            
             ActiveTorch activeTorch1 = new ActiveTorch("Active Torch 1", 61);
             ActiveTorch activeTorch2 = new ActiveTorch("Active Torch 2", 0);
             
-            List<Item> startingInventory = new List<Item>() { activeTorch1, activeTorch2, Globals.torch, Globals.key1, Globals.sling, Globals.sword,
+            List<Item> startingInventory = new List<Item>() { activeTorch1, activeTorch2,/* Globals.torch, Globals.key1, Globals.sling, Globals.sword,
                 Globals.key2, Globals.holyTorch, Globals.key3, Globals.stone, Globals.whiteGem, Globals.redGem, Globals.blueGem, Globals.sphere,
                 Globals.shield, Globals.hammer, Globals.spear, Globals.lairSkull, Globals.scepter, Globals.arrow, Globals.cloak, 
                 Globals.broom, Globals.scroll2, Globals.scroll3, Globals.scroll4, Globals.gauntlet, Globals.bookOnDesk, Globals.glasses, 
                 Globals.libraryMap, Globals.librarySkull, Globals.bellows, Globals.key5, Globals.key6, Globals.holyWater, Globals.horseshoe, 
                 Globals.flute, Globals.ring, Globals.key4, Globals.mirror, Globals.rod, Globals.star, Globals.blade, Globals.horn, Globals.talisman, 
-                Globals.wand, Globals.bigCoin, Globals.goldCoin1, Globals.staff, Globals.orb, Globals.bottle2, Globals.bottle2, Globals.bottle2, };
+                Globals.wand, Globals.bigCoin, Globals.goldCoin1, Globals.staff, Globals.orb, Globals.bottle2, Globals.bottle2, Globals.bottle2,*/ };
 
-            Globals.currentPlayer.TorchCount = 8;
+            // Globals.currentPlayer.TorchCount = 8;
             
             Globals.currentPlayer.PlayerInventory.AddRange(startingInventory);
             
             GameFunctions.RoomCreation(); // add all rooms to global list of rooms
-            GameFunctions.MoveRooms("Bridge Room"); // TODO: in final, should be "Outside the Castle"
+            GameFunctions.MoveRooms("Outside the Castle"); // TODO: in final, should be "Outside the Castle"
 
             while (!Globals.currentPlayer.IsPlayerDead && !Globals.isGameBeat) // as long as game is not over, run main game loop
             {
@@ -140,11 +142,11 @@ namespace Shadowgate
                 GameFunctions.CheckTorchLevels((ActiveTorch)Globals.currentPlayer.PlayerInventory[1]);
 
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("\n\nYou take note of the following in the room: "); 
+                GameFunctions.WriteLine("\n\nYou take note of the following in the room: "); 
                 Console.ForegroundColor = ConsoleColor.Gray;
                 foreach (PointOfInterest pointOfInterest in Globals.clonedRoom.PointsOfInterest) // list off all POIs in the room as long as it's NOT marked as hidden
                     if (!pointOfInterest.IsHidden)
-                        Console.WriteLine(pointOfInterest.ObjectName);
+                        GameFunctions.WriteLine(pointOfInterest.ObjectName);
                     
                 List<PointOfInterest> currentRoomInterests = new List<PointOfInterest>(); // create new list to add all POI from globals.currentroom (is this needed?)
 
@@ -152,25 +154,25 @@ namespace Shadowgate
                     currentRoomInterests.Add(pointOfInterest);
 
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("\nWhat would you like to do?");
+                GameFunctions.WriteLine("\nWhat would you like to do?");
                 Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine("1 - Move \n2 - Look \n3 - Take \n4 - Open \n5 - Close \n6 - Use " +
+                GameFunctions.WriteLine("1 - Move \n2 - Look \n3 - Take \n4 - Open \n5 - Close \n6 - Use " +
                     "\n7 - Hit \n8 - Leave \n9 - Speak \n10 - Cast a Spell \n11 - View Inventory");  // prompt for player to select action
 
-                string userInput = Console.ReadLine();
+                string userInput = GameFunctions.ReadLine();
 
                 if (userInput == "1") // player wants to move
                 {
                     List<PointOfInterest> listOfThingsToMoveTo = new List<PointOfInterest>(GameFunctions.AddSelfToCurrentList(currentRoomInterests));
 
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine("\nWhere would you like to move?");
+                    GameFunctions.WriteLine("\nWhere would you like to move?");
 
                     Console.ForegroundColor = ConsoleColor.Gray;
                     GameFunctions.PrintPOIs(listOfThingsToMoveTo); // show list non-hidden POIs in the room
-                    Console.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
+                    GameFunctions.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
 
-                    string moveInput = Console.ReadLine();
+                    string moveInput = GameFunctions.ReadLine();
 
                     GameFunctions.UserInputResult inputResult = GameFunctions.CheckUserInput(moveInput, listOfThingsToMoveTo);
                     if (inputResult.Result < 1)
@@ -196,28 +198,29 @@ namespace Shadowgate
 
                     Globals.selection = 1;
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine("\nWhat would you like to look at?");
+                    GameFunctions.WriteLine("\nWhat would you like to look at?");
 
                     Console.ForegroundColor = ConsoleColor.White; // Show a list of all POIs in the room in a separate list
-                    Console.WriteLine("\nIn the room: ");
+                    GameFunctions.WriteLine("\nIn the room: ");
                     Console.ForegroundColor = ConsoleColor.Gray;
                     GameFunctions.PrintPOIs(currentRoomInterests);
 
                     Console.ForegroundColor = ConsoleColor.White; // show a list of all items in the inventory in a separate list
-                    Console.WriteLine("\nIn your inventory: ");
+                    GameFunctions.WriteLine("\nIn your inventory: ");
                     Console.ForegroundColor = ConsoleColor.Gray;
                     foreach (Item item in Globals.currentPlayer.PlayerInventory)
                     {
                         if (item is Torch)
-                            Console.WriteLine($"{Globals.selection} - {item.ObjectName}: {Globals.currentPlayer.TorchCount}");
+                            GameFunctions.WriteLine($"{Globals.selection} - {item.ObjectName}: {Globals.currentPlayer.TorchCount}");
                         else
-                            Console.WriteLine($"{Globals.selection} - {item.ObjectName}");
+                            GameFunctions.WriteLine($"{Globals.selection} - {item.ObjectName}");
                         Globals.selection++;
                     }
-                    Console.Write($"\n{Globals.selection++} - Self");
-                    Console.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
+                    GameFunctions.Write($"\n{Globals.selection++} - Self");
+                    // GameFunctions.Write($"\n{Globals.selection++} - Self");
+                    GameFunctions.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
 
-                    string lookInput = Console.ReadLine();
+                    string lookInput = GameFunctions.ReadLine();
 
                     GameFunctions.UserInputResult inputResult = GameFunctions.CheckUserInput(lookInput, listOfThingsToLookAt);
                     if (inputResult.Result < 1)
@@ -236,13 +239,13 @@ namespace Shadowgate
                     List<PointOfInterest> listOfThingsToTake = new List<PointOfInterest>(GameFunctions.AddSelfToCurrentList(currentRoomInterests));
 
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine("\nWhat would you like to take?");
+                    GameFunctions.WriteLine("\nWhat would you like to take?");
                     Console.ForegroundColor = ConsoleColor.Gray;
 
                     GameFunctions.PrintPOIs(listOfThingsToTake); // show list non-hidden POIs in the room
-                    Console.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
+                    GameFunctions.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
 
-                    string takeInput = Console.ReadLine();
+                    string takeInput = GameFunctions.ReadLine();
 
                     GameFunctions.UserInputResult inputResult = GameFunctions.CheckUserInput(takeInput, listOfThingsToTake);
                     if (inputResult.Result < 1)
@@ -259,32 +262,32 @@ namespace Shadowgate
 
                     Globals.selection = 1;
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine("\nWhat would you like to Open?");
+                    GameFunctions.WriteLine("\nWhat would you like to Open?");
 
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("\nIn the room: ");
+                    GameFunctions.WriteLine("\nIn the room: ");
                     Console.ForegroundColor = ConsoleColor.Gray;
                     foreach (PointOfInterest POI in currentRoomInterests)
                     {
-                        Console.WriteLine($"{Globals.selection} - {POI.ObjectName}");
+                        GameFunctions.WriteLine($"{Globals.selection} - {POI.ObjectName}");
                         Globals.selection++;
                     }
 
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("\nIn your inventory: ");
+                    GameFunctions.WriteLine("\nIn your inventory: ");
                     Console.ForegroundColor = ConsoleColor.Gray;
                     foreach (Item item in Globals.currentPlayer.PlayerInventory)
                     {
                         if (item is Torch)
-                            Console.WriteLine($"{Globals.selection} - {item.ObjectName}: {Globals.currentPlayer.TorchCount}");
+                            GameFunctions.WriteLine($"{Globals.selection} - {item.ObjectName}: {Globals.currentPlayer.TorchCount}");
                         else
-                            Console.WriteLine($"{Globals.selection} - {item.ObjectName}");
+                            GameFunctions.WriteLine($"{Globals.selection} - {item.ObjectName}");
                         Globals.selection++;
                     }
-                    Console.Write($"\n{Globals.selection++} - Self");
-                    Console.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
+                    GameFunctions.Write($"\n{Globals.selection++} - Self");
+                    GameFunctions.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
 
-                    string openInput = Console.ReadLine();
+                    string openInput = GameFunctions.ReadLine();
 
                     GameFunctions.UserInputResult inputResult = GameFunctions.CheckUserInput(openInput, listOfThingsToOpen);
                     if (inputResult.Result < 1)
@@ -300,13 +303,13 @@ namespace Shadowgate
                     List<PointOfInterest> listOfThingsToClose = new List<PointOfInterest>(GameFunctions.AddSelfToCurrentList(currentRoomInterests));
 
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine("\nWhat would you like to close?");
+                    GameFunctions.WriteLine("\nWhat would you like to close?");
 
                     Console.ForegroundColor = ConsoleColor.Gray;
                     GameFunctions.PrintPOIs(listOfThingsToClose); // show list non-hidden POIs in the room
-                    Console.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
+                    GameFunctions.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
 
-                    string closeInput = Console.ReadLine();
+                    string closeInput = GameFunctions.ReadLine();
 
                     GameFunctions.UserInputResult inputResult = GameFunctions.CheckUserInput(closeInput, listOfThingsToClose);
                     if (inputResult.Result < 1)
@@ -323,32 +326,32 @@ namespace Shadowgate
 
                     Globals.selection = 1;
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine("\nWhat would you like to use?");
+                    GameFunctions.WriteLine("\nWhat would you like to use?");
 
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("\nIn the room: ");
+                    GameFunctions.WriteLine("\nIn the room: ");
                     Console.ForegroundColor = ConsoleColor.Gray;
                     foreach (PointOfInterest POI in currentRoomInterests)
                     {
-                        Console.WriteLine($"{Globals.selection} - {POI.ObjectName}");
+                        GameFunctions.WriteLine($"{Globals.selection} - {POI.ObjectName}");
                         Globals.selection++;
                     }
 
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("\nIn your inventory: ");
+                    GameFunctions.WriteLine("\nIn your inventory: ");
                     Console.ForegroundColor = ConsoleColor.Gray;
                     foreach (Item item in Globals.currentPlayer.PlayerInventory)
                     {
                         if (item is Torch)
-                            Console.WriteLine($"{Globals.selection} - {item.ObjectName}: {Globals.currentPlayer.TorchCount}");
+                            GameFunctions.WriteLine($"{Globals.selection} - {item.ObjectName}: {Globals.currentPlayer.TorchCount}");
                         else
-                            Console.WriteLine($"{Globals.selection} - {item.ObjectName}");
+                            GameFunctions.WriteLine($"{Globals.selection} - {item.ObjectName}");
                         Globals.selection++;
                     }
-                    Console.Write($"\n{Globals.selection++} - Self");
-                    Console.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
+                    GameFunctions.Write($"\n{Globals.selection++} - Self");
+                    GameFunctions.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
 
-                    string useInput = Console.ReadLine();
+                    string useInput = GameFunctions.ReadLine();
 
                     GameFunctions.UserInputResult inputResult = GameFunctions.CheckUserInput(useInput, listOfThingsToUse);
                     if (inputResult.Result < 1)
@@ -365,7 +368,7 @@ namespace Shadowgate
                             else // if the item was not in your inventory, you get this message
                             {
                                 Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.WriteLine("\nYou can't use what you didn't take.");
+                                GameFunctions.WriteLine("\nYou can't use what you didn't take.");
                             }
                         else if (listOfThingsToUse[inputResult.Result - 1] is PointOfInterest)
                             Globals.clonedRoom.UseObject(listOfThingsToUse[inputResult.Result - 1].ObjectName);
@@ -376,12 +379,12 @@ namespace Shadowgate
                     List<PointOfInterest> listOfThingsToHit = new List<PointOfInterest>(GameFunctions.AddSelfToCurrentList(currentRoomInterests));
 
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine("\nWhat would you like to hit?");
+                    GameFunctions.WriteLine("\nWhat would you like to hit?");
                     Console.ForegroundColor = ConsoleColor.Gray;
                     GameFunctions.PrintPOIs(listOfThingsToHit); // show list non-hidden POIs in the room
-                    Console.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
+                    GameFunctions.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
 
-                    string hitInput = Console.ReadLine();
+                    string hitInput = GameFunctions.ReadLine();
 
                     GameFunctions.UserInputResult inputResult = GameFunctions.CheckUserInput(hitInput, listOfThingsToHit);
                     if (inputResult.Result < 1)
@@ -397,15 +400,15 @@ namespace Shadowgate
                     List<Item> listOfThingsToDrop = new List<Item>(Globals.currentPlayer.PlayerInventory);
 
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine("\nWhat item would you like to drop?");
+                    GameFunctions.WriteLine("\nWhat item would you like to drop?");
                     
                     Console.ForegroundColor = ConsoleColor.Gray;
                     Globals.selection = 1;
                     foreach (Item item in Globals.currentPlayer.PlayerInventory)
-                        Console.WriteLine($"{Globals.selection++} - {item.ObjectName}");
-                    Console.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
+                        GameFunctions.WriteLine($"{Globals.selection++} - {item.ObjectName}");
+                    GameFunctions.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
 
-                    string leaveInput = Console.ReadLine();
+                    string leaveInput = GameFunctions.ReadLine();
 
                     GameFunctions.UserInputResult inputResult = GameFunctions.CheckUserInput(leaveInput, null, listOfThingsToDrop);
                     if (inputResult.Result < 1)
@@ -413,15 +416,15 @@ namespace Shadowgate
                     else if (inputResult.Result > 0 && inputResult.Result <= listOfThingsToDrop.Count)
                     {
                         Console.ForegroundColor = ConsoleColor.DarkCyan;
-                        Console.WriteLine("\nWhere should this be dropped?");
+                        GameFunctions.WriteLine("\nWhere should this be dropped?");
 
                         Globals.selection = 1;
                         Console.ForegroundColor = ConsoleColor.Gray;
                         foreach (PointOfInterest POI in Globals.clonedRoom.PointsOfInterest)
-                            Console.WriteLine($"{Globals.selection++} - {POI.ObjectName}");
-                        Console.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
+                            GameFunctions.WriteLine($"{Globals.selection++} - {POI.ObjectName}");
+                        GameFunctions.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
 
-                        string leaveWhere = Console.ReadLine();
+                        string leaveWhere = GameFunctions.ReadLine();
 
                         GameFunctions.UserInputResult inputResult1 = GameFunctions.CheckUserInput(leaveWhere, Globals.clonedRoom.PointsOfInterest);
                         if (inputResult1.Result < 1)
@@ -433,7 +436,7 @@ namespace Shadowgate
                             else
                             {
                                 Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.WriteLine("\nYou can't drop it here.");
+                                GameFunctions.WriteLine("\nYou can't drop it here.");
                             }
                         }
                     }
@@ -443,12 +446,12 @@ namespace Shadowgate
                     List<PointOfInterest> listOfThingsToSpeakTo = new List<PointOfInterest>(GameFunctions.AddSelfToCurrentList(currentRoomInterests));
 
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine("\nTo whom would you like to speak?");
+                    GameFunctions.WriteLine("\nTo whom would you like to speak?");
                     Console.ForegroundColor = ConsoleColor.Gray;
                     GameFunctions.PrintPOIs(listOfThingsToSpeakTo); // show list non-hidden POIs in the room
-                    Console.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
+                    GameFunctions.WriteLine($"\n{Globals.selection} - Never mind"); // this visually reflects a 'cancel' option
 
-                    string speakInput = Console.ReadLine();
+                    string speakInput = GameFunctions.ReadLine();
 
                     GameFunctions.UserInputResult inputResult = GameFunctions.CheckUserInput(speakInput, listOfThingsToSpeakTo);
                     if (inputResult.Result < 1)
@@ -464,23 +467,23 @@ namespace Shadowgate
                     if (Globals.currentPlayer.Spellbook.Count == 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("\nYou have no spells to cast!");
+                        GameFunctions.WriteLine("\nYou have no spells to cast!");
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("\nWhat spell would you like to cast?");
+                        GameFunctions.WriteLine("\nWhat spell would you like to cast?");
 
                         Globals.selection = 1;
                         Console.ForegroundColor = ConsoleColor.Gray;
                         foreach (Spell spell in Globals.currentPlayer.Spellbook)
                         {
-                            Console.WriteLine($"{Globals.selection} - {spell.SpellName}");
+                            GameFunctions.WriteLine($"{Globals.selection} - {spell.SpellName}");
                             Globals.selection++;
                         }
-                        Console.WriteLine($"\n{Globals.selection} - Never mind");
+                        GameFunctions.WriteLine($"\n{Globals.selection} - Never mind");
 
-                        string spellUseInput = Console.ReadLine();
+                        string spellUseInput = GameFunctions.ReadLine();
 
                         GameFunctions.UserInputResult inputResult = GameFunctions.CheckUserInput(spellUseInput, null, null, Globals.currentPlayer.Spellbook);
                         if (inputResult.Result < 1)
@@ -492,30 +495,30 @@ namespace Shadowgate
                 else if (userInput == "11")
                 {
                     Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("\nYour current inventory: ");
+                    GameFunctions.WriteLine("\nYour current inventory: ");
                     Console.ForegroundColor = ConsoleColor.White;
                     foreach (Item item in Globals.currentPlayer.PlayerInventory)
                     {
                         if (item == activeTorch1)
-                            Console.WriteLine($"{item.ObjectName}: Fire Left - {activeTorch1.FireRemaining}");
+                            GameFunctions.WriteLine($"{item.ObjectName}: Fire Left - {activeTorch1.FireRemaining}");
                         else if (item == activeTorch2)
-                            Console.WriteLine($"{item.ObjectName}: Fire Left - {activeTorch2.FireRemaining}");
+                            GameFunctions.WriteLine($"{item.ObjectName}: Fire Left - {activeTorch2.FireRemaining}");
                         else if (item.ObjectName == "Torch")
-                            Console.WriteLine($"{item.ObjectName} - {Globals.currentPlayer.TorchCount}");
+                            GameFunctions.WriteLine($"{item.ObjectName} - {Globals.currentPlayer.TorchCount}");
                         else
-                            Console.WriteLine(item.ObjectName);
+                            GameFunctions.WriteLine(item.ObjectName);
                     }
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nInvalid selection. Try again.");
+                    GameFunctions.WriteLine("\nInvalid selection. Try again.");
                 }
 
                 if (activeTorch1.FireRemaining == 0 && activeTorch2.FireRemaining == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nYour torch goes out with a fizzle. With out-stretched arms. You move slowly, looking for a light. " +
+                    GameFunctions.WriteLine("\nYour torch goes out with a fizzle. With out-stretched arms. You move slowly, looking for a light. " +
                         "\nSuddenly, you trip over something! SMASH! You fall face first to the floor!");
                     GameFunctions.GameOver();
                 }
@@ -525,13 +528,13 @@ namespace Shadowgate
                     bool questionAnswered = false;
                     while (!questionAnswered)
                     {
-                        Console.WriteLine("\nDo you want to continue? Y/N");
-                        string userinput = Console.ReadLine();
+                        GameFunctions.WriteLine("\nDo you want to continue? Y/N");
+                        string userinput = GameFunctions.ReadLine();
 
                         if (userinput == "Y" || userinput == "y")
                         {
                             Console.ForegroundColor = ConsoleColor.White;
-                            Console.WriteLine("\nGoing back to previous room...");
+                            GameFunctions.WriteLine("\nGoing back to previous room...");
                             Thread.Sleep(1500);
 
                             Globals.currentPlayer.IsPlayerDead = false;
@@ -541,14 +544,14 @@ namespace Shadowgate
                         }
                         else if (userinput == "N" || userinput == "n")
                         {
-                            Console.WriteLine("\nThe Warlock Lord will surely triumph now...");
+                            GameFunctions.WriteLine("\nThe Warlock Lord will surely triumph now...");
                             questionAnswered = true;
                             Globals.isGameOver = true;
                         }
                     }
                 }
                 else if (Globals.isGameBeat)
-                    Console.WriteLine("\nCongratulations on completing Shadowgate! Thanks for playing!");
+                    GameFunctions.WriteLine("\nCongratulations on completing Shadowgate! Thanks for playing!");
             }
         }
     }

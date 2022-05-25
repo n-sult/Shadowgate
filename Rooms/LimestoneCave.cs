@@ -32,13 +32,13 @@ namespace Shadowgate.Rooms
             switch(objectName)
             {
                 case "Stone Slab":
-                    Console.WriteLine("\nIt's a stone wall.");
+                    GameFunctions.WriteLine("\nIt's a stone wall.");
                     break;
                 case "Floor Stone":
                     if (!BlueGemUsed)
-                        Console.WriteLine("\nThis is a concave polygon. It seems to have been carefully carved into the stone.");
+                        GameFunctions.WriteLine("\nThis is a concave polygon. It seems to have been carefully carved into the stone.");
                     else
-                        Console.WriteLine("\nThe gem fits perfectly into the hole.");
+                        GameFunctions.WriteLine("\nThe gem fits perfectly into the hole.");
                     break;
                 default:
                     base.LookAt(objectName);

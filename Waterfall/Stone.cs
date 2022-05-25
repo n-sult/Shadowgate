@@ -15,7 +15,7 @@ namespace Shadowgate.Waterfall
 
         public override void Look()
         {
-            Console.WriteLine("\nThis stone is almost perfectly round.");
+            GameFunctions.WriteLine("\nThis stone is almost perfectly round.");
         }
 
         public override bool Take()
@@ -34,12 +34,12 @@ namespace Shadowgate.Waterfall
                     if (theSling.HasStone)
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("\nYou can't do that.");
+                        GameFunctions.WriteLine("\nYou can't do that.");
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine("\nYou've put the small stone in the sling.");
+                        GameFunctions.WriteLine("\nYou've put the small stone in the sling.");
                         theSling.HasStone = true; // set sling status to have a stone in it
                         Globals.currentPlayer.PlayerInventory.Remove(this); // remove stone from inventory
                         GameFunctions.ReduceTorchFire();
