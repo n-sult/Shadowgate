@@ -38,7 +38,7 @@ namespace Shadowgate.Rooms
 
         public override void SetRoomStuff()
         {
-            if (Globals.NumberOfBottle2Consumed > 1 && Globals.NumberOfBottle2Consumed % 3 == 0)
+            if (Globals.currentPlayer.NumberOfBottle2Consumed > 0 && Globals.currentPlayer.NumberOfBottle2Consumed % 3 == 0)
             {
                 Bottle eporBottle2 = new Bottle("Bottle 2");
                 if (!PointsOfInterest.Contains(eporBottle2))

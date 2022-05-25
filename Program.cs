@@ -79,7 +79,6 @@ namespace Shadowgate
         public static int selection;
         public static Player currentPlayer = new("Self", false, false, false);
         public static Player permanentPlayer = new("Self", false, false, false);
-        public static int NumberOfBottle2Consumed;
 
         public static bool isGameOver = false;
         public static bool isGameBeat;

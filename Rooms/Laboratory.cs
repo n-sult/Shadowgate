@@ -39,7 +39,7 @@ namespace Shadowgate.Rooms
 
         public override void SetRoomStuff()
         {
-            if (Globals.NumberOfBottle2Consumed > 1 && Globals.NumberOfBottle2Consumed % 3 == 0) // if 3 bottle2s have been used, replenish the bottle2 items in the room
+            if (Globals.currentPlayer.NumberOfBottle2Consumed > 1 && Globals.currentPlayer.NumberOfBottle2Consumed % 3 == 0) // if 3 bottle2s have been used, replenish the bottle2 items in the room
             {
                 Bottle labBottle2First = new Bottle("Bottle 2");
                 Bottle labBottle2Second = new Bottle("Bottle 2");

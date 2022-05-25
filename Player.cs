@@ -18,6 +18,7 @@ namespace Shadowgate
         public int TorchCount = 0;
         public bool ContainsTorch = false;
         public bool Bottle2Used = false;
+        public int NumberOfBottle2Consumed;
 
         public Player(string objectName, bool isCloakEquipped, bool isGauntletEquipped, bool isGlassesEquipped)
         {

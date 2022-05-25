@@ -78,7 +78,7 @@ namespace Shadowgate
                                 GameFunctions.WriteLine("\nYou drink the liquid and immediately begin to rise in the air!");
                                 RemoveBottleFromInventory((Item)bottleThatWasUsed);
                                 Globals.currentPlayer.Bottle2Used = true;
-                                Globals.NumberOfBottle2Consumed++;
+                                Globals.currentPlayer.NumberOfBottle2Consumed++;
                                 GameFunctions.ReduceTorchFire();
                             }
                             else
